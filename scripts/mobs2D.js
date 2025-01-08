@@ -1,4 +1,4 @@
-class MobsModel {
+class Mobs2D {
     constructor(Id,  ){
 
     }

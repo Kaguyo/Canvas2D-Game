@@ -15,7 +15,7 @@ let terminouPulo = true;
 let reminder = false;
 let toLeft = false;
 
-class CharacterModel {
+class Character2D {
     static ultimateAtkFrame = 1;
     static characterFrame = 1;
     static allowRun1 = true;
@@ -44,56 +44,56 @@ class CharacterModel {
     }
     static update(){
         if (keys.q){
-            if (CharacterModel.ultimateAtkFrame < 2){
+            if (Character2D.ultimateAtkFrame < 2){
                 seeleObjectUltWing1.draw();
                 seeleObjectUltDash1.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing1.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 3){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing1.speed;
+            } else if (Character2D.ultimateAtkFrame < 3){
                 seeleObjectUltWing2.draw();
                 seeleObjectUltDash1.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing2.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 4){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing2.speed;
+            } else if (Character2D.ultimateAtkFrame < 4){
                 seeleObjectUltWing3.draw();
                 seeleObjectUltDash1.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing3.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 5){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing3.speed;
+            } else if (Character2D.ultimateAtkFrame < 5){
                 seeleObjectUltWing4.draw();
                 seeleObjectUltDash1.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing4.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 6){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing4.speed;
+            } else if (Character2D.ultimateAtkFrame < 6){
                 seeleObjectUltWing5.draw();
                 seeleObjectUltDash1.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing5.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 7){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing5.speed;
+            } else if (Character2D.ultimateAtkFrame < 7){
                 seeleObjectUltWing6.draw();
                 seeleObjectUltDash1.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing6.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 8){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing6.speed;
+            } else if (Character2D.ultimateAtkFrame < 8){
                 seeleObjectUltWing7.draw();
                 seeleObjectUltDash2.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing7.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 9){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing7.speed;
+            } else if (Character2D.ultimateAtkFrame < 9){
                 seeleObjectUltWing8.draw();
                 seeleObjectUltDash2.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing8.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 8){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing8.speed;
+            } else if (Character2D.ultimateAtkFrame < 8){
                 seeleObjectUltWing9.draw();
                 seeleObjectUltDash2.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing9.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 9){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing9.speed;
+            } else if (Character2D.ultimateAtkFrame < 9){
                 seeleObjectUltWing10.draw();
                 seeleObjectUltDash2.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing10.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 10){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing10.speed;
+            } else if (Character2D.ultimateAtkFrame < 10){
                 seeleObjectUltWing11.draw();
                 seeleObjectUltDash2.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing11.speed;
-            } else if (CharacterModel.ultimateAtkFrame < 11){
+                Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
+            } else if (Character2D.ultimateAtkFrame < 11){
                 seeleObjectUltWing12.draw();
                 seeleObjectUltDash2.draw();
-                CharacterModel.ultimateAtkFrame += seeleObjectUltWing12.speed;
+                Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
             } else {
-                CharacterModel.ultimateAtkFrame = 1;
+                Character2D.ultimateAtkFrame = 1;
                 lockMobility = false;
                 keys.q = false;
             }
@@ -102,70 +102,70 @@ class CharacterModel {
     update(){
         if (readRun && !lockMobility){
             if (keys.a){
-                CharacterModel.AxisX -= CharacterModel.Speed * CharacterModel.SpeedModifier;
-                if (CharacterModel.AxisX < 60) { CharacterModel.AxisX = 60 }
+                Character2D.AxisX -= Character2D.Speed * Character2D.SpeedModifier;
+                if (Character2D.AxisX < 60) { Character2D.AxisX = 60 }
                 if (this.id == 1) {
-                    this.gameFrame += 0.1 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.1 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 2){
                         this.gameFrame = 1;
-                        CharacterModel.allowRun5 = false;
-                        CharacterModel.allowRun6 = true;
+                        Character2D.allowRun5 = false;
+                        Character2D.allowRun6 = true;
                     }
                 } else if (this.id == 2) {
-                    this.gameFrame += 0.07 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.07 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 3){
                         this.gameFrame = 2;
-                        CharacterModel.allowRun6 = false;
-                        CharacterModel.allowRun7 = true;
+                        Character2D.allowRun6 = false;
+                        Character2D.allowRun7 = true;
                     }
                 } else if (this.id == 3) {
-                    this.gameFrame += 0.07 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.07 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 4){
                         this.gameFrame = 3;
-                        CharacterModel.allowRun7 = false;
-                        CharacterModel.allowRun8 = true;
+                        Character2D.allowRun7 = false;
+                        Character2D.allowRun8 = true;
                     }
                 } else if (this.id == 4) {
-                    this.gameFrame += 0.07 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.07 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 5){
                         this.gameFrame = 4;
-                        CharacterModel.allowRun5 = true;
-                        CharacterModel.allowRun8 = false;
+                        Character2D.allowRun5 = true;
+                        Character2D.allowRun8 = false;
                     }
                 }  
             } else if (keys.d){
-                CharacterModel.AxisX += CharacterModel.Speed * CharacterModel.SpeedModifier;
-                if (CharacterModel.AxisX > 1100) {
-                    CharacterModel.adjustMap = CharacterModel.AxisX - 1100;
-                    CharacterModel.AxisX = 1100;
+                Character2D.AxisX += Character2D.Speed * Character2D.SpeedModifier;
+                if (Character2D.AxisX > 1100) {
+                    Character2D.adjustMap = Character2D.AxisX - 1100;
+                    Character2D.AxisX = 1100;
                 }
                 if (this.id == 1) {
-                    this.gameFrame += 0.1 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.1 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 2){
                         this.gameFrame = 1;
-                        CharacterModel.allowRun1 = false;
-                        CharacterModel.allowRun2 = true;
+                        Character2D.allowRun1 = false;
+                        Character2D.allowRun2 = true;
                     }
                 } else if (this.id == 2) {
-                    this.gameFrame += 0.07 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.07 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 3){
                         this.gameFrame = 2;
-                        CharacterModel.allowRun2 = false;
-                        CharacterModel.allowRun3 = true;
+                        Character2D.allowRun2 = false;
+                        Character2D.allowRun3 = true;
                     }
                 } else if (this.id == 3) {
-                    this.gameFrame += 0.07 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.07 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 4){
                         this.gameFrame = 3;
-                        CharacterModel.allowRun3 = false;
-                        CharacterModel.allowRun4 = true;
+                        Character2D.allowRun3 = false;
+                        Character2D.allowRun4 = true;
                     }
                 } else if (this.id == 4) {
-                    this.gameFrame += 0.07 * CharacterModel.SpeedModifier * (CharacterModel.Speed / 20);
+                    this.gameFrame += 0.07 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 5){
                         this.gameFrame = 4;
-                        CharacterModel.allowRun1 = true;
-                        CharacterModel.allowRun4 = false;
+                        Character2D.allowRun1 = true;
+                        Character2D.allowRun4 = false;
                     }
                 }
             }
@@ -173,13 +173,13 @@ class CharacterModel {
             this.gameFrame += this.speed;
             if (this.id == 1 && this.gameFrame >= 2) {
                 this.gameFrame = 1;
-                CharacterModel.characterFrame = 2;
+                Character2D.characterFrame = 2;
             } else if (this.id == 2 && this.gameFrame >= 3) {
                 this.gameFrame = 2;
-                CharacterModel.characterFrame = 3;
+                Character2D.characterFrame = 3;
             } else if (this.id == 3 && this.gameFrame >= 4) {
                 this.gameFrame = 3;
-                CharacterModel.characterFrame = 4;
+                Character2D.characterFrame = 4;
             } else if (this.id == 4 && this.gameFrame >= 5) {
                 this.gameFrame = 4;
                 characterIdle = "exhale";
@@ -188,13 +188,13 @@ class CharacterModel {
             this.gameFrame -= this.speed;
             if (this.id == 4 && this.gameFrame <= 3){
                 this.gameFrame = 4;
-                CharacterModel.characterFrame = 3;
+                Character2D.characterFrame = 3;
             } else if (this.id == 3 && this.gameFrame <= 2) {
                 this.gameFrame = 3;
-                CharacterModel.characterFrame = 2;
+                Character2D.characterFrame = 2;
             } else if (this.id == 2 && this.gameFrame <= 1) {
                 this.gameFrame = 2;
-                CharacterModel.characterFrame = 1;
+                Character2D.characterFrame = 1;
             } else if (this.id == 1 && this.gameFrame <= 0) {
                 this.gameFrame = 1;
                 characterIdle = "inhale";
@@ -202,7 +202,7 @@ class CharacterModel {
         } 
     }
     draw(){
-        ctx.drawImage(this.image, CharacterModel.AxisX, CharacterModel.AxisY);
+        ctx.drawImage(this.image, Character2D.AxisX, Character2D.AxisY);
     }
 }
 
@@ -275,41 +275,41 @@ const UltWing12 = new Image();
 UltWing12.src = "../assets/models/characters/Seele/UltWing12.png";
 
 
-const seeleObjectUltDash1 = new CharacterModel (UltDash1, 0.04, 1, 1);
-const seeleObjectUltDash2 = new CharacterModel (UltDash2, 0.04, 2, 2);
+const seeleObjectUltDash1 = new Character2D (UltDash1, 0.04, 1, 1);
+const seeleObjectUltDash2 = new Character2D (UltDash2, 0.04, 2, 2);
 
-const seeleObjectUltWing1 = new CharacterModel (UltWing1, 0.2, 1, 1);
-const seeleObjectUltWing2 = new CharacterModel (UltWing2, 0.2, 2, 2);
-const seeleObjectUltWing3 = new CharacterModel (UltWing3, 0.2, 3, 3);
-const seeleObjectUltWing4 = new CharacterModel (UltWing4, 0.2, 4, 4);
-const seeleObjectUltWing5 = new CharacterModel (UltWing5, 0.2, 5, 5);
-const seeleObjectUltWing6 = new CharacterModel (UltWing6, 0.15, 6, 6);
-const seeleObjectUltWing7 = new CharacterModel (UltWing7, 0.15, 7, 7);
-const seeleObjectUltWing8 = new CharacterModel (UltWing8, 0.15, 8, 8);
-const seeleObjectUltWing9 = new CharacterModel (UltWing9, 0.15, 9, 9);
-const seeleObjectUltWing10 = new CharacterModel (UltWing10, 0.1, 10, 10);
-const seeleObjectUltWing11 = new CharacterModel (UltWing11, 0.1, 11, 11);
-const seeleObjectUltWing12 = new CharacterModel (UltWing12, 0.1, 12, 12);
+const seeleObjectUltWing1 = new Character2D (UltWing1, 0.2, 1, 1);
+const seeleObjectUltWing2 = new Character2D (UltWing2, 0.2, 2, 2);
+const seeleObjectUltWing3 = new Character2D (UltWing3, 0.2, 3, 3);
+const seeleObjectUltWing4 = new Character2D (UltWing4, 0.2, 4, 4);
+const seeleObjectUltWing5 = new Character2D (UltWing5, 0.2, 5, 5);
+const seeleObjectUltWing6 = new Character2D (UltWing6, 0.2, 6, 6);
+const seeleObjectUltWing7 = new Character2D (UltWing7, 0.2, 7, 7);
+const seeleObjectUltWing8 = new Character2D (UltWing8, 0.1, 8, 8);
+const seeleObjectUltWing9 = new Character2D (UltWing9, 0.1, 9, 9);
+const seeleObjectUltWing10 = new Character2D (UltWing10, 0.15, 10, 10);
+const seeleObjectUltWing11 = new Character2D (UltWing11, 0.15, 11, 11);
+const seeleObjectUltWing12 = new Character2D (UltWing12, 0.15, 12, 12);
 
 
-const seeleObject1 = new CharacterModel (seeleIdleAnimation1, 0.04, 1, 1);
-const seeleObject2 = new CharacterModel (seeleIdleAnimation2, 0.20, 2, 2);
-const seeleObject3 = new CharacterModel (seeleIdleAnimation3, 0.18, 3, 3);
-const seeleObject4 = new CharacterModel (seeleIdleAnimation4, 0.03, 4, 4);
-const seeleObject13 = new CharacterModel (seeleIdleAnimation5, 0.04, 1, 1);
-const seeleObject14 = new CharacterModel (seeleIdleAnimation6, 0.20, 2, 2);
-const seeleObject15 = new CharacterModel (seeleIdleAnimation7, 0.18, 3, 3);
-const seeleObject16 = new CharacterModel (seeleIdleAnimation8, 0.03, 4, 4);
+const seeleObject1 = new Character2D (seeleIdleAnimation1, 0.04, 1, 1);
+const seeleObject2 = new Character2D (seeleIdleAnimation2, 0.20, 2, 2);
+const seeleObject3 = new Character2D (seeleIdleAnimation3, 0.18, 3, 3);
+const seeleObject4 = new Character2D (seeleIdleAnimation4, 0.03, 4, 4);
+const seeleObject13 = new Character2D (seeleIdleAnimation5, 0.04, 1, 1);
+const seeleObject14 = new Character2D (seeleIdleAnimation6, 0.20, 2, 2);
+const seeleObject15 = new Character2D (seeleIdleAnimation7, 0.18, 3, 3);
+const seeleObject16 = new Character2D (seeleIdleAnimation8, 0.03, 4, 4);
 
-const seeleObject5 = new CharacterModel (seeleRunAnimation1, 10, 1, 1);
-const seeleObject6 = new CharacterModel (seeleRunAnimation2, 10, 2, 2);
-const seeleObject7 = new CharacterModel (seeleRunAnimation3, 10, 3, 3);
-const seeleObject8 = new CharacterModel (seeleRunAnimation4, 10, 4, 4);
+const seeleObject5 = new Character2D (seeleRunAnimation1, 10, 1, 1);
+const seeleObject6 = new Character2D (seeleRunAnimation2, 10, 2, 2);
+const seeleObject7 = new Character2D (seeleRunAnimation3, 10, 3, 3);
+const seeleObject8 = new Character2D (seeleRunAnimation4, 10, 4, 4);
 
-const seeleObject9 = new CharacterModel (seeleRunAnimation5, 10, 1, 1);
-const seeleObject10 = new CharacterModel (seeleRunAnimation6, 10, 2, 2);
-const seeleObject11 = new CharacterModel (seeleRunAnimation7, 10, 3, 3);
-const seeleObject12 = new CharacterModel (seeleRunAnimation8, 10, 4, 4);
+const seeleObject9 = new Character2D (seeleRunAnimation5, 10, 1, 1);
+const seeleObject10 = new Character2D (seeleRunAnimation6, 10, 2, 2);
+const seeleObject11 = new Character2D (seeleRunAnimation7, 10, 3, 3);
+const seeleObject12 = new Character2D (seeleRunAnimation8, 10, 4, 4);
 
 const seeleArrayObjectIdle = [
     seeleObject1, 
@@ -328,7 +328,7 @@ const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11,
 document.addEventListener("keypress", (e) => {
     if (e.key === "q") {
         lockMobility = true;
-        CharacterModel.adjustMap = 0;
+        Character2D.adjustMap = 0;
         keys.q = true;
     }
 })
@@ -342,7 +342,7 @@ document.addEventListener("keydown", (e) => {
             keys.d = false;
             reminder = true;
         }
-        CharacterModel.adjustMap = 0;
+        Character2D.adjustMap = 0;
     }
     //  Run Right
     if (e.key === "d") {
@@ -353,10 +353,10 @@ document.addEventListener("keydown", (e) => {
             keys.a = false;
             reminder = true;
         }
-        CharacterModel.adjustMap2 = 0;
+        Character2D.adjustMap2 = 0;
     }
     //  Jump
-    if (e.key === "w" && !CharacterModel.DisableMacroJump){
+    if (e.key === "w" && !Character2D.DisableMacroJump){
         keys.w = true;
     }
     if (e.key === "l"){
@@ -372,7 +372,7 @@ document.addEventListener("keyup", (e) => {
     } else if (e.key === "a") {
         keys.a = false;
         toLeft = true;
-        CharacterModel.adjustMap2 = 0;
+        Character2D.adjustMap2 = 0;
     }
     if (e.key === "d" && reminder){
         keys.d = false;
@@ -382,13 +382,13 @@ document.addEventListener("keyup", (e) => {
         keys.d = false;
         toLeft = false;
         if (!keys.l)
-        CharacterModel.adjustMap = 0;
+        Character2D.adjustMap = 0;
     }
     if (e.key === "w"){
         keys.w = false;
-        CharacterModel.isGrounded = false;
-        CharacterModel.terminouPulo = true;
-        if (CharacterModel.AxisY > 580) CharacterModel.DisableMacroJump = false;
+        Character2D.isGrounded = false;
+        Character2D.terminouPulo = true;
+        if (Character2D.AxisY > 580) Character2D.DisableMacroJump = false;
     }
     if (e.key === "l"){
         keys.l = false;

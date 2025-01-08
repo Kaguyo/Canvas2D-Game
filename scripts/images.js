@@ -21,7 +21,7 @@ class Layer {
         ctx.drawImage(this.image, canvas.width - this.x, 0);
     }
     update(){
-        this.x += CharacterModel.adjustMap * this.speedModifier;
+        this.x += Character2D.adjustMap * this.speedModifier;
         if (this.x >= 3840){
             if (this.id == 1){
                 this.x = this.x - 3840;

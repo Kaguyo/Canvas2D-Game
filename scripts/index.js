@@ -10,93 +10,93 @@ function animate(){
         layer.update();        
     });
     // Dash     ================================
-    if (keys.l && CharacterModel.AxisY == 630 && !lockMobility){
-        CharacterModel.Speed = 40;
+    if (keys.l && Character2D.AxisY == 630 && !lockMobility){
+        Character2D.Speed = 40;
         if (toLeft){
-            CharacterModel.AxisX -= CharacterModel.Speed;
-            if (CharacterModel.AxisX < 60)
-                CharacterModel.AxisX = 60;
+            Character2D.AxisX -= Character2D.Speed;
+            if (Character2D.AxisX < 60)
+                Character2D.AxisX = 60;
         } else if (!toLeft){
-            CharacterModel.AxisX += CharacterModel.Speed;
-            if (CharacterModel.AxisX > 1100){
-                CharacterModel.adjustMap = CharacterModel.AxisX - 1100;
-                CharacterModel.AxisX = 1100;
+            Character2D.AxisX += Character2D.Speed;
+            if (Character2D.AxisX > 1100){
+                Character2D.adjustMap = Character2D.AxisX - 1100;
+                Character2D.AxisX = 1100;
             }
         }
         characterIdle = "none"
     } else if (!keys.l) {
-        CharacterModel.Speed = 20;
+        Character2D.Speed = 20;
     }
     // Jump     ================================
     if (keys.w && !lockMobility){
-        if (CharacterModel.isGrounded || !CharacterModel.terminouPulo){
-            CharacterModel.AxisY -= 27;
-            CharacterModel.isGrounded = false;
-            CharacterModel.terminouPulo = false;
+        if (Character2D.isGrounded || !Character2D.terminouPulo){
+            Character2D.AxisY -= 27;
+            Character2D.isGrounded = false;
+            Character2D.terminouPulo = false;
         }
-        if (CharacterModel.AxisY <= 250){
-            CharacterModel.AxisY = 250;
+        if (Character2D.AxisY <= 250){
+            Character2D.AxisY = 250;
             keys.w = false;
-            CharacterModel.terminouPulo = true;
-            CharacterModel.DisableMacroJump = true;
+            Character2D.terminouPulo = true;
+            Character2D.DisableMacroJump = true;
         }
-    } if (!CharacterModel.isGrounded && CharacterModel.terminouPulo && !lockMobility){
-        CharacterModel.AxisY += 22;
-        if (CharacterModel.AxisY > 630){
-            CharacterModel.AxisY = 630;
-            CharacterModel.isGrounded = true;
+    } if (!Character2D.isGrounded && Character2D.terminouPulo && !lockMobility){
+        Character2D.AxisY += 22;
+        if (Character2D.AxisY > 630){
+            Character2D.AxisY = 630;
+            Character2D.isGrounded = true;
         } 
     }
     // End Jump  ===============================
     if (keys.q) {
-        CharacterModel.update();
+        Character2D.update();
     } else if (readRun && !keys.l) {
         if (keys.d){
             seeleArrayObjectRun.forEach((object) => {
-                if (object.id == 1 && object.gameFrame < 2 && CharacterModel.allowRun1){
+                if (object.id == 1 && object.gameFrame < 2 && Character2D.allowRun1){
                     object.update();
                     object.draw();
                 } else if (object.id == 2 
                 && object.gameFrame < 3 
                 && object.gameFrame >= 2
-                && CharacterModel.allowRun2){
+                && Character2D.allowRun2){
                     object.update();
                     object.draw();
                 } else if (object.id == 3
                 && object.gameFrame < 4
                 && object.gameFrame >= 3
-                && CharacterModel.allowRun3){
+                && Character2D.allowRun3){
                     object.update();
                     object.draw();
                 } else if (object.id == 4
                 && object.gameFrame < 5
                 && object.gameFrame >= 4
-                && CharacterModel.allowRun4){
+                && Character2D.allowRun4){
                     object.update();
                     object.draw();
                 }
             });
         } else if (keys.a){
             seeleArrayObjectRunReversed.forEach((object) => {
-                if (object.id == 1 && object.gameFrame < 2 && CharacterModel.allowRun5){
+                if (object.id == 1 && object.gameFrame < 2 && Character2D.allowRun5){
                     object.update();
                     object.draw();
                 } else if (object.id == 2 
                 && object.gameFrame < 3 
                 && object.gameFrame >= 2
-                && CharacterModel.allowRun6){
+                && Character2D.allowRun6){
                     object.update();
                     object.draw();
                 } else if (object.id == 3 
                 && object.gameFrame < 4
                 && object.gameFrame >= 3
-                && CharacterModel.allowRun7){
+                && Character2D.allowRun7){
                     object.update();
                     object.draw();
                 } else if (object.id == 4 
                 && object.gameFrame < 5
                 && object.gameFrame >= 4
-                && CharacterModel.allowRun8){
+                && Character2D.allowRun8){
                     object.update();
                     object.draw();
                 }
@@ -104,16 +104,16 @@ function animate(){
         }
     
     } else if (characterIdle == "inhale") {
-        CharacterModel.allowRun1 = true;
-        CharacterModel.allowRun2 = false;
-        CharacterModel.allowRun3 = false;
-        CharacterModel.allowRun4 = false;
-        CharacterModel.allowRun5 = true;
-        CharacterModel.allowRun6 = false;
-        CharacterModel.allowRun7 = false;
-        CharacterModel.allowRun8 = false;
-        if (!keys.l) CharacterModel.adjustMap = 0;
-        if (CharacterModel.characterFrame == 1) {
+        Character2D.allowRun1 = true;
+        Character2D.allowRun2 = false;
+        Character2D.allowRun3 = false;
+        Character2D.allowRun4 = false;
+        Character2D.allowRun5 = true;
+        Character2D.allowRun6 = false;
+        Character2D.allowRun7 = false;
+        Character2D.allowRun8 = false;
+        if (!keys.l) Character2D.adjustMap = 0;
+        if (Character2D.characterFrame == 1) {
             if (!toLeft) {
                 seeleObject1.draw();
                 seeleObject1.update();
@@ -123,7 +123,7 @@ function animate(){
                 seeleObject13.update();
                 seeleObject1.update();
             }
-        } else if (CharacterModel.characterFrame == 2) {
+        } else if (Character2D.characterFrame == 2) {
             if (!toLeft) {
                 seeleObject2.draw();
                 seeleObject2.update();
@@ -133,7 +133,7 @@ function animate(){
                 seeleObject14.update();
                 seeleObject2.update();
             }
-        } else if (CharacterModel.characterFrame == 3) {
+        } else if (Character2D.characterFrame == 3) {
             if (!toLeft) {
                 seeleObject3.draw();
                 seeleObject3.update();
@@ -143,7 +143,7 @@ function animate(){
                 seeleObject15.update();
                 seeleObject3.update();
             }
-        } else if (CharacterModel.characterFrame == 4) {
+        } else if (Character2D.characterFrame == 4) {
             if (!toLeft) {
                 seeleObject4.draw();
                 seeleObject4.update();
@@ -155,17 +155,17 @@ function animate(){
             }
         }
     } else if (characterIdle == "exhale") {
-        CharacterModel.allowRun1 = true;
-        CharacterModel.allowRun2 = false;
-        CharacterModel.allowRun3 = false;
-        CharacterModel.allowRun4 = false;
-        CharacterModel.allowRun5 = true;
-        CharacterModel.allowRun6 = false;
-        CharacterModel.allowRun7 = false;
-        CharacterModel.allowRun8 = false;
+        Character2D.allowRun1 = true;
+        Character2D.allowRun2 = false;
+        Character2D.allowRun3 = false;
+        Character2D.allowRun4 = false;
+        Character2D.allowRun5 = true;
+        Character2D.allowRun6 = false;
+        Character2D.allowRun7 = false;
+        Character2D.allowRun8 = false;
         if (!keys.l)
-        CharacterModel.adjustMap = 0;
-        if(CharacterModel.characterFrame == 4){
+        Character2D.adjustMap = 0;
+        if(Character2D.characterFrame == 4){
             if (!toLeft) {
                 seeleObject4.draw();
                 seeleObject4.update();
@@ -175,7 +175,7 @@ function animate(){
                 seeleObject16.update();
                 seeleObject4.update();
             }
-        } else if (CharacterModel.characterFrame == 3) {
+        } else if (Character2D.characterFrame == 3) {
             if (!toLeft) {
                 seeleObject3.draw();
                 seeleObject3.update();
@@ -185,7 +185,7 @@ function animate(){
                 seeleObject15.update();
                 seeleObject3.update();
             }
-        } else if (CharacterModel.characterFrame == 2) {
+        } else if (Character2D.characterFrame == 2) {
             if (!toLeft) {
                 seeleObject2.draw();
                 seeleObject2.update();
@@ -195,7 +195,7 @@ function animate(){
                 seeleObject14.update();
                 seeleObject2.update();
             }
-        } else if (CharacterModel.characterFrame == 1) {
+        } else if (Character2D.characterFrame == 1) {
             if (!toLeft) {
                 seeleObject1.draw();
                 seeleObject1.update();

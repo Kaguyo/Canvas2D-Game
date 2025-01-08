@@ -42,7 +42,7 @@ class Character2D {
         this.gameFrame = gameFrame;
         this.id = id;
     }
-    static update(){
+    static Ultimate(){
         if (keys.q){
             if (Character2D.ultimateAtkFrame < 2){
                 seeleObjectUltWing1.draw();
@@ -388,7 +388,7 @@ document.addEventListener("keyup", (e) => {
         keys.w = false;
         Character2D.isGrounded = false;
         Character2D.terminouPulo = true;
-        if (Character2D.AxisY > 580) Character2D.DisableMacroJump = false;
+        Character2D.DisableMacroJump = false;
     }
     if (e.key === "l"){
         keys.l = false;

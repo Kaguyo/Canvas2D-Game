@@ -18,57 +18,57 @@ class Blood {
         Blood.changeFrame += 0.2;
         if (Blood.changeFrame >= 0 && Blood.changeFrame < 1){
             Blood.bloodFrame = 0;
-            this.sx = 4 - CharacterModel.adjustMap;
+            this.sx = 4 - Character2D.adjustMap;
             this.sy = 4;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 1 && Blood.changeFrame < 2){
             if (Blood.bloodFrame == 0) this.sx += 288;
             Blood.bloodFrame = 1;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 2 && Blood.changeFrame < 3){
             if (Blood.bloodFrame == 1) this.sx += 288;
             Blood.bloodFrame = 2;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 3 && Blood.changeFrame < 4){
             if (Blood.bloodFrame == 2) this.sx += 288;
             Blood.bloodFrame = 3;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 4 && Blood.changeFrame < 5){
             if (Blood.bloodFrame == 3){ this.sx = 5; this.sy += 288}
             Blood.bloodFrame = 4;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 5 && Blood.changeFrame < 6){
             if (Blood.bloodFrame == 4) this.sx += 288;
             Blood.bloodFrame = 5;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 6 && Blood.changeFrame < 7){
             if (Blood.bloodFrame == 5) this.sx += 288;
             Blood.bloodFrame = 6;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else if (Blood.changeFrame >= 7 && Blood.changeFrame < 8){
             if (Blood.bloodFrame == 6) this.sx += 288;
             Blood.bloodFrame = 7;
-            this.dx += 0.6 - CharacterModel.adjustMap;
+            this.dx += 0.6 - Character2D.adjustMap;
             this.dy -= 0.6;
             Blood.lastX = this.dx;
         } else {
             Blood.changeFrame = 0;
             Blood.bloodFrame = 0;
-            this.sx = 4 - CharacterModel.adjustMap; 
+            this.sx = 4 - Character2D.adjustMap; 
             this.sy = 4;
             this.dx = Blood.lastX;
             this.dy = 350;

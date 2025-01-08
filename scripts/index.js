@@ -49,7 +49,7 @@ function animate(){
     }
     // End Jump  ===============================
     if (keys.q) {
-        Character2D.update();
+        Character2D.Ultimate();
     } else if (readRun && !keys.l) {
         if (keys.d){
             seeleArrayObjectRun.forEach((object) => {

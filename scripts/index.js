@@ -11,7 +11,7 @@ function animate(){
     });
     // Dash     ================================
     if (keys.l && Character2D.AxisY == 630 && !lockMobility){
-        Character2D.Speed = 40;
+        Character2D.Dash(true);
         if (toLeft){
             Character2D.AxisX -= Character2D.Speed;
             if (Character2D.AxisX < 60)
@@ -25,7 +25,7 @@ function animate(){
         }
         characterIdle = "none"
     } else if (!keys.l) {
-        Character2D.Speed = 20;
+        Character2D.Dash(false);
     }
     // Jump     ================================
     if (keys.w && !lockMobility){
@@ -48,9 +48,10 @@ function animate(){
         } 
     }
     // End Jump  ===============================
-    if (keys.q) {
+    if (keys.q) { // Update e Draw Ultimate
         Character2D.Ultimate();
-    } else if (readRun && !keys.l) {
+
+    } else if (readRun && !keys.l) { // Update e Draw de Correr
         if (keys.d){
             seeleArrayObjectRun.forEach((object) => {
                 if (object.id == 1 && object.gameFrame < 2 && Character2D.allowRun1){
@@ -102,7 +103,6 @@ function animate(){
                 }
             });
         }
-    
     } else if (characterIdle == "inhale") {
         Character2D.allowRun1 = true;
         Character2D.allowRun2 = false;
@@ -207,7 +207,6 @@ function animate(){
             }
         }
     }
-    renderBlood(0);
     requestAnimationFrame(animate);
 }
 animate();

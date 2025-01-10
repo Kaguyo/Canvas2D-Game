@@ -27,7 +27,10 @@ class Character2D {
     static allowRun7 = false;
     static allowRun8 = false;
 
+    static tempSpeed = 0;
     static Speed = 20;
+    static DashSpeed = 50;
+    static tempSpeed = Character2D.Speed;
     static AxisY = 630;
     static AxisX = 200;
     static SpeedModifier = 1;
@@ -41,6 +44,15 @@ class Character2D {
         this.speed = speed;
         this.gameFrame = gameFrame;
         this.id = id;
+    }
+    static Dash(boolean){
+        if (boolean){
+            if (Character2D.tempSpeed == 0) Character2D.tempSpeed = Character2D.Speed;
+            Character2D.Speed = Character2D.DashSpeed;
+        } else {
+            if (Character2D.tempSpeed != 0)
+                Character2D.Speed = Character2D.tempSpeed;
+        } 
     }
     static Ultimate(){
         if (keys.q){
@@ -103,7 +115,9 @@ class Character2D {
         if (readRun && !lockMobility){
             if (keys.a){
                 Character2D.AxisX -= Character2D.Speed * Character2D.SpeedModifier;
-                if (Character2D.AxisX < 60) { Character2D.AxisX = 60 }
+                if (Character2D.AxisX < -40) { 
+                    Character2D.AxisX = -40 
+                }
                 if (this.id == 1) {
                     this.gameFrame += 0.1 * Character2D.SpeedModifier * (Character2D.Speed / 20);
                     if (this.gameFrame >= 2){
@@ -369,6 +383,7 @@ document.addEventListener("keyup", (e) => {
         keys.a = false;
         keys.d = true;
         reminder = false;
+        Character2D.adjustMap2 = 0;
     } else if (e.key === "a") {
         keys.a = false;
         toLeft = true;
@@ -378,6 +393,7 @@ document.addEventListener("keyup", (e) => {
         keys.d = false;
         keys.a = true;
         reminder = false;
+        Character2D.adjustMap = 0;
     } else if (e.key === "d") {
         keys.d = false;
         toLeft = false;

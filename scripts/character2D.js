@@ -44,15 +44,208 @@ class Character2D {
         this.speed = speed;
         this.gameFrame = gameFrame;
         this.id = id;
+    }       
+    static RunningAxisX(){
+        if (keys.d){
+            seeleArrayObjectRun.forEach((object) => {
+                if (object.id == 1 && object.gameFrame < 2 && Character2D.allowRun1){
+                    object.update();
+                    object.draw();
+                } else if (object.id == 2 
+                && object.gameFrame < 3 
+                && object.gameFrame >= 2
+                && Character2D.allowRun2){
+                    object.update();
+                    object.draw();
+                } else if (object.id == 3
+                && object.gameFrame < 4
+                && object.gameFrame >= 3
+                && Character2D.allowRun3){
+                    object.update();
+                    object.draw();
+                } else if (object.id == 4
+                && object.gameFrame < 5
+                && object.gameFrame >= 4
+                && Character2D.allowRun4){
+                    object.update();
+                    object.draw();
+                }
+            });
+        } else if (keys.a){
+            seeleArrayObjectRunReversed.forEach((object) => {
+                if (object.id == 1 && object.gameFrame < 2 && Character2D.allowRun5){
+                    object.update();
+                    object.draw();
+                } else if (object.id == 2 
+                && object.gameFrame < 3 
+                && object.gameFrame >= 2
+                && Character2D.allowRun6){
+                    object.update();
+                    object.draw();
+                } else if (object.id == 3 
+                && object.gameFrame < 4
+                && object.gameFrame >= 3
+                && Character2D.allowRun7){
+                    object.update();
+                    object.draw();
+                } else if (object.id == 4 
+                && object.gameFrame < 5
+                && object.gameFrame >= 4
+                && Character2D.allowRun8){
+                    object.update();
+                    object.draw();
+                }
+            });
+        }
+    }
+    static Jump(){
+        if (Character2D.isGrounded || !Character2D.terminouPulo){
+            Character2D.AxisY -= 27;
+            Character2D.isGrounded = false;
+            Character2D.terminouPulo = false;
+        }
+        if (Character2D.AxisY <= 250){
+            Character2D.AxisY = 250;
+            keys.w = false;
+            Character2D.terminouPulo = true;
+            Character2D.DisableMacroJump = true;
+        }
+    } 
+    static Fall(){
+        Character2D.AxisY += 22;
+        if (Character2D.AxisY > 630){
+            Character2D.AxisY = 630;
+            Character2D.isGrounded = true;
+        } 
     }
     static Dash(boolean){
         if (boolean){
-            if (Character2D.tempSpeed == 0) Character2D.tempSpeed = Character2D.Speed;
+            characterIdle = "";
+            if (Character2D.tempSpeed == 0){
+                Character2D.tempSpeed = Character2D.Speed;
+            }
             Character2D.Speed = Character2D.DashSpeed;
-        } else {
-            if (Character2D.tempSpeed != 0)
-                Character2D.Speed = Character2D.tempSpeed;
+            if (toLeft){
+                Character2D.AxisX -= Character2D.Speed;
+                if (Character2D.AxisX < -40){
+                    Character2D.AxisX = -40;
+                }
+            } else if (!toLeft){
+                Character2D.AxisX += Character2D.Speed;
+                if (Character2D.AxisX > 1250){
+                    Character2D.adjustMap = Character2D.AxisX - 1250;
+                    Character2D.AxisX = 1250;
+                }
+            }
+        } else if (Character2D.tempSpeed != 0){
+            Character2D.Speed = Character2D.tempSpeed;
+            Character2D.tempSpeed = 0;
         } 
+    }
+    static IdleInhale(){
+        Character2D.allowRun1 = true;
+        Character2D.allowRun2 = false;
+        Character2D.allowRun3 = false;
+        Character2D.allowRun4 = false;
+        Character2D.allowRun5 = true;
+        Character2D.allowRun6 = false;
+        Character2D.allowRun7 = false;
+        Character2D.allowRun8 = false;
+        if (!keys.l) Character2D.adjustMap = 0;
+        if (Character2D.characterFrame == 1) {
+            if (!toLeft) {
+                seeleObject1.draw();
+                seeleObject1.update();
+                seeleObject13.update();
+            } else {
+                seeleObject13.draw();
+                seeleObject13.update();
+                seeleObject1.update();
+            }
+        } else if (Character2D.characterFrame == 2) {
+            if (!toLeft) {
+                seeleObject2.draw();
+                seeleObject2.update();
+                seeleObject14.update();
+            } else {
+                seeleObject14.draw();
+                seeleObject14.update();
+                seeleObject2.update();
+            }
+        } else if (Character2D.characterFrame == 3) {
+            if (!toLeft) {
+                seeleObject3.draw();
+                seeleObject3.update();
+                seeleObject15.update();
+            } else {
+                seeleObject15.draw();
+                seeleObject15.update();
+                seeleObject3.update();
+            }
+        } else if (Character2D.characterFrame == 4) {
+            if (!toLeft) {
+                seeleObject4.draw();
+                seeleObject4.update();
+                seeleObject16.update();
+            } else {
+                seeleObject16.draw();
+                seeleObject16.update();
+                seeleObject4.update();
+            }
+        }
+    }
+    static IdleExhale(){
+        Character2D.allowRun1 = true;
+        Character2D.allowRun2 = false;
+        Character2D.allowRun3 = false;
+        Character2D.allowRun4 = false;
+        Character2D.allowRun5 = true;
+        Character2D.allowRun6 = false;
+        Character2D.allowRun7 = false;
+        Character2D.allowRun8 = false;
+        if (!keys.l)
+        Character2D.adjustMap = 0;
+        if(Character2D.characterFrame == 4){
+            if (!toLeft) {
+                seeleObject4.draw();
+                seeleObject4.update();
+                seeleObject16.update();
+            } else {
+                seeleObject16.draw();
+                seeleObject16.update();
+                seeleObject4.update();
+            }
+        } else if (Character2D.characterFrame == 3) {
+            if (!toLeft) {
+                seeleObject3.draw();
+                seeleObject3.update();
+                seeleObject15.update();
+            } else {
+                seeleObject15.draw();
+                seeleObject15.update();
+                seeleObject3.update();
+            }
+        } else if (Character2D.characterFrame == 2) {
+            if (!toLeft) {
+                seeleObject2.draw();
+                seeleObject2.update();
+                seeleObject14.update();
+            } else {
+                seeleObject14.draw();
+                seeleObject14.update();
+                seeleObject2.update();
+            }
+        } else if (Character2D.characterFrame == 1) {
+            if (!toLeft) {
+                seeleObject1.draw();
+                seeleObject1.update();
+                seeleObject13.update();
+            } else {
+                seeleObject13.draw();
+                seeleObject13.update();
+                seeleObject1.update();
+            }
+        }
     }
     static Ultimate(){
         if (keys.q){
@@ -149,9 +342,9 @@ class Character2D {
                 }  
             } else if (keys.d){
                 Character2D.AxisX += Character2D.Speed * Character2D.SpeedModifier;
-                if (Character2D.AxisX > 1100) {
-                    Character2D.adjustMap = Character2D.AxisX - 1100;
-                    Character2D.AxisX = 1100;
+                if (Character2D.AxisX > 1250) {
+                    Character2D.adjustMap = Character2D.AxisX - 1250;
+                    Character2D.AxisX = 1250;
                 }
                 if (this.id == 1) {
                     this.gameFrame += 0.1 * Character2D.SpeedModifier * (Character2D.Speed / 20);
@@ -345,7 +538,7 @@ document.addEventListener("keypress", (e) => {
         Character2D.adjustMap = 0;
         keys.q = true;
     }
-})
+});
 document.addEventListener("keydown", (e) => {
     //  Run Left
     if (e.key === "a") {

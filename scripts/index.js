@@ -41,6 +41,8 @@ function animate(){
         Character2D.IdleExhale();
         
     }
+    Hud.draw();
+    
     requestAnimationFrame(animate);
 }
 animate();

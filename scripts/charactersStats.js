@@ -109,7 +109,7 @@ let increaseExpNeeded_array = [3, 10, 18, 28, 36, 46, 54, 64, 82, 92, 100];
 
 let justifyStats = [10,20,30,40,50,53,60,64,70,75,80,85,90,95,100,101,102,103,104,105,110,115,120,130];
 
-const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 102);
+const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 175);
 const Keqing = new Characters(2, "Keqing", 19, "1.67 m", "58 kg", "Female", {}, [], 100)
 
 console.log(Keqing.Atk);

@@ -103,17 +103,30 @@ class Characters {
         return parseInt(this._DefMax);
     }
     // END ! Auto Define stats based on level !
+
+    static TakeDamage(damagedCharacter, damage){
+        if (damagedCharacter == Seele){
+            Seele.Hp -= damage;
+            document.getElementById("healthBar1").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
+            document.getElementById("healthBar2").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
+            document.getElementById("healthBar3").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
+            setInterval(() => {
+                document.getElementById("healthBloodBar").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
+            }, 300);
+            
+        }
+    }
 }
 let hardLevelsArray = [110, 115, 120, 130];
 let increaseExpNeeded_array = [3, 10, 18, 28, 36, 46, 54, 64, 82, 92, 100];
 
 let justifyStats = [10,20,30,40,50,53,60,64,70,75,80,85,90,95,100,101,102,103,104,105,110,115,120,130];
 
-const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 175);
+const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 35);
 const Keqing = new Characters(2, "Keqing", 19, "1.67 m", "58 kg", "Female", {}, [], 100)
 
 console.log(Keqing.Atk);
-console.log(Seele.Atk);
+console.log(Seele.Hp);
 
 console.log(`Keqing Lvl: ${Keqing.Level}`);
 console.log(`Keqing Exp: ${Keqing.Exp}/${Keqing.ExpMax}`);

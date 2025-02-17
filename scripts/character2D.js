@@ -249,6 +249,8 @@ class Character2D {
     }
     static Ultimate(){
         if (keys.q){
+            document.getElementById("energyBar1").style.width = 0 + "%";
+            document.getElementById("energyBar2").style.width = 0 + "%";
             if (Character2D.ultimateAtkFrame < 2){
                 seeleObjectUltWing1.draw();
                 seeleObjectUltDash1.draw();
@@ -301,6 +303,7 @@ class Character2D {
                 Character2D.ultimateAtkFrame = 1;
                 lockMobility = false;
                 keys.q = false;
+                Characters.TakeDamage(Seele, 490);
             }
         }
     } 

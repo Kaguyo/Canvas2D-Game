@@ -26,7 +26,7 @@ function animate(){
     }
    
     // Ultimate Attack    ======================
-    if (keys.q && (Seele.Energy >= 40 || Character2D.skillActivationCounter.Ultimate != 0)) { 
+    if (keys.q && (Seele.Energy >= 10 || Character2D.skillActivationCounter.Ultimate != 0)) { 
         Character2D.Ultimate();
     
     // Mobility Axis X   =======================

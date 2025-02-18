@@ -258,7 +258,7 @@ class Character2D {
     static Ultimate(){
         if (Character2D.skillActivationCounter.Ultimate == 0){
             Character2D.skillActivationCounter.Ultimate ++;
-            Seele.Energy -= 40;
+            Seele.Energy -= 10;
             document.getElementById("energyBar1").style.width = ((Seele.Energy / Seele.MaxEnergy) * 100) + "%";
             document.getElementById("energyBar2").style.width = ((Seele.Energy / Seele.MaxEnergy) * 100) + "%";
             lockMobility = true;
@@ -317,7 +317,6 @@ class Character2D {
             Character2D.ultimateAtkFrame = 1;
             lockMobility = false;
             keys.q = false;
-            Characters.TakeDamage(Seele, 400);
             Character2D.skillActivationCounter.Ultimate = 0;
         }
     } 
@@ -549,14 +548,36 @@ const seeleArrayObjectIdle = [
 const seeleArrayObjectRun = [seeleObject5, seeleObject6, seeleObject7, seeleObject8];
 const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11, seeleObject12];
 
+const seeleUltimateSkillFrames = {
+    bodyFrames : [
+        seeleObjectUltDash1, seeleObjectUltDash2
+    ],
+
+    wingFrames : [
+        seeleObjectUltWing1, seeleObjectUltWing2,
+        seeleObjectUltWing3, seeleObjectUltWing4,
+        seeleObjectUltWing5, seeleObjectUltWing6,
+        seeleObjectUltWing7, seeleObjectUltWing8,
+        seeleObjectUltWing9, seeleObjectUltWing10,
+        seeleObjectUltWing11, seeleObjectUltWing12 
+    ]
+}
+
+const SeeleFrames = {
+    seeleArrayObjectIdle, 
+    seeleArrayObjectRun,
+    seeleArrayObjectRunReversed,
+    seeleUltimateSkillFrames
+};
+
 document.addEventListener("keypress", (e) => {
-    if (e.key === "q") {
+    if ((e.key === "q" || e.key === "Q" )) {
         keys.q = true;
     }
 });
 document.addEventListener("keydown", (e) => {
     //  Run Left
-    if (e.key === "a") {
+    if ((e.key === "a" || e.key === "A" )) {
         readRun = true;
         keys.a = true;
         toLeft = true;
@@ -567,7 +588,7 @@ document.addEventListener("keydown", (e) => {
         Character2D.adjustMap = 0;
     }
     //  Run Right
-    if (e.key === "d") {
+    if ((e.key === "d" || e.key === "D" )) {
         readRun = true;
         keys.d = true;
         toLeft = false;
@@ -578,43 +599,43 @@ document.addEventListener("keydown", (e) => {
         Character2D.adjustMap2 = 0;
     }
     //  Jump
-    if (e.key === "w" && !Character2D.DisableMacroJump){
+    if ((e.key === "w" || e.key === "W" ) && !Character2D.DisableMacroJump){
         keys.w = true;
     }
-    if (e.key === "l"){
+    if (e.key === "l" || e.key === "L" ){
         keys.l = true;
     }
 });
 
 document.addEventListener("keyup", (e) => {
-    if (e.key === "a" && reminder){
+    if ((e.key === "a" || e.key === "A" ) && reminder){
         keys.a = false;
         keys.d = true;
         reminder = false;
         Character2D.adjustMap2 = 0;
-    } else if (e.key === "a") {
+    } else if ((e.key === "a" || e.key === "A" )) {
         keys.a = false;
         toLeft = true;
         Character2D.adjustMap2 = 0;
     }
-    if (e.key === "d" && reminder){
+    if ((e.key === "d" || e.key === "D" ) && reminder){
         keys.d = false;
         keys.a = true;
         reminder = false;
         Character2D.adjustMap = 0;
-    } else if (e.key === "d") {
+    } else if ((e.key === "d" || e.key === "D" )) {
         keys.d = false;
         toLeft = false;
         if (!keys.l)
         Character2D.adjustMap = 0;
     }
-    if (e.key === "w"){
+    if ((e.key === "w" || e.key === "W" )){
         keys.w = false;
         Character2D.isGrounded = false;
         Character2D.terminouPulo = true;
         Character2D.DisableMacroJump = false;
     }
-    if (e.key === "l"){
+    if ((e.key === "l" || e.key === "L" )){
         keys.l = false;
         characterIdle = "inhale";
     }

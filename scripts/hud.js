@@ -8,6 +8,7 @@ class Hud {
     }
 
     static draw(){
+        ctx.drawImage(backgroundForCharacter1, 0, 0);
         ctx.drawImage(arrayCharacterContainers[Hud.selectedCharacterContainer], 0, 0);
         if (Seele.Level < 10){
             for (let i = 0; i < 10; i++){
@@ -43,6 +44,9 @@ class Hud {
                 }
             }
         }
+
+        ctx.drawImage(seeleIcon1, 0, 0);
+         
     }
 
 }
@@ -90,4 +94,14 @@ const characterContainer1 = new Image();
 characterContainer1.src = '../assets/hud/characterContainer/CardIcon.png';
 
 const arrayCharacterContainers = [ characterContainer1 ];
+
+const seeleIcon1 = new Image();
+seeleIcon1.src = '../assets/hud/characterContainer/characterIcons/SeeleIcon1.png';
+
+const arrayCharacterIcons = [
+    seeleIcon1
+];
+
+const backgroundForCharacter1 = new Image();
+backgroundForCharacter1.src = '../assets/hud/characterContainer/backgrounds/BackGroundDarkBlue.png';
 // BOTTOM OF -> Several images declaration and arrays of these images

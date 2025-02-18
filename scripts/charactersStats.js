@@ -1,5 +1,5 @@
 class Characters {
-    constructor(Id, Name, Age, Height, Weight, Gender, Weapon, MoveSet, Level = 1,
+    constructor(Id, Name, Age, Height, Weight, Gender, Weapon, MoveSet, Energy, EnergyMax, Level = 1,
     Exp = 0, ExpMax = 50){
         this.Id = Id;
         this.Name = Name;
@@ -9,6 +9,8 @@ class Characters {
         this.Gender = Gender;
         this.Weapon = Weapon;
         this.MoveSet = MoveSet;
+        this.Energy = Energy;
+        this.MaxEnergy = EnergyMax;
         this.Level = Level;
         this.Exp = Exp;
         this.ExpMax = ExpMax;
@@ -105,16 +107,34 @@ class Characters {
     // END ! Auto Define stats based on level !
 
     static TakeDamage(damagedCharacter, damage){
-        if (damagedCharacter == Seele){
-            Seele.Hp -= damage;
-            document.getElementById("healthBar1").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
-            document.getElementById("healthBar2").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
-            document.getElementById("healthBar3").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
-            setInterval(() => {
-                document.getElementById("healthBloodBar").style.width = ((Seele.Hp / Seele.HpMax) * 100) + "%";
-            }, 300);
-            
+        damagedCharacter.Hp -= damage + 250;
+        if (damagedCharacter.Hp < 0) 
+            damagedCharacter.Hp = 0;
+        document.getElementById("healthBar1").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
+        document.getElementById("healthBar2").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
+        document.getElementById("healthBar3").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
+        if (((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) <= 15.0){
+            document.getElementById("healthBar1").classList.remove("yellow");
+            document.getElementById("healthBar2").classList.remove("yellow");
+            document.getElementById("healthBar3").classList.remove("yellow");
+            document.getElementById("healthBarBackground").classList.remove("yellow");
+            document.getElementById("healthBar1").classList.add("red");
+            document.getElementById("healthBar2").classList.add("red");
+            document.getElementById("healthBar3").classList.add("red");
+            document.getElementById("healthBarBackground").classList.add("red");
+        } else if (((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) <= 40.0){
+            document.getElementById("healthBar1").classList.add("yellow");
+            document.getElementById("healthBar2").classList.add("yellow");
+            document.getElementById("healthBar3").classList.add("yellow");
+            document.getElementById("healthBarBackground").classList.add("yellow");
+            document.getElementById("healthBar1").classList.remove("red");
+            document.getElementById("healthBar2").classList.remove("red");
+            document.getElementById("healthBar3").classList.remove("red");
+            document.getElementById("healthBarBackground").classList.remove("red");
         }
+        setInterval(() => {
+            document.getElementById("healthBloodBar").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
+        }, 300);
     }
 }
 let hardLevelsArray = [110, 115, 120, 130];
@@ -122,8 +142,8 @@ let increaseExpNeeded_array = [3, 10, 18, 28, 36, 46, 54, 64, 82, 92, 100];
 
 let justifyStats = [10,20,30,40,50,53,60,64,70,75,80,85,90,95,100,101,102,103,104,105,110,115,120,130];
 
-const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 35);
-const Keqing = new Characters(2, "Keqing", 19, "1.67 m", "58 kg", "Female", {}, [], 100)
+const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 110, 110, 35);
+const Keqing = new Characters(2, "Keqing", 19, "1.67 m", "58 kg", "Female", {}, [], 0, 40, 100)
 
 console.log(Keqing.Atk);
 console.log(Seele.Hp);

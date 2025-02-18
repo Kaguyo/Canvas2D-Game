@@ -6,10 +6,8 @@ const CANVAS_HEIGHT = canvas.height = 1080;
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     allLayers.forEach((layer) => {
-        if (layer.id != 4 && layer.id != 8){
-            layer.draw();
-            layer.update();      
-        }  
+        layer.draw();
+        layer.update();      
     });
     // Dash    =================================
     if (keys.l && Character2D.AxisY == 630 && !lockMobility){
@@ -28,7 +26,7 @@ function animate(){
     }
    
     // Ultimate Attack    ======================
-    if (keys.q) { 
+    if (keys.q && (Seele.Energy >= 40 || Character2D.skillActivationCounter.Ultimate != 0)) { 
         Character2D.Ultimate();
     
     // Mobility Axis X   =======================
@@ -46,13 +44,6 @@ function animate(){
 
     Hud.draw();
     
-    allLayers.forEach((layer) => {
-        if (layer.id == 4 || layer.id == 8){
-            layer.draw();
-            layer.update();
-        }
-    });
-
     requestAnimationFrame(animate);
 }
 animate();

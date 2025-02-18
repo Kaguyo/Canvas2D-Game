@@ -45,25 +45,36 @@ body {
 #healthBar1 {
     width: 100%;
     height: 3px;
-    transition: width 0.5s ease-out;
     background-color: rgb(0, 255, 200);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+} #healthBar1.yellow {
+    background-color: rgb(255, 230, 0);
+} #healthBar1.red {
+    background-color: rgb(206, 0, 0);
 }
 
 #healthBar2 {
     width: 100%;
-    height: 2.5px;
-    transition: width 0.5s ease-out;
+    height: 2px;
     background-color: rgb(150, 255, 230);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+} #healthBar2.yellow {
+    background-color: rgb(245, 245, 180);
+} #healthBar2.red {
+    background-color: rgb(255, 186, 186);
 }
+
 #healthBar3 {
     width: 100%;
-    height: 4px;
-    transition: width 0.5s ease-out;
+    height: 3px;
     background-color: rgb(3, 145, 114);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+} #healthBar3.yellow {
+    background-color: rgb(185, 143, 3);
+} #healthBar3.red {
+    background-color: rgb(146, 0, 0);
 }
+
 
 #healthBarBloodContainer {
     position: absolute;
@@ -77,17 +88,21 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgb(128, 7, 7);
-    transition: width 0.8s ease-in;
+    transition: width 0.6s;
 }
 
 #healthBarBackground {
     position: absolute;
-    width: 341px;
+    width: 342px;
     margin-left: 156px;
     top: 30px;
     height: 9px;
     background-color: rgb(41, 68, 63);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 1% 100%);
+} #healthBarBackground.yellow {
+    background-color: rgb(46, 45, 41);
+} #healthBarBackground.red {
+    background-color: rgb(46, 31, 31);
 }
 
 #energyBarContainer {
@@ -103,14 +118,12 @@ body {
     width: 100%;
     background-color: rgb(132, 0, 255);
     height: 3px;
-    transition: width 0.4s;
 }
 
 #energyBar2 {
     width: 100%;
     height: 2px;
     background-color: rgb(70, 0, 136);
-    transition: width 0.4s;
 }
 
 #energyBarBackground {

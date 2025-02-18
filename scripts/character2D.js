@@ -39,6 +39,14 @@ class Character2D {
     static adjustMap2 = 0;
     static isGrounded = true;
 
+    static skillActivationCounter = {
+        Ultimate : 0,
+        Dash : 0,
+        NormalAttack : 0,
+        Jump : 0,
+        Dodge : 0
+    };
+
     constructor(image, speed, gameFrame, id){
         this.image = image;
         this.speed = speed;
@@ -118,8 +126,8 @@ class Character2D {
             Character2D.isGrounded = true;
         } 
     }
-    static Dash(boolean){
-        if (boolean){
+    static Dash(is_L_Key_On){
+        if (is_L_Key_On){
             characterIdle = "";
             if (Character2D.tempSpeed == 0){
                 Character2D.tempSpeed = Character2D.Speed;
@@ -140,7 +148,7 @@ class Character2D {
         } else if (Character2D.tempSpeed != 0){
             Character2D.Speed = Character2D.tempSpeed;
             Character2D.tempSpeed = 0;
-        } 
+        }
     }
     static IdleInhale(){
         Character2D.allowRun1 = true;
@@ -248,63 +256,69 @@ class Character2D {
         }
     }
     static Ultimate(){
-        if (keys.q){
-            document.getElementById("energyBar1").style.width = 0 + "%";
-            document.getElementById("energyBar2").style.width = 0 + "%";
-            if (Character2D.ultimateAtkFrame < 2){
-                seeleObjectUltWing1.draw();
-                seeleObjectUltDash1.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing1.speed;
-            } else if (Character2D.ultimateAtkFrame < 3){
-                seeleObjectUltWing2.draw();
-                seeleObjectUltDash1.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing2.speed;
-            } else if (Character2D.ultimateAtkFrame < 4){
-                seeleObjectUltWing3.draw();
-                seeleObjectUltDash1.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing3.speed;
-            } else if (Character2D.ultimateAtkFrame < 5){
-                seeleObjectUltWing4.draw();
-                seeleObjectUltDash1.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing4.speed;
-            } else if (Character2D.ultimateAtkFrame < 6){
-                seeleObjectUltWing5.draw();
-                seeleObjectUltDash1.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing5.speed;
-            } else if (Character2D.ultimateAtkFrame < 7){
-                seeleObjectUltWing6.draw();
-                seeleObjectUltDash1.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing6.speed;
-            } else if (Character2D.ultimateAtkFrame < 8){
-                seeleObjectUltWing7.draw();
-                seeleObjectUltDash2.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing7.speed;
-            } else if (Character2D.ultimateAtkFrame < 9){
-                seeleObjectUltWing8.draw();
-                seeleObjectUltDash2.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing8.speed;
-            } else if (Character2D.ultimateAtkFrame < 8){
-                seeleObjectUltWing9.draw();
-                seeleObjectUltDash2.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing9.speed;
-            } else if (Character2D.ultimateAtkFrame < 9){
-                seeleObjectUltWing10.draw();
-                seeleObjectUltDash2.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing10.speed;
-            } else if (Character2D.ultimateAtkFrame < 10){
-                seeleObjectUltWing11.draw();
-                seeleObjectUltDash2.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
-            } else if (Character2D.ultimateAtkFrame < 11){
-                seeleObjectUltWing12.draw();
-                seeleObjectUltDash2.draw();
-                Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
-            } else {
-                Character2D.ultimateAtkFrame = 1;
-                lockMobility = false;
-                keys.q = false;
-                Characters.TakeDamage(Seele, 490);
-            }
+        if (Character2D.skillActivationCounter.Ultimate == 0){
+            Character2D.skillActivationCounter.Ultimate ++;
+            Seele.Energy -= 40;
+            document.getElementById("energyBar1").style.width = ((Seele.Energy / Seele.MaxEnergy) * 100) + "%";
+            document.getElementById("energyBar2").style.width = ((Seele.Energy / Seele.MaxEnergy) * 100) + "%";
+            lockMobility = true;
+            Character2D.adjustMap = 0;
+        }
+
+        if (Character2D.ultimateAtkFrame < 2){
+            seeleObjectUltWing1.draw();
+            seeleObjectUltDash1.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing1.speed;
+        } else if (Character2D.ultimateAtkFrame < 3){
+            seeleObjectUltWing2.draw();
+            seeleObjectUltDash1.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing2.speed;
+        } else if (Character2D.ultimateAtkFrame < 4){
+            seeleObjectUltWing3.draw();
+            seeleObjectUltDash1.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing3.speed;
+        } else if (Character2D.ultimateAtkFrame < 5){
+            seeleObjectUltWing4.draw();
+            seeleObjectUltDash1.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing4.speed;
+        } else if (Character2D.ultimateAtkFrame < 6){
+            seeleObjectUltWing5.draw();
+            seeleObjectUltDash1.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing5.speed;
+        } else if (Character2D.ultimateAtkFrame < 7){
+            seeleObjectUltWing6.draw();
+            seeleObjectUltDash1.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing6.speed;
+        } else if (Character2D.ultimateAtkFrame < 8){
+            seeleObjectUltWing7.draw();
+            seeleObjectUltDash2.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing7.speed;
+        } else if (Character2D.ultimateAtkFrame < 9){
+            seeleObjectUltWing8.draw();
+            seeleObjectUltDash2.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing8.speed;
+        } else if (Character2D.ultimateAtkFrame < 8){
+            seeleObjectUltWing9.draw();
+            seeleObjectUltDash2.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing9.speed;
+        } else if (Character2D.ultimateAtkFrame < 9){
+            seeleObjectUltWing10.draw();
+            seeleObjectUltDash2.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing10.speed;
+        } else if (Character2D.ultimateAtkFrame < 10){
+            seeleObjectUltWing11.draw();
+            seeleObjectUltDash2.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
+        } else if (Character2D.ultimateAtkFrame < 11){
+            seeleObjectUltWing12.draw();
+            seeleObjectUltDash2.draw();
+            Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
+        } else {
+            Character2D.ultimateAtkFrame = 1;
+            lockMobility = false;
+            keys.q = false;
+            Characters.TakeDamage(Seele, 400);
+            Character2D.skillActivationCounter.Ultimate = 0;
         }
     } 
     update(){
@@ -537,8 +551,6 @@ const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11,
 
 document.addEventListener("keypress", (e) => {
     if (e.key === "q") {
-        lockMobility = true;
-        Character2D.adjustMap = 0;
         keys.q = true;
     }
 });

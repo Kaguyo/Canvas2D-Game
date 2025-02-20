@@ -136,14 +136,24 @@ class Characters {
             document.getElementById("healthBloodBar").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
         }, 300);
     }
+
+    static UpdateExp(expGained = 0){
+        Seele.Exp += expGained;
+        if (Seele.Exp >= Seele.ExpMax){
+            Seele.Exp -= Seele.ExpMax;
+            document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
+        }
+        else
+            document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
+    }
 }
 let hardLevelsArray = [110, 115, 120, 130];
 let increaseExpNeeded_array = [3, 10, 18, 28, 36, 46, 54, 64, 82, 92, 100];
 
 let justifyStats = [10,20,30,40,50,53,60,64,70,75,80,85,90,95,100,101,102,103,104,105,110,115,120,130];
 
-const Seele = new Characters(1, "Seele", 23, "1.75 m", "63 kg", "Female", {}, [], 110, 110, 47);
-const Keqing = new Characters(2, "Keqing", 19, "1.67 m", "58 kg", "Female", {}, [], 0, 40, 100)
+const Seele = new Characters(1, "Seele", 23, "1.67 m", "63 kg", "Female", {}, [], 40, 40, 35, 158000);
+const Keqing = new Characters(2, "Keqing", 19, "1.64 m", "58 kg", "Female", {}, [], 0, 40, 100)
 
 console.log(Keqing.Atk);
 console.log(Seele.Hp);

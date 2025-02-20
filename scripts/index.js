@@ -3,7 +3,13 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 1920;
 const CANVAS_HEIGHT = canvas.height = 1080;
 
+const canvasBackground = document.getElementById('canvasBackground');
+const ctxBackground = canvasBackground.getContext('2d');
+const CANVAS_WIDTH_2 = canvasBackground.width = canvas.width;
+const CANVAS_HEIGHT_2 = canvasBackground.height = canvas.height;
+
 function animate(){
+    ctxBackground.clearRect(0, 0, CANVAS_WIDTH_2, CANVAS_HEIGHT_2);
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     allLayers.forEach((layer) => {
         layer.draw();
@@ -20,7 +26,7 @@ function animate(){
     if (keys.w && !lockMobility){
         Character2D.Jump();
     
-    // Character's Gravity    ==================
+    // Character's Gravity    ==================.
     } if (!Character2D.isGrounded && Character2D.terminouPulo && !lockMobility){
         Character2D.Fall();
     }
@@ -43,7 +49,8 @@ function animate(){
     }
 
     Hud.draw();
-    
+
     requestAnimationFrame(animate);
 }
+
 animate();

@@ -18,7 +18,7 @@ class Layer {
     }
     static x2 = 0;
     draw(){
-        ctx.drawImage(this.image, canvas.width - this.x, 0);
+        ctxBackground.drawImage(this.image, CANVAS_WIDTH - this.x, 0);
     }
     update(){
         this.x += Character2D.adjustMap * this.speedModifier;

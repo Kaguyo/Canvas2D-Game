@@ -2,14 +2,24 @@ class Hud {
     static selectedCharacterContainer = 0;
     static selectedEnemyContainer = 0;
 
-    static update(indexCharacterContainer = 0, indexEnemyContainer = 0){
+    static updateCharacterCard(indexCharacterContainer = 0, indexEnemyContainer = 0){
         Hud.selectedCharacterContainer = indexCharacterContainer;
         Hud.selectedEnemyContainer = indexEnemyContainer;
     }
 
-    static draw(){
+    static #drawBackgroundForIcon(){
         ctx.drawImage(backgroundForCharacter1, 0, 0);
+    }
+
+    static #drawCardForCharacter(){
         ctx.drawImage(arrayCharacterContainers[Hud.selectedCharacterContainer], 0, 0);
+    }
+
+    static #drawSelectedCharacterIcon(){
+        ctx.drawImage(seeleIcon1, 0, 0);
+    }
+
+    static #drawCharacterLevel(){
         if (Seele.Level < 10){
             for (let i = 0; i < 10; i++){
                 if (i.toString() == Seele.Level.toString()[0]){
@@ -44,9 +54,14 @@ class Hud {
                 }
             }
         }
+    }
+    
+    static draw(){
 
-        ctx.drawImage(seeleIcon1, 0, 0);
-         
+        Hud.#drawBackgroundForIcon();
+        Hud.#drawCardForCharacter();
+        Hud.#drawCharacterLevel();
+        Hud.#drawSelectedCharacterIcon();
     }
 
 }

@@ -34,6 +34,7 @@ function animate(){
     // Ultimate Attack    ======================
     if (keys.q && (Seele.Energy >= 10 || Character2D.skillActivationCounter.Ultimate != 0)) { 
         Character2D.Ultimate();
+        Characters.UpdateExp(500);
     
     // Mobility Axis X   =======================
     } else if (readRun && !keys.l) {
@@ -49,7 +50,7 @@ function animate(){
     }
 
     Hud.draw();
-
+    Characters.UpdateExp();
     requestAnimationFrame(animate);
 }
 

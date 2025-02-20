@@ -22,21 +22,22 @@ class Characters {
     set ExpMax(value){
        this._ExpMax = value;
     }
+    
     get ExpMax(){
         let count5levels = 1;
         let justifyExp = 1;
         let hardLevels = 0;
         this._ExpMax = 10;
         for (let i = 1; i < this.Level; i++){
-            if (i < 21) this._ExpMax = this._ExpMax * 1.2 + 10; 
-            else if (i < 41) this._ExpMax = this._ExpMax * 1.15; 
-            else if (i < 71) this._ExpMax = this._ExpMax * 1.10;  
-            else if (i < 91) this._ExpMax = this._ExpMax * 1.05; 
+            if (i < 21) this._ExpMax = this._ExpMax * 1.15 + 10; 
+            else if (i < 41) this._ExpMax = this._ExpMax * 1.10; 
+            else if (i < 71) this._ExpMax = this._ExpMax * 1.05;  
+            else if (i < 91) this._ExpMax = this._ExpMax * 1.02; 
             else this._ExpMax *= 1.01;
 
             if (i % 5 == 0 && i < 56){
                 count5levels++;
-                this._ExpMax *= 1 + (count5levels / 15);
+                this._ExpMax *= 1 + (count5levels / 25);
             }
             if (increaseExpNeeded_array.includes(i)){
                 justifyExp += 0.1;
@@ -143,18 +144,19 @@ class Characters {
             Seele.Exp -= Seele.ExpMax;
             document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
             Seele.Level ++;
-            console.log("SEELE EXP: ", Seele.Exp, "/", Seele.ExpMax);
         }
         else
             document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
     }
 }
-let hardLevelsArray = [110, 115, 120, 130];
+let hardLevelsArray = [110, 115, 120, 130, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500];
 let increaseExpNeeded_array = [3, 10, 18, 28, 36, 46, 54, 64, 82, 92, 100];
 
-let justifyStats = [10,20,30,40,50,60,64,70,75,80,85,90,95,100,101,102,103,104,105,110,115,120,130];
+let justifyStats = [10,20,30,40,50,60,60,70,75,80,85,90,95,100,101,102,103,104,105,110,115,120,130,140,
+    150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300
+];
 
-const Seele = new Characters(1, "Seele", 23, "1.67 m", "63 kg", "Female", {}, [], 40, 40, 30);
+const Seele = new Characters(1, "Seele", 23, "1.67 m", "63 kg", "Female", {}, [], 40, 40, 1, 700000000);
 const Keqing = new Characters(2, "Keqing", 19, "1.64 m", "58 kg", "Female", {}, [], 0, 40, 100)
 
 console.log(Keqing.Atk);

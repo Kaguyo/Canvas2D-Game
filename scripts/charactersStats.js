@@ -87,7 +87,7 @@ class Characters {
 
         return parseInt(this._AtkMax);
     }
-    get DefMax(){
+    get DefMax() {
         let countDecimal = 0;
         this._DefMax = 0;
         let i = 0;
@@ -138,15 +138,17 @@ class Characters {
         }, 300);
     }
 
-    static UpdateExp(expGained = 0){
+    static UpdateExp(expGained = 0) {
         Seele.Exp += expGained;
-        if (Seele.Exp >= Seele.ExpMax){
+        if (Seele.Exp >= Seele.ExpMax) {
             Seele.Exp -= Seele.ExpMax;
-            document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
             Seele.Level ++;
+            Seele.Hp = Seele.HpMax;
+            Seele.Atk = Seele.AtkMax;
+            Seele.Def =  Seele.DefMax;
         }
-        else
-            document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
+
+        document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
     }
 }
 let hardLevelsArray = [110, 115, 120, 130, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500];
@@ -159,11 +161,3 @@ let justifyStats = [10,20,30,40,50,60,60,70,75,80,85,90,95,100,101,102,103,104,1
 const Seele = new Characters(1, "Seele", 23, "1.67 m", "63 kg", "Female", {}, [], 40, 40, 1, 700000000);
 const Keqing = new Characters(2, "Keqing", 19, "1.64 m", "58 kg", "Female", {}, [], 0, 40, 100)
 
-console.log(Keqing.Atk);
-console.log(Seele.Hp);
-
-console.log(`Keqing Lvl: ${Keqing.Level}`);
-console.log(`Keqing Exp: ${Keqing.Exp}/${Keqing.ExpMax}`);
-
-console.log(`\nSeele Lvl: ${Seele.Level}`);
-console.log(`Seele Exp: ${Seele.Exp}/${Seele.ExpMax}`);

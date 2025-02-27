@@ -265,59 +265,117 @@ class Character2D {
             Character2D.adjustMap = 0;
         }
 
-        if (Character2D.ultimateAtkFrame < 2){
-            seeleObjectUltWing1.draw();
-            seeleObjectUltDash1.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing1.speed;
-        } else if (Character2D.ultimateAtkFrame < 3){
-            seeleObjectUltWing2.draw();
-            seeleObjectUltDash1.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing2.speed;
-        } else if (Character2D.ultimateAtkFrame < 4){
-            seeleObjectUltWing3.draw();
-            seeleObjectUltDash1.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing3.speed;
-        } else if (Character2D.ultimateAtkFrame < 5){
-            seeleObjectUltWing4.draw();
-            seeleObjectUltDash1.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing4.speed;
-        } else if (Character2D.ultimateAtkFrame < 6){
-            seeleObjectUltWing5.draw();
-            seeleObjectUltDash1.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing5.speed;
-        } else if (Character2D.ultimateAtkFrame < 7){
-            seeleObjectUltWing6.draw();
-            seeleObjectUltDash1.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing6.speed;
-        } else if (Character2D.ultimateAtkFrame < 8){
-            seeleObjectUltWing7.draw();
-            seeleObjectUltDash2.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing7.speed;
-        } else if (Character2D.ultimateAtkFrame < 9){
-            seeleObjectUltWing8.draw();
-            seeleObjectUltDash2.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing8.speed;
-        } else if (Character2D.ultimateAtkFrame < 8){
-            seeleObjectUltWing9.draw();
-            seeleObjectUltDash2.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing9.speed;
-        } else if (Character2D.ultimateAtkFrame < 9){
-            seeleObjectUltWing10.draw();
-            seeleObjectUltDash2.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing10.speed;
-        } else if (Character2D.ultimateAtkFrame < 10){
-            seeleObjectUltWing11.draw();
-            seeleObjectUltDash2.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
-        } else if (Character2D.ultimateAtkFrame < 11){
-            seeleObjectUltWing12.draw();
-            seeleObjectUltDash2.draw();
-            Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
+        // Renders ultimate attack frames either to the left or to the right
+        if (toLeft){
+            if (Character2D.ultimateAtkFrame < 2){
+                seeleObjectUltWing1Reversed.draw();
+                seeleObjectUltDash1Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing1.speed;
+            } else if (Character2D.ultimateAtkFrame < 3){
+                seeleObjectUltWing2Reversed.draw();
+                seeleObjectUltDash1Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing2.speed;
+            } else if (Character2D.ultimateAtkFrame < 4){
+                seeleObjectUltWing3Reversed.draw();
+                seeleObjectUltDash1Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing3.speed;
+            } else if (Character2D.ultimateAtkFrame < 5){
+                seeleObjectUltWing4Reversed.draw();
+                seeleObjectUltDash1Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing4.speed;
+            } else if (Character2D.ultimateAtkFrame < 6){
+                seeleObjectUltWing5Reversed.draw();
+                seeleObjectUltDash1Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing5.speed;
+            } else if (Character2D.ultimateAtkFrame < 7){
+                seeleObjectUltWing6Reversed.draw();
+                seeleObjectUltDash1Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing6.speed;
+            } else if (Character2D.ultimateAtkFrame < 8){
+                seeleObjectUltWing7Reversed.draw();
+                seeleObjectUltDash2Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing7.speed;
+            } else if (Character2D.ultimateAtkFrame < 9){
+                seeleObjectUltWing8Reversed.draw();
+                seeleObjectUltDash2Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing8.speed;
+            } else if (Character2D.ultimateAtkFrame < 8){
+                seeleObjectUltWing9Reversed.draw();
+                seeleObjectUltDash2Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing9.speed;
+            } else if (Character2D.ultimateAtkFrame < 9){
+                seeleObjectUltWing10Reversed.draw();
+                seeleObjectUltDash2Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing10.speed;
+            } else if (Character2D.ultimateAtkFrame < 10){
+                seeleObjectUltWing11Reversed.draw();
+                seeleObjectUltDash2Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
+            } else if (Character2D.ultimateAtkFrame < 11){
+                seeleObjectUltWing12Reversed.draw();
+                seeleObjectUltDash2Reversed.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
+            } else { // Ultimo frame
+                Character2D.ultimateAtkFrame = 1;
+                lockMobility = false;
+                keys.q = false;
+                Character2D.skillActivationCounter.Ultimate = 0;
+            }
         } else {
-            Character2D.ultimateAtkFrame = 1;
-            lockMobility = false;
-            keys.q = false;
-            Character2D.skillActivationCounter.Ultimate = 0;
+            if (Character2D.ultimateAtkFrame < 2){
+                seeleObjectUltWing1.draw();
+                seeleObjectUltDash1.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing1.speed;
+            } else if (Character2D.ultimateAtkFrame < 3){
+                seeleObjectUltWing2.draw();
+                seeleObjectUltDash1.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing2.speed;
+            } else if (Character2D.ultimateAtkFrame < 4){
+                seeleObjectUltWing3.draw();
+                seeleObjectUltDash1.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing3.speed;
+            } else if (Character2D.ultimateAtkFrame < 5){
+                seeleObjectUltWing4.draw();
+                seeleObjectUltDash1.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing4.speed;
+            } else if (Character2D.ultimateAtkFrame < 6){
+                seeleObjectUltWing5.draw();
+                seeleObjectUltDash1.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing5.speed;
+            } else if (Character2D.ultimateAtkFrame < 7){
+                seeleObjectUltWing6.draw();
+                seeleObjectUltDash1.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing6.speed;
+            } else if (Character2D.ultimateAtkFrame < 8){
+                seeleObjectUltWing7.draw();
+                seeleObjectUltDash2.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing7.speed;
+            } else if (Character2D.ultimateAtkFrame < 9){
+                seeleObjectUltWing8.draw();
+                seeleObjectUltDash2.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing8.speed;
+            } else if (Character2D.ultimateAtkFrame < 8){
+                seeleObjectUltWing9.draw();
+                seeleObjectUltDash2.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing9.speed;
+            } else if (Character2D.ultimateAtkFrame < 9){
+                seeleObjectUltWing10.draw();
+                seeleObjectUltDash2.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing10.speed;
+            } else if (Character2D.ultimateAtkFrame < 10){
+                seeleObjectUltWing11.draw();
+                seeleObjectUltDash2.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
+            } else if (Character2D.ultimateAtkFrame < 11){
+                seeleObjectUltWing12.draw();
+                seeleObjectUltDash2.draw();
+                Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
+            } else { // Ultimo frame
+                Character2D.ultimateAtkFrame = 1;
+                lockMobility = false;
+                keys.q = false;
+                Character2D.skillActivationCounter.Ultimate = 0;
+            }
         }
     } 
     update(){
@@ -471,6 +529,11 @@ const UltDash1 = new Image();
 UltDash1.src = "../assets/models/characters/Seele/ActivatingUltDash1.png";
 const UltDash2 = new Image();
 UltDash2.src = "../assets/models/characters/Seele/ActivatingUltDash2.png";
+// Dash Ultimate to the left side
+const UltDash1Reversed = new Image();
+UltDash1Reversed.src = "../assets/models/characters/Seele/ActivatingUltDash1Reversed.png";
+const UltDash2Reversed = new Image();
+UltDash2Reversed.src = "../assets/models/characters/Seele/ActivatingUltDash2Reversed.png";
 
 const UltWing1 = new Image();
 UltWing1.src = "../assets/models/characters/Seele/UltWing1.png";
@@ -496,10 +559,37 @@ const UltWing11 = new Image();
 UltWing11.src = "../assets/models/characters/Seele/UltWing11.png";
 const UltWing12 = new Image();
 UltWing12.src = "../assets/models/characters/Seele/UltWing12.png";
-
+// Ultimate Wings to the left side
+const UltWing1Reversed = new Image();
+UltWing1Reversed.src = "../assets/models/characters/Seele/UltWing1Reversed.png";
+const UltWing2Reversed = new Image();
+UltWing2Reversed.src = "../assets/models/characters/Seele/UltWing2Reversed.png";
+const UltWing3Reversed = new Image();
+UltWing3Reversed.src = "../assets/models/characters/Seele/UltWing3Reversed.png";
+const UltWing4Reversed = new Image();
+UltWing4Reversed.src = "../assets/models/characters/Seele/UltWing4Reversed.png";
+const UltWing5Reversed = new Image();
+UltWing5Reversed.src = "../assets/models/characters/Seele/UltWing5Reversed.png";
+const UltWing6Reversed = new Image();
+UltWing6Reversed.src = "../assets/models/characters/Seele/UltWing6Reversed.png";
+const UltWing7Reversed = new Image();
+UltWing7Reversed.src = "../assets/models/characters/Seele/UltWing7Reversed.png";
+const UltWing8Reversed = new Image();
+UltWing8Reversed.src = "../assets/models/characters/Seele/UltWing8Reversed.png";
+const UltWing9Reversed = new Image();
+UltWing9Reversed.src = "../assets/models/characters/Seele/UltWing9Reversed.png";
+const UltWing10Reversed = new Image();
+UltWing10Reversed.src = "../assets/models/characters/Seele/UltWing10Reversed.png";
+const UltWing11Reversed = new Image();
+UltWing11Reversed.src = "../assets/models/characters/Seele/UltWing11Reversed.png";
+const UltWing12Reversed = new Image();
+UltWing12Reversed.src = "../assets/models/characters/Seele/UltWing12Reversed.png";
 
 const seeleObjectUltDash1 = new Character2D (UltDash1, 0.04, 1, 1);
 const seeleObjectUltDash2 = new Character2D (UltDash2, 0.04, 2, 2);
+// Seele Ultimate Objects Reversed side / to the left side
+const seeleObjectUltDash1Reversed = new Character2D (UltDash1Reversed, 0.04, 1, 1);
+const seeleObjectUltDash2Reversed = new Character2D (UltDash2Reversed, 0.04, 2, 2);
 
 const seeleObjectUltWing1 = new Character2D (UltWing1, 0.2, 1, 1);
 const seeleObjectUltWing2 = new Character2D (UltWing2, 0.2, 2, 2);
@@ -513,6 +603,19 @@ const seeleObjectUltWing9 = new Character2D (UltWing9, 0.1, 9, 9);
 const seeleObjectUltWing10 = new Character2D (UltWing10, 0.15, 10, 10);
 const seeleObjectUltWing11 = new Character2D (UltWing11, 0.15, 11, 11);
 const seeleObjectUltWing12 = new Character2D (UltWing12, 0.15, 12, 12);
+// Seele Ultimate Objects Reversed side / to the left side
+const seeleObjectUltWing1Reversed = new Character2D (UltWing1Reversed, 0.2, 1, 1);
+const seeleObjectUltWing2Reversed = new Character2D (UltWing2Reversed, 0.2, 2, 2);
+const seeleObjectUltWing3Reversed = new Character2D (UltWing3Reversed, 0.2, 3, 3);
+const seeleObjectUltWing4Reversed = new Character2D (UltWing4Reversed, 0.2, 4, 4);
+const seeleObjectUltWing5Reversed = new Character2D (UltWing5Reversed, 0.2, 5, 5);
+const seeleObjectUltWing6Reversed = new Character2D (UltWing6Reversed, 0.2, 6, 6);
+const seeleObjectUltWing7Reversed = new Character2D (UltWing7Reversed, 0.2, 7, 7);
+const seeleObjectUltWing8Reversed = new Character2D (UltWing8Reversed, 0.1, 8, 8);
+const seeleObjectUltWing9Reversed = new Character2D (UltWing9Reversed, 0.1, 9, 9);
+const seeleObjectUltWing10Reversed = new Character2D (UltWing10Reversed, 0.15, 10, 10);
+const seeleObjectUltWing11Reversed = new Character2D (UltWing11Reversed, 0.15, 11, 11);
+const seeleObjectUltWing12Reversed = new Character2D (UltWing12Reversed, 0.15, 12, 12);
 
 
 const seeleObject1 = new Character2D (seeleIdleAnimation1, 0.04, 1, 1);

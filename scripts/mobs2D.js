@@ -19,7 +19,7 @@ class Mobs2D {
             }
         } else {
             this.AxisX += this.speed;
-            if (this.AxisX > 600){
+            if (this.AxisX > 1300){
                 this.toLeft = true;
             }
         }

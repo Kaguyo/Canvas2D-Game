@@ -36,6 +36,7 @@ class Character2D {
     static DashSpeed = 50;
     static tempSpeed = Character2D.Speed;
     static AxisY = 630;
+    static PixelsXMoved = 0;
     static AxisX = 200;
     static UnlockedAreaX = 0;
 
@@ -338,7 +339,7 @@ class Character2D {
                 }
                 Character2D.skillActivationCounter.Ultimate = 0;
 
-                if (Character2D.AxisX + 800 > enemy2D.AxisX && Character2D.AxisX <= enemy2D.AxisX){
+                if (Character2D.AxisX + 800 > enemy2D.AxisX && (Character2D.AxisX - 300) <= enemy2D.AxisX - Character2D.UnlockedAreaX){
                     enemyStats.takeDamage(Seele.Atk, Seele.MoveSet[0], Seele.Name);
                 }   
             }
@@ -404,7 +405,7 @@ class Character2D {
                 keys.q = false;
                 Character2D.skillActivationCounter.Ultimate = 0;
 
-                if (Character2D.AxisX - 800 < enemy2D.AxisX && Character2D.AxisX >= enemy2D.AxisX){
+                if (Character2D.AxisX - 800 < enemy2D.AxisX && (Character2D.AxisX + 300) >= enemy2D.AxisX + Character2D.UnlockedAreaX){
                     enemyStats.takeDamage(Seele.Atk, Seele.MoveSet[0], Seele.Name);
                 }
             }

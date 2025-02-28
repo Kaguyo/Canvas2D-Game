@@ -52,6 +52,7 @@ function animate(){
         
     }
 
+
     Hud.draw();
     Characters.UpdateExp();
     // console.log("Personagem X:",Character2D.AxisX, "\nEnemy X:", Mob1.AxisX - Character2D.UnlockedAreaX);

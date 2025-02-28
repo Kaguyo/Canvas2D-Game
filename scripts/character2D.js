@@ -15,6 +15,10 @@ let terminouPulo = true;
 let reminder = false;
 let toLeft = false;
 
+let enemyFound;
+let enemy2D;
+let enemyStats;
+
 class Character2D {
     static ultimateAtkFrame = 1;
     static characterFrame = 1;
@@ -33,6 +37,8 @@ class Character2D {
     static tempSpeed = Character2D.Speed;
     static AxisY = 630;
     static AxisX = 200;
+    static UnlockedAreaX = 0;
+
     static SpeedModifier = 1;
 
     static adjustMap = 0;
@@ -263,6 +269,11 @@ class Character2D {
             document.getElementById("energyBar2").style.width = ((Seele.Energy / Seele.MaxEnergy) * 100) + "%";
             lockMobility = true;
             Character2D.adjustMap = 0;
+            for (let i = 0; i < EnemiesOnField.length; i++) {
+                enemyFound = EnemiesOnField[i];
+                enemy2D = enemyFound[0];
+                enemyStats = enemyFound[1];
+            }
         }
 
         // Renders ultimate attack frames either to the left or to the right
@@ -310,16 +321,26 @@ class Character2D {
             } else if (Character2D.ultimateAtkFrame < 10){
                 seeleObjectUltWing11Reversed.draw();
                 seeleObjectUltDash2Reversed.draw();
+                SeeleObjectUltEffect1Reversed.draw();
                 Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
             } else if (Character2D.ultimateAtkFrame < 11){
                 seeleObjectUltWing12Reversed.draw();
                 seeleObjectUltDash2Reversed.draw();
+                SeeleObjectUltEffect2Reversed.draw();
                 Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
-            } else { // Ultimo frame
+            } else {
                 Character2D.ultimateAtkFrame = 1;
                 lockMobility = false;
                 keys.q = false;
+                Character2D.AxisX -= 800;
+                if (this.AxisX < -40) {
+                    Character2D.AxisX = -40;
+                }
                 Character2D.skillActivationCounter.Ultimate = 0;
+
+                if (Character2D.AxisX + 800 > enemy2D.AxisX && Character2D.AxisX <= enemy2D.AxisX){
+                    enemyStats.takeDamage(Seele.Atk, Seele.MoveSet[0], Seele.Name);
+                }   
             }
         } else {
             if (Character2D.ultimateAtkFrame < 2){
@@ -365,16 +386,27 @@ class Character2D {
             } else if (Character2D.ultimateAtkFrame < 10){
                 seeleObjectUltWing11.draw();
                 seeleObjectUltDash2.draw();
+                SeeleObjectUltEffect1.draw();
                 Character2D.ultimateAtkFrame += seeleObjectUltWing11.speed;
             } else if (Character2D.ultimateAtkFrame < 11){
                 seeleObjectUltWing12.draw();
                 seeleObjectUltDash2.draw();
+                SeeleObjectUltEffect2.draw();
                 Character2D.ultimateAtkFrame += seeleObjectUltWing12.speed;
             } else { // Ultimo frame
                 Character2D.ultimateAtkFrame = 1;
                 lockMobility = false;
+                Character2D.AxisX += 800;
+                if (this.AxisX > 1250) {
+                    Character2D.adjustMap = Character2D.AxisX - 1250;
+                    Character2D.AxisX = 1250;
+                }
                 keys.q = false;
                 Character2D.skillActivationCounter.Ultimate = 0;
+
+                if (Character2D.AxisX - 800 < enemy2D.AxisX && Character2D.AxisX >= enemy2D.AxisX){
+                    enemyStats.takeDamage(Seele.Atk, Seele.MoveSet[0], Seele.Name);
+                }
             }
         }
     } 
@@ -383,7 +415,7 @@ class Character2D {
             if (keys.a){
                 Character2D.AxisX -= Character2D.Speed * Character2D.SpeedModifier;
                 if (Character2D.AxisX < -40) { 
-                    Character2D.AxisX = -40 
+                    Character2D.AxisX = -40;
                 }
                 if (this.id == 1) {
                     this.gameFrame += 0.1 * Character2D.SpeedModifier * (Character2D.Speed / 20);
@@ -418,6 +450,7 @@ class Character2D {
                 Character2D.AxisX += Character2D.Speed * Character2D.SpeedModifier;
                 if (Character2D.AxisX > 1250) {
                     Character2D.adjustMap = Character2D.AxisX - 1250;
+                    Character2D.UnlockedAreaX += (Character2D.AxisX - 1250) * 0.8;
                     Character2D.AxisX = 1250;
                 }
                 if (this.id == 1) {
@@ -585,38 +618,51 @@ UltWing11Reversed.src = "../assets/models/characters/Seele/UltWing11Reversed.png
 const UltWing12Reversed = new Image();
 UltWing12Reversed.src = "../assets/models/characters/Seele/UltWing12Reversed.png";
 
-const seeleObjectUltDash1 = new Character2D (UltDash1, 0.04, 1, 1);
-const seeleObjectUltDash2 = new Character2D (UltDash2, 0.04, 2, 2);
-// Seele Ultimate Objects Reversed side / to the left side
-const seeleObjectUltDash1Reversed = new Character2D (UltDash1Reversed, 0.04, 1, 1);
-const seeleObjectUltDash2Reversed = new Character2D (UltDash2Reversed, 0.04, 2, 2);
+const UltEffect1 = new Image();
+UltEffect1.src = "../assets/models/characters/Seele/UltEffect1.png";
+const UltEffect2 = new Image();
+UltEffect2.src = "../assets/models/characters/Seele/UltEffect2.png";
+const UltEffect1Reversed = new Image();
+UltEffect1Reversed.src = "../assets/models/characters/Seele/UltEffect1Reversed.png";
+const UltEffect2Reversed = new Image();
+UltEffect2Reversed.src = "../assets/models/characters/Seele/UltEffect2Reversed.png";
 
-const seeleObjectUltWing1 = new Character2D (UltWing1, 0.2, 1, 1);
-const seeleObjectUltWing2 = new Character2D (UltWing2, 0.2, 2, 2);
-const seeleObjectUltWing3 = new Character2D (UltWing3, 0.2, 3, 3);
-const seeleObjectUltWing4 = new Character2D (UltWing4, 0.2, 4, 4);
-const seeleObjectUltWing5 = new Character2D (UltWing5, 0.2, 5, 5);
+const seeleObjectUltDash1 = new Character2D (UltDash1);
+const seeleObjectUltDash2 = new Character2D (UltDash2);
+// Seele Ultimate Objects Reversed side / to the left side
+const seeleObjectUltDash1Reversed = new Character2D (UltDash1Reversed);
+const seeleObjectUltDash2Reversed = new Character2D (UltDash2Reversed);
+
+const seeleObjectUltWing1 = new Character2D (UltWing1, 0.3, 1, 1);
+const seeleObjectUltWing2 = new Character2D (UltWing2, 0.3, 2, 2);
+const seeleObjectUltWing3 = new Character2D (UltWing3, 0.3, 3, 3);
+const seeleObjectUltWing4 = new Character2D (UltWing4, 0.3, 4, 4);
+const seeleObjectUltWing5 = new Character2D (UltWing5, 0.3, 5, 5);
 const seeleObjectUltWing6 = new Character2D (UltWing6, 0.2, 6, 6);
 const seeleObjectUltWing7 = new Character2D (UltWing7, 0.2, 7, 7);
-const seeleObjectUltWing8 = new Character2D (UltWing8, 0.1, 8, 8);
-const seeleObjectUltWing9 = new Character2D (UltWing9, 0.1, 9, 9);
-const seeleObjectUltWing10 = new Character2D (UltWing10, 0.15, 10, 10);
-const seeleObjectUltWing11 = new Character2D (UltWing11, 0.15, 11, 11);
-const seeleObjectUltWing12 = new Character2D (UltWing12, 0.15, 12, 12);
+const seeleObjectUltWing8 = new Character2D (UltWing8, 0.2, 8, 8);
+const seeleObjectUltWing9 = new Character2D (UltWing9, 0.2, 9, 9);
+const seeleObjectUltWing10 = new Character2D (UltWing10, 0.25, 10, 10);
+const seeleObjectUltWing11 = new Character2D (UltWing11, 0.25, 11, 11);
+const seeleObjectUltWing12 = new Character2D (UltWing12, 0.25, 12, 12);
 // Seele Ultimate Objects Reversed side / to the left side
-const seeleObjectUltWing1Reversed = new Character2D (UltWing1Reversed, 0.2, 1, 1);
-const seeleObjectUltWing2Reversed = new Character2D (UltWing2Reversed, 0.2, 2, 2);
-const seeleObjectUltWing3Reversed = new Character2D (UltWing3Reversed, 0.2, 3, 3);
-const seeleObjectUltWing4Reversed = new Character2D (UltWing4Reversed, 0.2, 4, 4);
-const seeleObjectUltWing5Reversed = new Character2D (UltWing5Reversed, 0.2, 5, 5);
-const seeleObjectUltWing6Reversed = new Character2D (UltWing6Reversed, 0.2, 6, 6);
-const seeleObjectUltWing7Reversed = new Character2D (UltWing7Reversed, 0.2, 7, 7);
-const seeleObjectUltWing8Reversed = new Character2D (UltWing8Reversed, 0.1, 8, 8);
-const seeleObjectUltWing9Reversed = new Character2D (UltWing9Reversed, 0.1, 9, 9);
-const seeleObjectUltWing10Reversed = new Character2D (UltWing10Reversed, 0.15, 10, 10);
-const seeleObjectUltWing11Reversed = new Character2D (UltWing11Reversed, 0.15, 11, 11);
-const seeleObjectUltWing12Reversed = new Character2D (UltWing12Reversed, 0.15, 12, 12);
+const seeleObjectUltWing1Reversed = new Character2D (UltWing1Reversed);
+const seeleObjectUltWing2Reversed = new Character2D (UltWing2Reversed);
+const seeleObjectUltWing3Reversed = new Character2D (UltWing3Reversed);
+const seeleObjectUltWing4Reversed = new Character2D (UltWing4Reversed);
+const seeleObjectUltWing5Reversed = new Character2D (UltWing5Reversed);
+const seeleObjectUltWing6Reversed = new Character2D (UltWing6Reversed);
+const seeleObjectUltWing7Reversed = new Character2D (UltWing7Reversed);
+const seeleObjectUltWing8Reversed = new Character2D (UltWing8Reversed);
+const seeleObjectUltWing9Reversed = new Character2D (UltWing9Reversed);
+const seeleObjectUltWing10Reversed = new Character2D (UltWing10Reversed);
+const seeleObjectUltWing11Reversed = new Character2D (UltWing11Reversed);
+const seeleObjectUltWing12Reversed = new Character2D (UltWing12Reversed);
 
+const SeeleObjectUltEffect1 = new Character2D(UltEffect1);
+const SeeleObjectUltEffect2 = new Character2D(UltEffect2);
+const SeeleObjectUltEffect1Reversed = new Character2D(UltEffect1Reversed);
+const SeeleObjectUltEffect2Reversed = new Character2D(UltEffect2Reversed);
 
 const seeleObject1 = new Character2D (seeleIdleAnimation1, 0.04, 1, 1);
 const seeleObject2 = new Character2D (seeleIdleAnimation2, 0.20, 2, 2);
@@ -650,28 +696,6 @@ const seeleArrayObjectIdle = [
 
 const seeleArrayObjectRun = [seeleObject5, seeleObject6, seeleObject7, seeleObject8];
 const seeleArrayObjectRunReversed = [seeleObject9, seeleObject10, seeleObject11, seeleObject12];
-
-const seeleUltimateSkillFrames = {
-    bodyFrames : [
-        seeleObjectUltDash1, seeleObjectUltDash2
-    ],
-
-    wingFrames : [
-        seeleObjectUltWing1, seeleObjectUltWing2,
-        seeleObjectUltWing3, seeleObjectUltWing4,
-        seeleObjectUltWing5, seeleObjectUltWing6,
-        seeleObjectUltWing7, seeleObjectUltWing8,
-        seeleObjectUltWing9, seeleObjectUltWing10,
-        seeleObjectUltWing11, seeleObjectUltWing12 
-    ]
-}
-
-const SeeleFrames = {
-    seeleArrayObjectIdle, 
-    seeleArrayObjectRun,
-    seeleArrayObjectRunReversed,
-    seeleUltimateSkillFrames
-};
 
 document.addEventListener("keypress", (e) => {
     if ((e.key === "q" || e.key === "Q" )) {

@@ -15,6 +15,10 @@ function animate(){
         layer.draw();
         layer.update();      
     });
+
+    Generic1.draw(Generic1.toLeft);
+    Generic1.update();
+
     // Dash    =================================
     if (keys.l && Character2D.AxisY == 630 && !lockMobility){
         Character2D.Dash(true);
@@ -50,7 +54,21 @@ function animate(){
 
     Hud.draw();
     Characters.UpdateExp();
+    // console.log("Personagem X:",Character2D.AxisX, "\nEnemy X:", Mob1.AxisX - Character2D.UnlockedAreaX);
     requestAnimationFrame(animate);
 }
+const Seele = new Characters(1, "Seele", 23, "1.67 m", "63 kg", "Female", {}, [8], 40, 40, 7);
+const Mob1 = new Mobs(1, "Generic1", 192, "1.00m", "30 kg", "", {}, [], 0, 40, 2);
+
+let EnemiesOnField = [
+    [
+        Generic1,
+        Mob1
+    ]
+    
+];
+
+console.log("Seele HP: ", Seele.Hp, "/", Seele.HpMax);
+console.log("HP de Inimigo 1 em campo:", Mob1.Hp);
 
 animate();

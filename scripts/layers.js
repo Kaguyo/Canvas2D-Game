@@ -16,7 +16,6 @@ class Layer {
         this.speed = ( 0 * speedModifier);
         this.id = id;
     }
-    static x2 = 0;
     draw(){
         ctxBackground.drawImage(this.image, CANVAS_WIDTH - this.x, 0);
     }

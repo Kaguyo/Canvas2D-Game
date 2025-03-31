@@ -17,4 +17,5 @@ function animate(){
     requestAnimationFrame(animate);
 }
 
+createPlayer(new Character(3, 100));
 animate();

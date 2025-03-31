@@ -29,10 +29,7 @@ class Background {
         Background.BACKGROUND_INSTANCES_ARRAY.push(this);
     }
     #draw() {
-        if (this.reversed)
-            ctx2.drawImage(this.image, this.x, 0);
-        else 
-            ctx2.drawImage(this.image, this.x, 0);
+        ctx2.drawImage(this.image, this.x, 0);
     }
     #update() {
         if (this.x < -1920)
@@ -45,7 +42,7 @@ class Background {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         Background.BACKGROUND_INSTANCES_ARRAY.forEach((instancedObject) => {
             instancedObject.#draw();
-            instancedObject.#update();
+            //instancedObject.#update();
         });
     }
 

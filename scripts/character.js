@@ -2,9 +2,9 @@ class Character {
     constructor(Id, Level = 1) {
         this.Id = Id;
         this.Level = Level;
-        this.Hp = this.HpMax;
-        this.Atk = this.AtkMax;
-        this.Def = this.DefMax;
+        this.Hp = this.HpBase;
+        this.Atk = this.AtkBase;
+        this.Def = this.DefBase;
         this.Exp = 0;
         this.Energy = 0;
     }
@@ -30,7 +30,7 @@ class Character {
         return this._Name;
     }
 
-    get ExpMax(){
+    get ExpMax() {
         let count5levels = 1;
         let justifyExp = 1;
         let hardLevels = 0;
@@ -58,85 +58,87 @@ class Character {
         
         return parseInt(this._ExpMax);
     }
-    get HpMax(){
+    get HpBase(){
         let countDecimal = 0;
-        this._HpMax = 0;
+        this._HpBase = 0;
         let i = 0;
         if (this.Id == 1){
             for (i; i < this.Level; i++){
-                this._HpMax += (30 * (1 + (countDecimal / 1.25)));
+                this._HpBase += (30 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;  
             }
         } else if (this.Id == 2){
             for (i; i < this.Level; i++){
-                this._HpMax += (32 * (1 + (countDecimal / 1.25)));
+                this._HpBase += (32 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;
             }
         } else if (this.Id == 3){
             for (i; i < this.Level; i++){
-                this._HpMax += (38 * (1 + (countDecimal / 1.25)));
+                this._HpBase += (38 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;
             }
         }
         
-        return parseInt(this._HpMax);
+        return parseInt(this._HpBase);
     }
-    get AtkMax(){
+
+    get AtkBase() {
         let countDecimal = 0;
-        this._AtkMax = 0;
+        this._AtkBase = 0;
         let i = 0;
         if (this.Id == 1){
             for (i = 0; i < this.Level; i++){
-                this._AtkMax += (9.2 * (1 + (countDecimal / 1.25)));
+                this._AtkBase += (9.2 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;  
             }
         } else if (this.Id == 2){
             for (i = 0; i < this.Level; i++){
-                this._AtkMax += (8.6 * (1 + (countDecimal / 1.15)));
+                this._AtkBase += (8.6 * (1 + (countDecimal / 1.15)));
                 if (justifyStats.includes(i)) countDecimal++;
             }
         }
         else if (this.Id == 3){
             for (i = 0; i < this.Level; i++){
-                this._AtkMax += (12.6 * (1 + (countDecimal / 1.15)));
+                this._AtkBase += (12.6 * (1 + (countDecimal / 1.15)));
                 if (justifyStats.includes(i)) countDecimal++;
             }
         }
 
-        return parseInt(this._AtkMax);
+        return parseInt(this._AtkBase);
     }
-    get DefMax() {
+    
+    get DefBase() {
         let countDecimal = 0;
-        this._DefMax = 0;
+        this._DefBase = 0;
         let i = 0;
         if (this.Id == 1){
             for (i = 0; i < this.Level; i++){
-                this._DefMax += (13.2 * (1 + (countDecimal / 1.25)));
+                this._DefBase += (13.2 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;  
             }
         } else if (this.Id == 2){
             for (i = 0; i < this.Level; i++){
-                this._DefMax += (12.6 * (1 + (countDecimal / 1.25)));
+                this._DefBase += (12.6 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;
             }
         }  else if (this.Id == 3){
             for (i = 0; i < this.Level; i++){
-                this._DefMax += (13.6 * (1 + (countDecimal / 1.25)));
+                this._DefBase += (13.6 * (1 + (countDecimal / 1.25)));
                 if (justifyStats.includes(i)) countDecimal++;
             }
         }
 
-        return parseInt(this._DefMax);
+        return parseInt(this._DefBase);
     }
 
     static TakeDamage(damagedCharacter, damage){
         damagedCharacter.Hp -= damage;
         if (damagedCharacter.Hp < 0) 
             damagedCharacter.Hp = 0;
-        document.getElementById("healthBar1").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
-        document.getElementById("healthBar2").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
-        document.getElementById("healthBar3").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
-        if (((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) <= 15.0){
+        document.getElementById("healthBar1").style.width = ((damagedCharacter.Hp / damagedCharacter.HpBase) * 100) + "%";
+        document.getElementById("healthBar2").style.width = ((damagedCharacter.Hp / damagedCharacter.HpBase) * 100) + "%";
+        document.getElementById("healthBar3").style.width = ((damagedCharacter.Hp / damagedCharacter.HpBase) * 100) + "%";
+        if (((damagedCharacter.Hp / damagedCharacter.HpBase) * 100) <= 15.0){
             document.getElementById("healthBar1").classList.remove("yellow");
             document.getElementById("healthBar2").classList.remove("yellow");
             document.getElementById("healthBar3").classList.remove("yellow");
@@ -145,7 +147,7 @@ class Character {
             document.getElementById("healthBar2").classList.add("red");
             document.getElementById("healthBar3").classList.add("red");
             document.getElementById("healthBarBackground").classList.add("red");
-        } else if (((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) <= 40.0){
+        } else if (((damagedCharacter.Hp / damagedCharacter.HpBase) * 100) <= 40.0){
             document.getElementById("healthBar1").classList.add("yellow");
             document.getElementById("healthBar2").classList.add("yellow");
             document.getElementById("healthBar3").classList.add("yellow");
@@ -156,7 +158,7 @@ class Character {
             document.getElementById("healthBarBackground").classList.remove("red");
         }
         setInterval(() => {
-            document.getElementById("healthBloodBar").style.width = ((damagedCharacter.Hp / damagedCharacter.HpMax) * 100) + "%";
+            document.getElementById("healthBloodBar").style.width = ((damagedCharacter.Hp / damagedCharacter.HpBase) * 100) + "%";
         }, 300);
     }
 
@@ -165,9 +167,9 @@ class Character {
         if (Seele.Exp >= Seele.ExpMax) {
             Seele.Exp -= Seele.ExpMax;
             Seele.Level ++;
-            Seele.Hp = Seele.HpMax;
-            Seele.Atk = Seele.AtkMax;
-            Seele.Def =  Seele.DefMax;
+            Seele.Hp = Seele.HpBase;
+            Seele.Atk = Seele.AtkBase;
+            Seele.Def =  Seele.DefBase;
         }
 
         document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";

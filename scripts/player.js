@@ -38,7 +38,9 @@ class Player {
     
 }
 function createPlayer(characterObject){
+    characterObject.AtkBase = 30;
     const player = new Player(400, 630, characterObject);
     Player.playersInGameArray.push(player);
+    
     console.log(characterObject)
 }

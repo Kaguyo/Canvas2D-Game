@@ -8,6 +8,14 @@ class Character {
         this.Exp = 0;
         this.Energy = 0;
     }
+    CurrentFrameImg = new Image();
+
+    get CharacterAnimationsObj() {
+        if (this.Id == 1) this._CharacterAnimationObj = Seele.GetSeeleSpritesObj();
+        else if (this.Id == 2) this._CharacterAnimationObj = Keqing.GetKeqingSpritesObj();
+        else if (this.Id == 3) this._CharacterAnimationObj = Gohan.GetGohanSpritesObj();
+        return this._CharacterAnimationObj;
+    }  
 
     get Speed() {
         if (this.Id == 1) this._Speed = 20;
@@ -163,14 +171,6 @@ class Character {
     }
 
     static UpdateExp(expGained = 0) {
-        Seele.Exp += expGained;
-        if (Seele.Exp >= Seele.ExpMax) {
-            Seele.Exp -= Seele.ExpMax;
-            Seele.Level ++;
-            Seele.Hp = Seele.HpBase;
-            Seele.Atk = Seele.AtkBase;
-            Seele.Def =  Seele.DefBase;
-        }
 
         document.getElementById('expBar1').style.width = ((Seele.Exp / Seele.ExpMax) * 100) + "%";
     }

@@ -38,8 +38,6 @@ class Background {
     }
 
     static generateBackground() {
-        ctx2.clearRect(0, 0, canvasBackground.width, canvasBackground.height);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         Background.BACKGROUND_INSTANCES_ARRAY.forEach((instancedObject) => {
             instancedObject.#draw();
             //instancedObject.#update();

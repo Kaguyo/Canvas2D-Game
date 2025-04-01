@@ -1,0 +1,5 @@
+class Gohan {
+    static GetGohanSpritesObj() {
+
+    }
+}

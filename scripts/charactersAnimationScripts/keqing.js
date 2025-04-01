@@ -1,0 +1,5 @@
+class Keqing {
+    static GetKeqingSpritesObj() {
+
+    }
+}

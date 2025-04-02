@@ -1,6 +1,6 @@
 class Player {
-    constructor(characterObject) {
-        this.character = characterObject;
+    constructor(character) {
+        this.character = character;
         this.id = Player.playersInGameArray.length + 1;
     }
     static x = 500;
@@ -10,12 +10,13 @@ class Player {
     // direction == 1 moves to the left
     // direction == 2 moves to the right
     static #moveAxisX(distanceInPixels, direction) {
-        Math.floor(distanceInPixels);
+        Math.max(Math.floor(distanceInPixels), 1);
         if (direction == 1)
             Player.x -= distanceInPixels;
         else
             Player.x += distanceInPixels;
     }
+
     // direction == 1 moves upwards
     // direction == 2 moves downwards
     static #moveAxisY(distanceInPixels, direction) {
@@ -31,18 +32,18 @@ class Player {
     }
     static update(player) {
         if (player.character.Id == 1) 
-            player.character.CurrentFrameImg = Seele.GetCurrentFrame();
+            player.character.CurrentFrameImg = Seele.GetCurrentFrame(player.character);
         else if (player.character.Id == 2) 
-            player.character.CurrentFrameImg = Keqing.GetCurrentFrame();
+            player.character.CurrentFrameImg = Keqing.GetCurrentFrame(player.character);
         else if (player.character.Id == 3) 
-            player.character.CurrentFrameImg = Gohan.GetCurrentFrame();
+            player.character.CurrentFrameImg = Gohan.GetCurrentFrame(player.character);
     }
 
     static handleInput(inputKeys, player) {
         if (inputKeys.a) {
-            Player.#moveAxisX(player.character.Speed, 1)
+            Player.#moveAxisX(player.character.Speed, 1);
         } else if (inputKeys.d) {
-            Player.#moveAxisX(player.character.Speed, 2)
+            Player.#moveAxisX(player.character.Speed, 2);
         }
     }
     

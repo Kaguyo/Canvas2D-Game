@@ -151,11 +151,9 @@ const seeleSprites = {
 }
 
 class Seele {
-    static GetSeeleSpritesObj() {
-        return seeleSprites;
-    }
-
     static GetCurrentFrame() {
-        return seeleStandStillImg1;
+        let frameToBeReturned;
+        frameToBeReturned = seeleStandStillImg1;
+        return frameToBeReturned;
     }
 }

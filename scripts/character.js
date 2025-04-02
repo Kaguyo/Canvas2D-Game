@@ -9,13 +9,8 @@ class Character {
         this.Energy = 0;
     }
     CurrentFrameImg = new Image();
-
-    get CharacterAnimationsObj() {
-        if (this.Id == 1) this._CharacterAnimationObj = Seele.GetSeeleSpritesObj();
-        else if (this.Id == 2) this._CharacterAnimationObj = Keqing.GetKeqingSpritesObj();
-        else if (this.Id == 3) this._CharacterAnimationObj = Gohan.GetGohanSpritesObj();
-        return this._CharacterAnimationObj;
-    }  
+    Stance = "Standby";
+    StanceFrame = 1;
 
     get Speed() {
         if (this.Id == 1) this._Speed = 20;

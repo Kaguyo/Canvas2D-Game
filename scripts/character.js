@@ -9,7 +9,13 @@ class Character {
         this.Energy = 0;
     }
     CurrentFrameImg = new Image();
-    Stance = "Standby";
+    
+    Stance = {
+        Standby : true,
+        Running : false,
+        UltimateAtk : false,
+    };
+
     StanceFrame = 1;
 
     get Speed() {

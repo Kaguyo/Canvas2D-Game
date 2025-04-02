@@ -5,6 +5,7 @@ class Player {
     }
     static x = 500;
     static y = 630;
+    static facingTowardsLeft = false;
     static playersInGameArray = [];
 
     // direction == 1 moves to the left
@@ -42,12 +43,15 @@ class Player {
     static handleInput(inputKeys, player) {
         if (inputKeys.a) {
             Player.#moveAxisX(player.character.Speed, 1);
+            Player.facingTowardsLeft = true;
         } else if (inputKeys.d) {
             Player.#moveAxisX(player.character.Speed, 2);
+            Player.facingTowardsLeft = false;
         }
     }
     
 }
+
 function createPlayer(characterObject){
     const player = new Player(characterObject);
     Player.playersInGameArray.push(player);

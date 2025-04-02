@@ -139,21 +139,59 @@ const seeleUltimateAtkWings = [
     seeleUltimatesWingsImg11Reversed, seeleUltimatesWingsImg12Reversed
 ];
 
-const seeleUltimateSpritesObj = {
-    UltEffectsArray : seeleUltimateAtkEffects,
-    UltWingsArray : seeleUltimateAtkDash,
-    UltDashArray : seeleUltimateAtkDash
-}
-const seeleSprites = {
-    seeleRunningSprites : seeleRunningSprites,
-    seeleStandStillSprites : seeleStandStillSprites,
-    seeleUltimateSprites : seeleUltimateSpritesObj
-}
 
 class Seele {
-    static GetCurrentFrame() {
+    static GetCurrentFrame(Seele) {
         let frameToBeReturned;
-        frameToBeReturned = seeleStandStillImg1;
+        if (Seele.Stance.Standby) {
+            if (!Player.facingTowardsLeft) {
+                if (Seele.StanceFrame >= 1 && Seele.StanceFrame < 2) {
+                    frameToBeReturned = seeleStandStillSprites[0]; 
+                    Seele.StanceFrame += 0.05;
+                } else if (Seele.StanceFrame >= 2 && Seele.StanceFrame < 3) {
+                    frameToBeReturned = seeleStandStillSprites[1]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 3 && Seele.StanceFrame < 4) {
+                    frameToBeReturned = seeleStandStillSprites[2]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 4 && Seele.StanceFrame < 5) {
+                    frameToBeReturned = seeleStandStillSprites[3]; 
+                    Seele.StanceFrame += 0.01;
+                } else if (Seele.StanceFrame >= 5 && Seele.StanceFrame < 6) {
+                    frameToBeReturned = seeleStandStillSprites[2]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 6 && Seele.StanceFrame < 7) {
+                    frameToBeReturned = seeleStandStillSprites[1]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 7 && Seele.StanceFrame < 8) {
+                    frameToBeReturned = seeleStandStillSprites[0];
+                    Seele.StanceFrame = 1;
+                }
+            } else {
+                if (Seele.StanceFrame >= 1 && Seele.StanceFrame < 2) {
+                    frameToBeReturned = seeleStandStillSprites[0+4]; 
+                    Seele.StanceFrame += 0.05;
+                } else if (Seele.StanceFrame >= 2 && Seele.StanceFrame < 3) {
+                    frameToBeReturned = seeleStandStillSprites[1+4]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 3 && Seele.StanceFrame < 4) {
+                    frameToBeReturned = seeleStandStillSprites[2+4]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 4 && Seele.StanceFrame < 5) {
+                    frameToBeReturned = seeleStandStillSprites[3+4]; 
+                    Seele.StanceFrame += 0.01;
+                } else if (Seele.StanceFrame >= 5 && Seele.StanceFrame < 6) {
+                    frameToBeReturned = seeleStandStillSprites[2+4]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 6 && Seele.StanceFrame < 7) {
+                    frameToBeReturned = seeleStandStillSprites[1+4]; 
+                    Seele.StanceFrame += 0.2;
+                } else if (Seele.StanceFrame >= 7 && Seele.StanceFrame < 8) {
+                    frameToBeReturned = seeleStandStillSprites[0+4];
+                    Seele.StanceFrame = 1;
+                }
+            }
+        }
         return frameToBeReturned;
     }
 }

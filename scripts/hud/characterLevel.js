@@ -28,6 +28,19 @@ const standardLevelSymbols = [
 
 class CharacterLevel {
     static drawLevel(ctx, dx, dy, characterLevel){
-        ctx.drawImage(standardLevelSymbols[0], dx, dy);
+        if (characterLevel < 10)
+            ctx.drawImage(standardLevelSymbols[characterLevel], dx, dy);
+        else if (characterLevel < 100) {
+            let strLevel = characterLevel.toString();
+            ctx.drawImage(standardLevelSymbols[strLevel[0]], dx, dy);
+            ctx.drawImage(standardLevelSymbols[strLevel[1]], dx+25, dy);
+        }
+        else if (characterLevel < 1000) {
+            let strLevel = characterLevel.toString();
+            ctx.drawImage(standardLevelSymbols[strLevel[0]], dx, dy);
+            ctx.drawImage(standardLevelSymbols[strLevel[1]], dx+25, dy);
+            ctx.drawImage(standardLevelSymbols[strLevel[2]], dx+50, dy);
+        }
+
     }
 }

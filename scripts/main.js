@@ -28,12 +28,12 @@ function animate(){
     CharacterIcons.drawCharacterIconBackground(ctx, 0, 0);
     CharacterCard.drawCard(ctx, 0, 0);
     CharacterIcons.generateCharacterIcon(ctx, 0, 0);
-    CharacterLevel.drawLevel(ctx, 0, 0);
+    CharacterLevel.drawLevel(ctx, 0, 0, Player1.character.Level);
     Player.generatePlayer(ctx, Player1.dx, Player1.dy, Player1);
 
     requestAnimationFrame(animate);
 }
-const Player1 = new Player(1, "Seele", 500, 630, new Character(1, "Seele", 58));
+const Player1 = new Player(1, "Seele", 500, 630, new Character(1, "Seele", 888));
 
 document.addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();

@@ -29,9 +29,11 @@ function animate(){
     CharacterCard.drawCard(ctx, 0, 0);
     CharacterIcons.generateCharacterIcon(ctx, 0, 0);
     CharacterLevel.drawLevel(ctx, 0, 0);
+    Player.generatePlayer(ctx, Player1.dx, Player1.dy, Player1);
 
     requestAnimationFrame(animate);
 }
+const Player1 = new Player(1, "Seele", 500, 630, new Character(1, "Seele", 58));
 
 document.addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();

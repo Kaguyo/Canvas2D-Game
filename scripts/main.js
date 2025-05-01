@@ -21,16 +21,14 @@ const inputKeys = {
 }
 
 
-const player1 = createPlayer(new Character(1, 100));
-let selectedPlayer = player1;
-
 function animate(){
     ctx2.clearRect(0, 0, canvasBackground.width, canvasBackground.height);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     Background.generateBackground();
-    Player.handleInput(inputKeys, selectedPlayer);
-    Player.update(selectedPlayer);
-    Player.draw(selectedPlayer);
+    CharacterIcons.drawCharacterIconBackground(ctx, 0, 0);
+    CharacterCard.drawCard(ctx, 0, 0);
+    CharacterIcons.generateCharacterIcon(ctx, 0, 0);
+    CharacterLevel.drawLevel(ctx, 0, 0);
 
     requestAnimationFrame(animate);
 }
@@ -38,17 +36,20 @@ function animate(){
 document.addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();
     if (key in inputKeys) {
-        inputKeys[key] = true;
+        inputKeys[key] = true; // Ativa a tecla pressionada
+        
+        if (key == 'a')
+            inputKeys.d = false;
+        else if (key == 'd')
+            inputKeys.a = false;
     }
 });
 
 document.addEventListener('keyup', (event) => {
     const key = event.key.toLowerCase();
     if (key in inputKeys) {
-        inputKeys[key] = false;
+        inputKeys[key] = false; // Desativa a tecla solta
     }
 });
-
-
 
 animate();

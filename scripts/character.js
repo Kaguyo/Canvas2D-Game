@@ -100,9 +100,9 @@ class Character {
     }
 
     get Frame(){
-        const frame = new Image();
-        frame.src = "../assets/models/characters/Seele/SeeleIdle.png";
-        return frame;
+        if (this.Id == 1)
+            return Seele.generateSeeleFrame();
+        
     }
 }
 

@@ -1,0 +1,12 @@
+class Game {
+    static gameSpeed = 10;
+    static inputKeys = {
+        w : false,
+        a : false,
+        s : false,
+        d : false,
+        q : false,
+        e : false,
+        l : false
+    }
+}

@@ -8,6 +8,12 @@ class Player {
     }
 
     static generatePlayer(ctx, dx, dy, player){
-        ctx.drawImage(player.character.Frame, dx, dy);
+        let playerFrame;
+        if (player.character.Id == 1){
+            playerFrame = Seele.getFrame();
+        }
+
+        ctx.drawImage(playerFrame, dx, dy);
+        
     }
 }

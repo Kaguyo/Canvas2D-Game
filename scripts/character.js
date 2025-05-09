@@ -1,12 +1,20 @@
 class Character {
-    constructor(Id, Name, Level = 1) {
+    constructor(Id, Level = 1) {
         this.Id = Id;
-        this.Name = Name;
         this.Level = Level;
         this.Hp = this.HpBase;
         this.Atk = this.AtkBase;
         this.Def = this.DefBase;
+        this.Name = this.Name;
         this.Exp =  0;
+    }
+    Name;
+
+    get Name(){
+        if (this.Id == 1)
+            this.Name = "Seele";
+        
+        return this.Name;
     }
 
     get HpBase(){
@@ -99,9 +107,9 @@ class Character {
         }
     }
 
-    get Frame(){
+    get FrameImg(){
         if (this.Id == 1)
-            return Seele.generateSeeleFrame();
+            return Seele.getSeeleFrame();
         
     }
 }

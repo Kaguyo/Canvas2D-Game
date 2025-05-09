@@ -22,7 +22,7 @@ function animate(){
 
     requestAnimationFrame(animate);
 }
-const Player1 = new Player(1, "Seele", 500, 630, new Character(1, "Seele", 888));
+const Player1 = new Player(1, "Kaguyo", 500, 630, new Character(1, 88));
 
 document.addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();

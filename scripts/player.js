@@ -11,6 +11,7 @@ class Player {
         let playerFrame;
         if (player.character.Id == 1){
             playerFrame = Seele.getFrame();
+            Seele.updateFrame();
         }
 
         ctx.drawImage(playerFrame, dx, dy);

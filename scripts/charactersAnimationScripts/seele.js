@@ -130,6 +130,7 @@ class Seele {
     }
 
     static #handleRunningAnimation(){
-
+        let frame = new Image();
+        return frame;
     }
 }   

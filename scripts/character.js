@@ -13,6 +13,10 @@ class Character {
     get Name(){
         if (this.Id == 1)
             this.Name = "Seele";
+        else if (this.Id == 2)
+            this.Name = "Keqing";
+        else if (this.Id == 3)
+            this.Name = "Gohan";
         
         return this.Name;
     }

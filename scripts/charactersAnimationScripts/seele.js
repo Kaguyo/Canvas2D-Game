@@ -16,6 +16,24 @@ seeleIdleImg3Reversed.src = "../../assets/models/characters/Seele/SeeleIdle3Reve
 const seeleIdleImg4Reversed = new Image();
 seeleIdleImg4Reversed.src = "../../assets/models/characters/Seele/SeeleIdle4Reversed.png";
 
+const seeleRunImg1 = new Image();
+seeleRunImg1.src = "../../assets/models/characters/Seele/SeeleRun1.png";
+const seeleRunImg2 = new Image();
+seeleRunImg2.src = "../../assets/models/characters/Seele/SeeleRun2.png";
+const seeleRunImg3 = new Image();
+seeleRunImg3.src = "../../assets/models/characters/Seele/SeeleRun3.png";
+const seeleRunImg4 = new Image();
+seeleRunImg4.src = "../../assets/models/characters/Seele/SeeleRun4.png";
+
+const seeleRunImg1Reversed = new Image();
+seeleRunImg1Reversed.src = "../../assets/models/characters/Seele/SeeleRun1Reversed.png";
+const seeleRunImg2Reversed = new Image();
+seeleRunImg2Reversed.src = "../../assets/models/characters/Seele/SeeleRun2Reversed.png";
+const seeleRunImg3Reversed = new Image();
+seeleRunImg3Reversed.src = "../../assets/models/characters/Seele/SeeleRun3Reversed.png";
+const seeleRunImg4Reversed = new Image();
+seeleRunImg4Reversed.src = "../../assets/models/characters/Seele/SeeleRun4Reversed.png";
+
 
 class Seele {
     static frame = new Image();
@@ -28,11 +46,12 @@ class Seele {
         breatheIn : true,
         breatheOut : false,
         index : 1,
-        countIndexRepeated : 0,
+        countIndexRepeated : 0
     };
 
     static runningAnimation = {
         index : 1,
+        countIndexRepeated : 0
     };
 
     static animation = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash
@@ -131,6 +150,40 @@ class Seele {
 
     static #handleRunningAnimation(){
         let frame = new Image();
+        if (Seele.runningAnimation.index == 1) {
+            Seele.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            if (Seele.runningAnimation.countIndexRepeated >= 10){
+                Seele.runningAnimation.countIndexRepeated = 0;
+                Seele.runningAnimation.index = 2;
+            }
+            frame = Seele.directionRight ? seeleRunImg2 : seeleRunImg2Reversed;
+
+        } else if (Seele.runningAnimation.index == 2) {
+            Seele.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            if (Seele.runningAnimation.countIndexRepeated >= 10){
+                Seele.runningAnimation.countIndexRepeated = 0;
+                Seele.runningAnimation.index = 3;
+            }
+            frame = Seele.directionRight ? seeleRunImg3 : seeleRunImg3Reversed;
+
+        } else if (Seele.runningAnimation.index == 3) {
+            Seele.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            if (Seele.runningAnimation.countIndexRepeated >= 10){
+                Seele.runningAnimation.countIndexRepeated = 0;
+                Seele.runningAnimation.index = 4;
+            }
+            frame = Seele.directionRight ? seeleRunImg4 : seeleRunImg4Reversed;
+
+        } else if (Seele.runningAnimation.index == 4) {
+            Seele.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            if (Seele.runningAnimation.countIndexRepeated >= 10){
+                Seele.runningAnimation.countIndexRepeated = 0;
+                Seele.runningAnimation.index = 1;
+            }
+            frame = Seele.directionRight ? seeleRunImg1 : seeleRunImg1Reversed;
+
+        }
+
         return frame;
     }
 }   

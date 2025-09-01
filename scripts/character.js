@@ -1,24 +1,13 @@
 class Character {
-    constructor(Id, Level = 1) {
+    constructor(Id, Level = 1, Name) {
         this.Id = Id;
         this.Level = Level;
         this.Hp = this.HpBase;
         this.Atk = this.AtkBase;
         this.Def = this.DefBase;
-        this.Name = this.Name;
+        this.Name = Name;
         this.Exp =  0;
-    }
-    Name;
-
-    get Name(){
-        if (this.Id == 1)
-            this.Name = "Seele";
-        else if (this.Id == 2)
-            this.Name = "Keqing";
-        else if (this.Id == 3)
-            this.Name = "Gohan";
-        
-        return this.Name;
+        this.Speed = 25;
     }
 
     get HpBase(){
@@ -116,6 +105,28 @@ class Character {
             return Seele.getSeeleFrame();
         
     }
+
+    action(inputKeys, player) {
+        console.log(player.character)
+        this.#specificAction(inputKeys, player);
+    }
+
+    static arrayNames = {
+        "Seele": { move: Seele.move, attack: Seele.attack },
+        "Keqing": {}, 
+        "Gohan": {}
+    };
+
+    #specificAction(inputKeys, player) {
+        const actionsObject = Character.arrayNames[this.Name];
+        const { w, a, s, d, l } = inputKeys;
+        const { j, k, i } = inputKeys;
+        if (w || a || s || d || l) {
+            actionsObject.move(inputKeys, player);
+        } else if (j, k, i) {
+            actionsObject.attack(inputKeys, player);
+        }
+    }   
 }
 
 const justifyStats = [

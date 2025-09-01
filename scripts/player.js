@@ -17,4 +17,8 @@ class Player {
         ctx.drawImage(playerFrame, dx, dy);
         
     }
+
+    handleInput(inputKeys) {
+        this.character.action(inputKeys, this);
+    }
 }

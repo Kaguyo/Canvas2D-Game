@@ -56,6 +56,19 @@ class Seele {
 
     static animation = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash
     
+    static move(inputKeys, player){
+        if (inputKeys.a) {
+            player.dx -= player.character.Speed * Game.gameSpeed;
+            if (player.dx < 0) player.dx = 0;
+        } else if (inputKeys.d) {
+            player.dx += player.character.Speed * Game.gameSpeed;
+            if (player.dx > 1920 - 150) player.dx = 1920 - 150;
+        }
+    }
+    static attack(inputKeys, player){
+
+    }
+
     static getFrame(){
         return Seele.frame;
     }

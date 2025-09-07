@@ -7,6 +7,7 @@ class Game {
         d : false,
         q : false,
         e : false,
-        l : false
+        l : false,
     }
+    static allowE = true;
 }

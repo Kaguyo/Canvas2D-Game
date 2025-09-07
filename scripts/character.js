@@ -8,6 +8,8 @@ class Character {
         this.Name = Name;
         this.Exp =  0;
         this.Speed = 25;
+        this.characterFrame = new Image();
+        this.hasWeapon = false;
     }
 
     get HpBase(){
@@ -107,24 +109,22 @@ class Character {
     }
 
     action(inputKeys, player) {
-        console.log(player.character)
         this.#specificAction(inputKeys, player);
     }
 
-    static arrayNames = {
-        "Seele": { move: Seele.move, attack: Seele.attack },
-        "Keqing": {}, 
-        "Gohan": {}
-    };
-
+    #equipWeapon(){
+        this.hasWeapon = !this.hasWeapon;
+        Game.inputKeys.e = false;
+    }
     #specificAction(inputKeys, player) {
-        const actionsObject = Character.arrayNames[this.Name];
-        const { w, a, s, d, l } = inputKeys;
-        const { j, k, i } = inputKeys;
+        const { w, a, s, d, l, j, k, i, e } = inputKeys;
+
         if (w || a || s || d || l) {
-            actionsObject.move(inputKeys, player);
-        } else if (j, k, i) {
-            actionsObject.attack(inputKeys, player);
+            Player.move(inputKeys, player);
+        } if (j || k || i) {
+            Player.attack(inputKeys, player);
+        } if (e) {
+            player.characters[0].#equipWeapon();
         }
     }   
 }

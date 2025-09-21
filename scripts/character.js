@@ -8,8 +8,10 @@ class Character {
         this.Name = Name;
         this.Exp =  0;
         this.Speed = 25;
+        this.Weapon = { id: 0, name: "Weapon1", atk: 0, level: 0 };
         this.characterFrame = new Image();
         this.hasWeapon = false;
+        this.switchingWeapon = false;
     }
 
     get HpBase(){
@@ -112,10 +114,10 @@ class Character {
         this.#specificAction(inputKeys, player);
     }
 
-    #equipWeapon(){
-        this.hasWeapon = !this.hasWeapon;
-        Game.inputKeys.e = false;
+    #equipWeapon(character){
+        character.hasWeapon = !character.hasWeapon;
     }
+    
     #specificAction(inputKeys, player) {
         const { w, a, s, d, l, j, k, i, e } = inputKeys;
 
@@ -123,8 +125,8 @@ class Character {
             Player.move(inputKeys, player);
         } if (j || k || i) {
             Player.attack(inputKeys, player);
-        } if (e) {
-            player.characters[0].#equipWeapon();
+        } if (Player.switchingWeapon) {
+            player.characters[0].#equipWeapon(player.characters[0]);
         }
     }   
 }

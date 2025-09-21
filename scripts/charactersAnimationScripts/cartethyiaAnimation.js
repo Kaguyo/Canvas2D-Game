@@ -1,4 +1,4 @@
-class Gohan {
+class CartethyiaAnimation {
     static GetGohanSpritesObj() {
 
     }

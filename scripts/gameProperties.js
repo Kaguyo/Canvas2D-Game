@@ -1,4 +1,4 @@
-class Game {
+class GameProperties {
     static gameSpeed = 1;
     static inputKeys = {
         w : false,

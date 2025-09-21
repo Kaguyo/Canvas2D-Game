@@ -36,6 +36,8 @@ seeleRunImg4Reversed.src = "../../assets/models/characters/Seele/SeeleRun4Revers
 
 const seeleIdleArmedImg1 = new Image();
 seeleIdleArmedImg1.src = "../../assets/models/characters/Seele/SeeleIdleArmed1.png";
+const seeleIdleArmedImg1Reversed = new Image();
+seeleIdleArmedImg1Reversed.src = "../../assets/models/characters/Seele/SeeleIdleArmed1Reversed.png";
 
 class SeeleAnimation {
     static frame = new Image();
@@ -69,6 +71,7 @@ class SeeleAnimation {
     static updateFrame(character){
         SeeleAnimation.#handleInput();
         SeeleAnimation.#setAnimation();
+        
         if (SeeleAnimation.animation == 1) {
             SeeleAnimation.frame = character.hasWeapon ? 
             SeeleAnimation.#handleIdleArmedAnimation() : 
@@ -81,24 +84,24 @@ class SeeleAnimation {
     }
 
     static #handleInput(){
-        if (Game.inputKeys.a) {
+        if (GameProperties.inputKeys.a) {
             SeeleAnimation.directionLeft = true;
             SeeleAnimation.directionRight = false;
         }
-        else if (Game.inputKeys.d) {
+        else if (GameProperties.inputKeys.d) {
             SeeleAnimation.directionRight = true;
             SeeleAnimation.directionLeft = false;
         }
     }
     
     static #setAnimation() {
-        if (Game.inputKeys.a || Game.inputKeys.d)
+        if (GameProperties.inputKeys.a || GameProperties.inputKeys.d)
             SeeleAnimation.animation = 2;
-        else if (Game.inputKeys.w)
+        else if (GameProperties.inputKeys.w)
             SeeleAnimation.animation = 3;
-        else if (Game.inputKeys.s)
+        else if (GameProperties.inputKeys.s)
             SeeleAnimation.animation = 4;
-        else if (Game.inputKeys.l)
+        else if (GameProperties.inputKeys.l)
             SeeleAnimation.animation = 5;
         else
             SeeleAnimation.animation = 1;
@@ -107,7 +110,7 @@ class SeeleAnimation {
     static #handleIdleAnimation() {
         let frame = new Image();
         if (SeeleAnimation.idleAnimation.index == 1) {
-            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.idleAnimation.countIndexRepeated >= 10){
                 if (SeeleAnimation.idleAnimation.breatheIn == true)
                     SeeleAnimation.idleAnimation.reverseIndex = 0;
@@ -119,7 +122,7 @@ class SeeleAnimation {
             frame = SeeleAnimation.directionRight ? seeleIdleImg1 : seeleIdleImg1Reversed;
 
         } else if (SeeleAnimation.idleAnimation.index == 2) {
-            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.idleAnimation.countIndexRepeated >= 10){
                 SeeleAnimation.idleAnimation.countIndexRepeated = 0;
                 SeeleAnimation.idleAnimation.index = 3 + SeeleAnimation.idleAnimation.reverseIndex; 
@@ -129,7 +132,7 @@ class SeeleAnimation {
             frame = SeeleAnimation.directionRight ? seeleIdleImg2 : seeleIdleImg2Reversed;
 
         } else if (SeeleAnimation.idleAnimation.index == 3) {
-            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.idleAnimation.countIndexRepeated >= 10){
                 if (SeeleAnimation.idleAnimation.breatheIn == false)
                     SeeleAnimation.idleAnimation.reverseIndex = -2;
@@ -139,7 +142,7 @@ class SeeleAnimation {
             frame = SeeleAnimation.directionRight ? seeleIdleImg3 : seeleIdleImg3Reversed;
 
         } else if (SeeleAnimation.idleAnimation.index == 4) {
-            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.idleAnimation.countIndexRepeated >= 12) {
                 SeeleAnimation.idleAnimation.countIndexRepeated = 0;
                 SeeleAnimation.idleAnimation.index = 4 + SeeleAnimation.idleAnimation.reverseIndex; 
@@ -159,7 +162,7 @@ class SeeleAnimation {
     static #handleIdleArmedAnimation() {
         let frame = new Image();
         if (SeeleAnimation.idleArmedAnimation.index == 1) {
-            frame = SeeleAnimation.directionRight ? seeleIdleArmedImg1 : seeleIdleArmedImg1;
+            frame = SeeleAnimation.directionRight ? seeleIdleArmedImg1 : seeleIdleArmedImg1Reversed;
         }       
         
         return frame;
@@ -168,7 +171,7 @@ class SeeleAnimation {
     static #handleRunningAnimation(){
         let frame = new Image();
         if (SeeleAnimation.runningAnimation.index == 1) {
-            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.runningAnimation.countIndexRepeated >= 10){
                 SeeleAnimation.runningAnimation.countIndexRepeated = 0;
                 SeeleAnimation.runningAnimation.index = 2;
@@ -176,7 +179,7 @@ class SeeleAnimation {
             frame = SeeleAnimation.directionRight ? seeleRunImg2 : seeleRunImg2Reversed;
 
         } else if (SeeleAnimation.runningAnimation.index == 2) {
-            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.runningAnimation.countIndexRepeated >= 10){
                 SeeleAnimation.runningAnimation.countIndexRepeated = 0;
                 SeeleAnimation.runningAnimation.index = 3;
@@ -184,7 +187,7 @@ class SeeleAnimation {
             frame = SeeleAnimation.directionRight ? seeleRunImg3 : seeleRunImg3Reversed;
 
         } else if (SeeleAnimation.runningAnimation.index == 3) {
-            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.runningAnimation.countIndexRepeated >= 10){
                 SeeleAnimation.runningAnimation.countIndexRepeated = 0;
                 SeeleAnimation.runningAnimation.index = 4;
@@ -192,7 +195,7 @@ class SeeleAnimation {
             frame = SeeleAnimation.directionRight ? seeleRunImg4 : seeleRunImg4Reversed;
 
         } else if (SeeleAnimation.runningAnimation.index == 4) {
-            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * Game.gameSpeed;
+            SeeleAnimation.runningAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.runningAnimation.countIndexRepeated >= 10){
                 SeeleAnimation.runningAnimation.countIndexRepeated = 0;
                 SeeleAnimation.runningAnimation.index = 1;

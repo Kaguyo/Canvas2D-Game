@@ -21,10 +21,13 @@ function animate(){
     CharacterIcons.generateCharacterIcon(ctx, 0, 0);
     CharacterLevel.drawLevel(ctx, 0, 0, Player1.characters[0].Level);
     
-    Player.drawPlayer(ctx, Player1.dx, Player1.dy, Player1.characters);
-    Player.updateCharacterFrame(Player1.characters);
 
-    Player1.handleInput(Game.inputKeys);
+    Player1.handleInput(GameProperties.inputKeys);
+
+    Player.updateCharacterFrame(Player1.characters);
+    Player.drawPlayer(ctx, Player1.dx, Player1.dy, Player1.characters);
+    
+    
     
     requestAnimationFrame(animate);
 }

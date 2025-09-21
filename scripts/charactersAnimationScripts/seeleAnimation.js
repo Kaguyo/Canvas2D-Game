@@ -39,6 +39,76 @@ seeleIdleArmedImg1.src = "../../assets/models/characters/Seele/SeeleIdleArmed1.p
 const seeleIdleArmedImg1Reversed = new Image();
 seeleIdleArmedImg1Reversed.src = "../../assets/models/characters/Seele/SeeleIdleArmed1Reversed.png";
 
+const seeleActivatingUltDash1 = new Image();
+seeleActivatingUltDash1.src = "../../assets/models/characters/Seele/ActivatingUltDash1.png";
+const seeleActivatingUltDash2 = new Image();
+seeleActivatingUltDash2.src = "../../assets/models/characters/Seele/ActivatingUltDash2.png";
+
+const seeleActivatingUltDash1Reversed = new Image();
+seeleActivatingUltDash1Reversed.src = "../../assets/models/characters/Seele/ActivatingUltDash1Reversed.png";
+const seeleActivatingUltDash2Reversed = new Image();
+seeleActivatingUltDash2Reversed.src = "../../assets/models/characters/Seele/ActivatingUltDash2Reversed.png";
+
+const seeleUltEffect1 = new Image();
+seeleUltEffect1.src = "../../assets/models/characters/Seele/UltEffect1.png";
+const seeleUltEffect2 = new Image();
+seeleUltEffect2.src = "../../assets/models/characters/Seele/UltEffect2.png";
+
+const seeleUltEffect1Reversed = new Image();
+seeleUltEffect1Reversed.src = "../../assets/models/characters/Seele/UltEffect1Reversed.png";
+const seeleUltEffect2Reversed = new Image();
+seeleUltEffect2Reversed.src = "../../assets/models/characters/Seele/UltEffect2Reversed.png";
+
+const seeleUltWing1 = new Image();
+seeleUltWing1.src = "../../assets/models/characters/Seele/UltWing1.png";
+const seeleUltWing2 = new Image();
+seeleUltWing2.src = "../../assets/models/characters/Seele/UltWing2.png";
+const seeleUltWing3 = new Image();
+seeleUltWing3.src = "../../assets/models/characters/Seele/UltWing3.png";
+const seeleUltWing4 = new Image();
+seeleUltWing4.src = "../../assets/models/characters/Seele/UltWing4.png";
+const seeleUltWing5 = new Image();
+seeleUltWing5.src = "../../assets/models/characters/Seele/UltWing5.png";
+const seeleUltWing6 = new Image();
+seeleUltWing6.src = "../../assets/models/characters/Seele/UltWing6.png";
+const seeleUltWing7 = new Image();
+seeleUltWing7.src = "../../assets/models/characters/Seele/UltWing7.png";
+const seeleUltWing8 = new Image();
+seeleUltWing8.src = "../../assets/models/characters/Seele/UltWing8.png";
+const seeleUltWing9 = new Image();
+seeleUltWing9.src = "../../assets/models/characters/Seele/UltWing9.png";
+const seeleUltWing10 = new Image();
+seeleUltWing10.src = "../../assets/models/characters/Seele/UltWing10.png";
+const seeleUltWing11 = new Image();
+seeleUltWing11.src = "../../assets/models/characters/Seele/UltWing11.png";
+const seeleUltWing12 = new Image();
+seeleUltWing12.src = "../../assets/models/characters/Seele/UltWing12.png";
+
+const seeleUltWing1Reversed = new Image();
+seeleUltWing1Reversed.src = "../../assets/models/characters/Seele/UltWing1Reversed.png";
+const seeleUltWing2Reversed = new Image();
+seeleUltWing2Reversed.src = "../../assets/models/characters/Seele/UltWing2Reversed.png";
+const seeleUltWing3Reversed = new Image();
+seeleUltWing3Reversed.src = "../../assets/models/characters/Seele/UltWing3Reversed.png";
+const seeleUltWing4Reversed = new Image();
+seeleUltWing4Reversed.src = "../../assets/models/characters/Seele/UltWing4Reversed.png";
+const seeleUltWing5Reversed = new Image();
+seeleUltWing5Reversed.src = "../../assets/models/characters/Seele/UltWing5Reversed.png";
+const seeleUltWing6Reversed = new Image();
+seeleUltWing6Reversed.src = "../../assets/models/characters/Seele/UltWing6Reversed.png";
+const seeleUltWing7Reversed = new Image();
+seeleUltWing7Reversed.src = "../../assets/models/characters/Seele/UltWing7Reversed.png";
+const seeleUltWing8Reversed = new Image();
+seeleUltWing8Reversed.src = "../../assets/models/characters/Seele/UltWing8Reversed.png";
+const seeleUltWing9Reversed = new Image();
+seeleUltWing9Reversed.src = "../../assets/models/characters/Seele/UltWing9Reversed.png";
+const seeleUltWing10Reversed = new Image();
+seeleUltWing10Reversed.src = "../../assets/models/characters/Seele/UltWing10Reversed.png";
+const seeleUltWing11Reversed = new Image();
+seeleUltWing11Reversed.src = "../../assets/models/characters/Seele/UltWing11Reversed.png";
+const seeleUltWing12Reversed = new Image();
+seeleUltWing12Reversed.src = "../../assets/models/characters/Seele/UltWing12Reversed.png";
+
 class SeeleAnimation {
     static frame = new Image();
 
@@ -66,6 +136,11 @@ class SeeleAnimation {
         countIndexRepeated : 0
     };
 
+    static ultimateAnimation = {
+        index : 1,
+        countIndexRepeated : 0
+    };
+
     static animation = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash
 
     static updateFrame(character){
@@ -76,8 +151,13 @@ class SeeleAnimation {
             SeeleAnimation.frame = character.hasWeapon ? 
             SeeleAnimation.#handleIdleArmedAnimation() : 
             SeeleAnimation.#handleIdleAnimation();
+
         } else if (SeeleAnimation.animation == 2) {
             SeeleAnimation.frame = SeeleAnimation.#handleRunningAnimation();
+
+        } else if (SeeleAnimation.animation == 6 && GameProperties.usingUltimate) {
+            SeeleAnimation.frame = SeeleAnimation.#handleUltimateAnimation();
+            
         }
 
         return SeeleAnimation.frame;
@@ -95,7 +175,9 @@ class SeeleAnimation {
     }
     
     static #setAnimation() {
-        if (GameProperties.inputKeys.a || GameProperties.inputKeys.d)
+        if (GameProperties.inputKeys.q || GameProperties.usingUltimate)
+            SeeleAnimation.animation = 6;
+        else if (GameProperties.inputKeys.a || GameProperties.inputKeys.d)
             SeeleAnimation.animation = 2;
         else if (GameProperties.inputKeys.w)
             SeeleAnimation.animation = 3;
@@ -105,10 +187,13 @@ class SeeleAnimation {
             SeeleAnimation.animation = 5;
         else
             SeeleAnimation.animation = 1;
+
+        
     }
 
     static #handleIdleAnimation() {
         let frame = new Image();
+
         if (SeeleAnimation.idleAnimation.index == 1) {
             SeeleAnimation.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (SeeleAnimation.idleAnimation.countIndexRepeated >= 10){
@@ -202,6 +287,29 @@ class SeeleAnimation {
             }
             frame = SeeleAnimation.directionRight ? seeleRunImg1 : seeleRunImg1Reversed;
 
+        }
+
+        return frame;
+    }
+
+    static #handleUltimateAnimation(){
+        let frame = new Image();
+        if (SeeleAnimation.ultimateAnimation.index == 1) {
+            SeeleAnimation.ultimateAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
+            if (SeeleAnimation.ultimateAnimation.countIndexRepeated >= 30){
+                SeeleAnimation.ultimateAnimation.countIndexRepeated = 0;
+                SeeleAnimation.ultimateAnimation.index = 2;
+            }
+            frame = SeeleAnimation.directionRight ? seeleActivatingUltDash1 : seeleActivatingUltDash1Reversed;
+
+        } else if (SeeleAnimation.ultimateAnimation.index == 2) {
+            SeeleAnimation.ultimateAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
+            if (SeeleAnimation.ultimateAnimation.countIndexRepeated >= 50){
+                SeeleAnimation.ultimateAnimation.countIndexRepeated = 0;
+            }
+            frame = SeeleAnimation.directionRight ? seeleActivatingUltDash2 : seeleActivatingUltDash2Reversed;
+            GameProperties.allowMovement = true;
+            GameProperties.usingUltimate = false;
         }
 
         return frame;

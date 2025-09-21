@@ -5,6 +5,8 @@ class Character {
         this.Hp = this.HpBase;
         this.Atk = this.AtkBase;
         this.Def = this.DefBase;
+        this.Energy = 2000;
+        this.MaxEnergy = this.MaxEnergy;
         this.Name = Name;
         this.Exp =  0;
         this.Speed = 25;
@@ -12,6 +14,14 @@ class Character {
         this.characterFrame = new Image();
         this.hasWeapon = false;
         this.switchingWeapon = false;
+    }
+
+    set MaxEnergy(value){
+        this._MaxEnergy = value;
+    }
+    get MaxEnergy(){
+        if (this.Name == "Seele")
+            return 80;
     }
 
     get HpBase(){
@@ -119,16 +129,26 @@ class Character {
     }
     
     #specificAction(inputKeys, player) {
-        const { w, a, s, d, l, j, k, i, e } = inputKeys;
+        const { w, a, s, d, l, j, k, i, e, q } = inputKeys;
 
-        if (w || a || s || d || l) {
+        if ((w || a || s || d || l) && GameProperties.allowMovement) {
             Player.move(inputKeys, player);
-        } if (j || k || i) {
-            Player.attack(inputKeys, player);
+        } if ((j || k || i || q ) && !GameProperties.usingUltimate && player.characters[0].Energy >= player.characters[0].MaxEnergy) {
+            player.characters[0].#attack(inputKeys, player);
+            GameProperties.usingUltimate = true;
+
         } if (Player.switchingWeapon) {
             player.characters[0].#equipWeapon(player.characters[0]);
         }
     }   
+    
+    #attack(inputKeys, player){
+        if (inputKeys.q && player.characters[0].Energy >= player.characters[0].MaxEnergy){ 
+            console.log("Special Attack");
+            player.characters[0].Energy = 0;
+            GameProperties.allowMovement = false;
+        }
+    }
 }
 
 const justifyStats = [

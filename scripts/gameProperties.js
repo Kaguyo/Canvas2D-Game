@@ -10,4 +10,6 @@ class GameProperties {
         l : false,
     }
     static allowE = true;
+    static allowMovement = true;
+    static usingUltimate = false;
 }

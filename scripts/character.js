@@ -12,6 +12,7 @@ class Character {
         this.Speed = 25;
         this.Weapon = { id: 0, name: "Weapon1", atk: 0, level: 0 };
         this.characterFrame = new Image();
+        this.vfxFrames = new Image();
         this.hasWeapon = false;
         this.switchingWeapon = false;
     }

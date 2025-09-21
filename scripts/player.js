@@ -34,6 +34,16 @@ class Player {
             if (player.dx > 1920 - 300) player.dx = 1920 - 300;
         }
     }
+    static vfxEffects(ctx, dx, dy, character){
+        if (GameProperties.usingUltimate){
+            if (character.Id == 1){
+                let vfxSparkle = SeeleAnimation.ultimateAnimation.updateVFXSparkles();
+                let vfxWing = SeeleAnimation.ultimateAnimation.updateVFXWing();
+                ctx.drawImage(vfxSparkle, dx, dy);
+                ctx.drawImage(vfxWing, dx, dy);
+            }
+        }
+    }
 
     handleInput(inputKeys) {
         this.characters[0].action(inputKeys, this);

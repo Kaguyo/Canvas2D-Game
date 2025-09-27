@@ -134,7 +134,7 @@ class Character {
 
         if ((w || a || s || d || l) && GameProperties.allowMovement) {
             Player.move(inputKeys, player);
-        } if ((j || k || i || q ) && !GameProperties.usingUltimate && player.characters[0].Energy >= player.characters[0].MaxEnergy) {
+        } if (( q ) && !GameProperties.usingUltimate && player.characters[0].Energy >= player.characters[0].MaxEnergy) {
             player.characters[0].#attack(inputKeys, player);
             GameProperties.usingUltimate = true;
 

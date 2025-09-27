@@ -29,6 +29,7 @@ function animate(){
     Player.vfxEffects(ctx, Player1.dx, Player1.dy, Player1.characters[0]);
     
     
+    
     requestAnimationFrame(animate);
 }
 

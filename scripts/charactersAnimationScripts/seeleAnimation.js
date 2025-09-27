@@ -135,6 +135,11 @@ class SeeleAnimation {
         index : 1,
         countIndexRepeated : 0
     };
+    
+    static runningArmedAnimation = {
+        index : 1,
+        countIndexRepeated : 0
+    };
 
     static ultimateAnimation = {
         index : 1,
@@ -276,7 +281,9 @@ class SeeleAnimation {
             SeeleAnimation.#handleIdleAnimation();
 
         } else if (SeeleAnimation.animation == 2) {
-            SeeleAnimation.frame = SeeleAnimation.#handleRunningAnimation();
+            SeeleAnimation.frame = character.hasWeapon ?
+            SeeleAnimation.#handleRunningArmedAnimation() :
+            SeeleAnimation.#handleRunningAnimation() ;
 
         } else if (SeeleAnimation.animation == 6 && GameProperties.usingUltimate) {
             SeeleAnimation.frame = SeeleAnimation.#handleUltimateAnimation();
@@ -411,6 +418,11 @@ class SeeleAnimation {
         }
 
         return frame;
+    }
+
+    static #handleRunningArmedAnimation(){
+        let frame = new Image();
+        Seele 
     }
 
     static #handleUltimateAnimation(){

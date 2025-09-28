@@ -272,7 +272,7 @@ class SeeleAnimation {
 
     static updateFrame(character){
         SeeleAnimation.#handleInput();
-        SeeleAnimation.setAnimation();
+        SeeleAnimation.#setAnimation();
         
         if (SeeleAnimation.animation == 1) {
             SeeleAnimation.frame = character.hasWeapon ? 
@@ -303,7 +303,7 @@ class SeeleAnimation {
         }
     }
     
-    static setAnimation() {
+    static #setAnimation() {
         if (GameProperties.usingUltimate )
             SeeleAnimation.animation = 6;
         else if (GameProperties.inputKeys.a || GameProperties.inputKeys.d)

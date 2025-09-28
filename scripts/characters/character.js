@@ -5,7 +5,7 @@ class Character {
         this.Hp = this.HpBase;
         this.Atk = this.AtkBase;
         this.Def = this.DefBase;
-        this.Energy = 2000;
+        this.Energy = 1220;
         this.MaxEnergy = this.MaxEnergy;
         this.Name = Name;
         this.Exp =  0;
@@ -137,7 +137,7 @@ class Character {
         if ((w || a || s || d ) && GameProperties.allowMovement) {
             Player.move(inputKeys, player);
         } if (( q || l || j || k || i )) {
-            Character.charactersActionMap[player.characters[0].Name](); 
+            Character.charactersActionMap[player.characters[0].Name](player.characters[0]); 
 
         } if (e) {
             player.characters[0].#equipWeapon(player.characters[0], inputKeys);

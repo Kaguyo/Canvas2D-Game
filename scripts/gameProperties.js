@@ -12,10 +12,20 @@ class GameProperties {
     static allowE = true;
     static allowMovement = true;
     static usingUltimate = false;
-
+    static allowUltimate = true;
+    
     static RestoreInitialState(){
+        GameProperties.allowUltimate = true;
         GameProperties.allowE = true;
         GameProperties.allowMovement = true;
         GameProperties.usingUltimate = false;
+    }
+
+    static TreatNegativeValue(numericValue){
+        if (numericValue < 0){
+            numericValue = 0;
+        }
+
+        return numericValue;
     }
 }

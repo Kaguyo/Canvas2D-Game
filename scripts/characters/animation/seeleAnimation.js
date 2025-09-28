@@ -259,8 +259,7 @@ class SeeleAnimation {
                 if (this.vfxWing.countIndexRepeated >= 5){
                     this.vfxWing.countIndexRepeated = 0;
                     this.vfxWing.index = 1;
-                    GameProperties.usingUltimate = false;
-                    GameProperties.allowMovement = true;
+                    GameProperties.RestoreInitialState();
                 }
                 frame = SeeleAnimation.directionRight ? seeleUltWing12 : seeleUltWing12Reversed;
             }
@@ -273,7 +272,7 @@ class SeeleAnimation {
 
     static updateFrame(character){
         SeeleAnimation.#handleInput();
-        SeeleAnimation.#setAnimation();
+        SeeleAnimation.setAnimation();
         
         if (SeeleAnimation.animation == 1) {
             SeeleAnimation.frame = character.hasWeapon ? 
@@ -304,8 +303,8 @@ class SeeleAnimation {
         }
     }
     
-    static #setAnimation() {
-        if (GameProperties.inputKeys.q || GameProperties.usingUltimate)
+    static setAnimation() {
+        if (GameProperties.usingUltimate )
             SeeleAnimation.animation = 6;
         else if (GameProperties.inputKeys.a || GameProperties.inputKeys.d)
             SeeleAnimation.animation = 2;
@@ -422,7 +421,7 @@ class SeeleAnimation {
 
     static #handleRunningArmedAnimation(){
         let frame = new Image();
-        Seele 
+
     }
 
     static #handleUltimateAnimation(){

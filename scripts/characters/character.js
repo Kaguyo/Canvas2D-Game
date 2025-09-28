@@ -125,31 +125,31 @@ class Character {
         this.#specificAction(inputKeys, player);
     }
 
-    #equipWeapon(character){
+    #equipWeapon(character, inputKeys){
+        if (inputKeys.e)
+            inputKeys.e = false;
         character.hasWeapon = !character.hasWeapon;
     }
     
     #specificAction(inputKeys, player) {
         const { w, a, s, d, l, j, k, i, e, q } = inputKeys;
 
-        if ((w || a || s || d || l) && GameProperties.allowMovement) {
+        if ((w || a || s || d ) && GameProperties.allowMovement) {
             Player.move(inputKeys, player);
-        } if (( q ) && !GameProperties.usingUltimate && player.characters[0].Energy >= player.characters[0].MaxEnergy) {
-            player.characters[0].#attack(inputKeys, player);
-            GameProperties.usingUltimate = true;
+        } if (( q || l || j || k || i )) {
+            Character.charactersActionMap[player.characters[0].Name](); 
 
-        } if (Player.switchingWeapon) {
-            player.characters[0].#equipWeapon(player.characters[0]);
-        }
-    }   
-    
-    #attack(inputKeys, player){
-        if (inputKeys.q && player.characters[0].Energy >= player.characters[0].MaxEnergy){ 
-            console.log("Special Attack");
-            player.characters[0].Energy = 0;
-            GameProperties.allowMovement = false;
+        } if (e) {
+            player.characters[0].#equipWeapon(player.characters[0], inputKeys);
+            
         }
     }
+    
+    static charactersActionMap = {
+        "Seele" : SeeleMoveset.HandleInput,
+        "Guts" : SeeleMoveset.HandleInput,
+        "Keqing" : SeeleMoveset.HandleInput
+    }   
 }
 
 const justifyStats = [

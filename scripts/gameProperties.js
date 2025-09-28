@@ -12,4 +12,10 @@ class GameProperties {
     static allowE = true;
     static allowMovement = true;
     static usingUltimate = false;
+
+    static RestoreInitialState(){
+        GameProperties.allowE = true;
+        GameProperties.allowMovement = true;
+        GameProperties.usingUltimate = false;
+    }
 }

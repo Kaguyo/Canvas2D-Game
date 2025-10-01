@@ -21,9 +21,8 @@ class MapScenery {
     static trackPlayer(player) {
         if (player.characte)
         MapScenery.playerTrackedX += player.characters[0].Speed;
-        MapScenery.playerTrackedY += player.characters[0].Speed;
 
-        console.log("Map:", MapScenery.playerTrackedX, MapScenery.playerTrackedY)
+        console.log("Map:", MapScenery.playerTrackedX);
     }
 
     static handleMapWithPlayerCoordinates(player, map){

@@ -20,6 +20,7 @@ backgroundImage8.src = "../assets/layers/44layReversed2.png";
 
 class Background {
     constructor(image, speedModifier, reversed, x) {
+        this.id = Background.BACKGROUND_INSTANCES_ARRAY.length + 1;
         this.x = x;
         this.width = 1920;
         this.speedModifier = speedModifier;
@@ -28,19 +29,30 @@ class Background {
 
         Background.BACKGROUND_INSTANCES_ARRAY.push(this);
     }
+
     #draw() {
         ctx2.drawImage(this.image, this.x, 0);
     }
-    #update() {
-        if (this.x < -1920)
-            this.x += 3840;
-        this.x -= this.speedModifier;
+
+    #update(player) {
+        if (this.x < -1920){
+            let difference = this.x + 1920;
+            this.x = 1920 + difference;
+        }
+        
+        Background.BACKGROUND_INSTANCES_ARRAY.forEach((instancedObject) => {
+            if (player.extendMap > 0 && GameProperties.allowExtendMapRight){
+                instancedObject.x -= (player.extendMap * instancedObject.speedModifier);
+            }
+        });
+        
+        player.extendMap = 0;
     }
 
-    static generateBackground() {
+    static generateBackground(player) {
         Background.BACKGROUND_INSTANCES_ARRAY.forEach((instancedObject) => {
+            instancedObject.#update(player);
             instancedObject.#draw();
-            //instancedObject.#update();
         });
     }
 
@@ -48,33 +60,33 @@ class Background {
 }
 
 const backgroundImageObject1 = new Background(
-    backgroundImage1, 2, false, 0
+    backgroundImage1, 0.2, false, 0
 );
 
 const backgroundImageObject1Reversed = new Background(
-    backgroundImage5, 2, true, 1920
+    backgroundImage5, 0.2, true, 1920
 );
 
 const backgroundImageObject2 = new Background(
-    backgroundImage2, 4, false, 0
+    backgroundImage2, 0.4, false, 0
 );
 
 const backgroundImageObject2Reversed = new Background(
-    backgroundImage6, 4, true, 1920
+    backgroundImage6, 0.4, true, 1920
 );
 
 const backgroundImageObject3 = new Background(
-    backgroundImage3, 6, false, 0
+    backgroundImage3, 0.6, false, 0
 );
 
 const backgroundImageObject3Reversed = new Background(
-    backgroundImage7, 6, true, 1920
+    backgroundImage7, 0.6, true, 1920
 );
 
 const backgroundImageObject4 = new Background(
-    backgroundImage4, 8, false, 0
+    backgroundImage4, 0.8, false, 0
 );
 
 const backgroundImageObject4Reversed = new Background(
-    backgroundImage8, 8, true, 1920
+    backgroundImage8, 0.8, true, 1920
 );

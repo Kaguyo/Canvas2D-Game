@@ -13,7 +13,9 @@ class GameProperties {
     static allowMovement = true;
     static usingUltimate = false;
     static allowUltimate = true;
-    
+    static allowExtendMapRight = true;
+    static allowExtendMapLeft = false;
+
     static RestoreInitialState(){
         GameProperties.allowUltimate = true;
         GameProperties.allowE = true;

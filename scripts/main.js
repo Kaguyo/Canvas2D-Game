@@ -10,12 +10,15 @@ canvasBackground.height = canvas.height;
 
 const ctx2 = canvasBackground.getContext('2d');
 
-const Player1 = new Player(1, "Kaguyo", 500, 630, [new Character(1, 88, "Seele")]);
+const Player1 = new Player(1, "Kaguyo", [new Character(1, 88, "Seele")]);
+const Map1 = new MapScenery(1, Player1);
+MapScenery.localizePlayerAndSetOrigin(Player1, Map1);
+
 
 function animate(){
     ctx2.clearRect(0, 0, canvasBackground.width, canvasBackground.height);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    Background.generateBackground();
+    Background.generateBackground(Player1);
     CharacterIcons.drawCharacterIconBackground(ctx, 0, 0);
     CharacterCard.drawCard(ctx, 0, 0);
     CharacterIcons.generateCharacterIcon(ctx, 0, 0);
@@ -23,6 +26,7 @@ function animate(){
     
 
     Player1.handleInput(GameProperties.inputKeys);
+    MapScenery.handleMapWithPlayerCoordinates(Player1, Map1);
 
     Player.updateCharacterFrame(Player1.characters);
     Player.drawPlayer(ctx, Player1.dx, Player1.dy, Player1.characters);

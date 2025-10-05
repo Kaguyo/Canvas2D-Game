@@ -1,2 +1,3 @@
 *.krz
 *.png~
+*node_modules

@@ -1,0 +1,5 @@
+class CartethyiaAnimation {
+    static GetGohanSpritesObj() {
+
+    }
+}

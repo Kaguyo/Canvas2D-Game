@@ -1,5 +1,7 @@
 import { Player } from "../scripts/players/player.js";
-import { Character } from "../scripts/characters/models/character.js";
+import { Character } from "./characters/character";
+import { GameProperties } from "./options/gameProperties.js";
+import { Stage1 } from "./scenery/stage1.js";
 const canvas = document.getElementById('canvas1');
 canvas.width = 1920;
 canvas.height = 1080;
@@ -8,19 +10,18 @@ const canvasBackground = document.getElementById('canvasBackground');
 canvasBackground.width = canvas.width;
 canvasBackground.height = canvas.height;
 const ctx2 = canvasBackground.getContext('2d');
+GameProperties.ctx1 = ctx;
+GameProperties.ctx2 = ctx2;
 const characters = [];
 characters.push(new Character(1, 35));
 const player1 = new Player(1, "Kaguyo", characters);
-console.log(player1.characters[0].hp);
-console.log(player1.characters[0].atk);
-console.log(player1.characters[0].def);
-player1.characters[0].atk *= 1.5;
-player1.characters[0].hp *= 1.22;
-player1.characters[0].def *= 1.23;
-console.log("ENHANCED HP!: " + player1.characters[0].hp);
-console.log("ENHANCED ATK!: " + player1.characters[0].atk);
-console.log("ENHANCED DEF!: " + player1.characters[0].def);
 function main() {
+    player1.handleInput();
+    Stage1.generateStage1(player1);
+    player1.drawPlayer(ctx);
+    player1.updateCharacterFrame();
     requestAnimationFrame(main);
 }
+export { ctx };
+export { ctx2 };
 main();

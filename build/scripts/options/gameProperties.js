@@ -1,24 +1,20 @@
 export class GameProperties {
-
-    static ctx1 : CanvasRenderingContext2D;
-    static ctx2 : CanvasRenderingContext2D;
-
+    static ctx1;
+    static ctx2;
     // public fields region
     static gameSpeed = 1;
-
-    static inputKeys : Record<string, boolean> = {
+    static inputKeys = {
         '1': false,
         '2': false,
         '3': false,
-        'w' : false,
-        'a' : false,
-        's' : false,
-        'd' : false,
-        'q' : false,
-        'e' : false,
-        'l' : false,
-    }
-
+        'w': false,
+        'a': false,
+        's': false,
+        'd': false,
+        'q': false,
+        'e': false,
+        'l': false,
+    };
     static allowE = true;
     static allowMovement = true;
     static usingUltimate = false;
@@ -29,13 +25,11 @@ export class GameProperties {
     static allowBasicAttack = true;
     static allowSwitchCharacter = true;
     static switchingCharacter = false;
-
     // public methods region
-    static CeilToZero(value : number){
-        if (value < 0){
+    static CeilToZero(value) {
+        if (value < 0) {
             value = 0;
         }
-
         return value;
     }
 }

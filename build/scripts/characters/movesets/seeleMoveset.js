@@ -1,18 +1,12 @@
 import { SeeleAnimation } from "../animations/seeleAnimation";
 import { GameProperties } from "../../options/gameProperties";
-import { Attributes } from "../properties/attributes";
-
 export class SeeleMoveset {
     // private fields region
-    private animationSet = new SeeleAnimation();
-    
-    
-    constructor(){
-        
+    animationSet = new SeeleAnimation();
+    constructor() {
     }
-
     // public methods region
-    reset(){
+    reset() {
         this.animationSet.setAnimation(1);
         GameProperties.allowMovement = true;
         GameProperties.allowBasicAttack = true;
@@ -21,15 +15,13 @@ export class SeeleMoveset {
         GameProperties.allowUltimate = true;
         GameProperties.usingUltimate = false;
     }
-
-    Run(){
-        if (GameProperties.allowMovement){
+    Run() {
+        if (GameProperties.allowMovement) {
             this.animationSet.setAnimation(2);
         }
     }
-    
-    Ultimate(attributes: Attributes){
-        if (attributes.energy >= 80 && GameProperties.allowUltimate){
+    Ultimate(attributes) {
+        if (attributes.energy >= 80 && GameProperties.allowUltimate) {
             // this.reset();
             this.animationSet.setAnimation(6);
             attributes.energy -= 80;
@@ -38,29 +30,22 @@ export class SeeleMoveset {
             GameProperties.allowE = false;
             GameProperties.allowMovement = false;
             GameProperties.allowUltimate = false;
-            
             let percentage;
-            if (attributes.energy <= attributes.energyMax){
+            if (attributes.energy <= attributes.energyMax) {
                 percentage = (100 / (attributes.energyMax / attributes.energy)).toFixed(0).toString() + "%";
-            } else {
+            }
+            else {
                 percentage = '100%';
             }
         }
-    }   
-
-    Dash(){
-        if (GameProperties.allowDash){
-            
+    }
+    Dash() {
+        if (GameProperties.allowDash) {
         }
     }
-
-    BasicAttack(){
-        if (GameProperties.allowBasicAttack){
+    BasicAttack() {
+        if (GameProperties.allowBasicAttack) {
             // attack logic
         }
     }
-
-    // private methods region
-
-
 }

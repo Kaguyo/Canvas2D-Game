@@ -1,5 +1,5 @@
 import { Player } from "../scripts/players/player.js";
-import { Character } from "../scripts/characters/models/character.js";
+import { Character } from "./characters/character";
 
 const canvas = document.getElementById('canvas1') as HTMLCanvasElement;
 canvas.width = 1920;
@@ -17,20 +17,12 @@ characters.push(new Character(1, 35));
 
 const player1 = new Player(1, "Kaguyo", characters);
 
-console.log(player1.characters[0].hp);
-console.log(player1.characters[0].atk);
-console.log(player1.characters[0].def);
-player1.characters[0].atk *= 1.5;
-player1.characters[0].hp *= 1.22;
-player1.characters[0].def *= 1.23;
-console.log("ENHANCED HP!: " + player1.characters[0].hp)
-console.log("ENHANCED ATK!: " + player1.characters[0].atk)
-console.log("ENHANCED DEF!: " + player1.characters[0].def)
-
-
 function main(){
-
+    player1.handleInput();
     requestAnimationFrame(main);
 }
+
+export { ctx };
+export { ctx2 };
 
 main();

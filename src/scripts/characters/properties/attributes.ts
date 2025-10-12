@@ -34,7 +34,7 @@ const justifyStats = [
     160, 170, 180, 190, 200
 ];
 
-export class Character {
+export class Attributes {
     constructor(id : number, level = 1) {
         this.id = id;
         this.level = level;
@@ -47,13 +47,13 @@ export class Character {
         this.hp = this.hpBuild;
         this.atk = this.atkBuild;
         this.def = this.defBuild;
+        this.speed = this.speed;
         
     }
     
     artifacts : artifacts = [[{hp : 322}, {atkPercentage : 40}], [{hp : 322}], [{hp : 322}, {hp : 322}, {hp : 322}, {hp : 322}]];
     
     // private fields region
-    
     private _hp = 0;
     private _atk = 0;
     private _def = 0;
@@ -65,9 +65,9 @@ export class Character {
     private _defBuild = 0;
     private _expMax = 0;
     private _energyMax = 0;
+    private _speed = 0;
 
     // public fields region
-
     readonly id : number;
     level : number;
     energy = 0;
@@ -79,7 +79,10 @@ export class Character {
     switchingWeapon = false;
     
     // private setters
-    
+    private set speed(value: number) { 
+        this._speed = value;
+    }
+
     private set hpBase(value: number) {
         this._hpBase = value;
     }
@@ -113,6 +116,19 @@ export class Character {
     }
     
     // public getters
+    get speed(){ 
+        if (this.id == 1)
+            this.speed = 20;
+        else if (this.id == 2)
+            this.speed = 30;
+        else if (this.id == 3)
+            this.speed = 20;
+        else if (this.id == 4)
+            this.speed = 18;
+
+        return Number.parseInt(this.speed.toString(), 10); 
+    }
+
     set atk(value: number){ this._atk = value }
     get atk(){ return Number.parseInt(this._atk.toString(), 10); }
 

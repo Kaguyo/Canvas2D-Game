@@ -1,5 +1,5 @@
-import { ctx2 } from "../main";
-import { GameProperties } from "../options/gameProperties";
+import { ctx2 } from "../main.js";
+import { GameProperties } from "../options/gameProperties.js";
 // Stage1 Images Stage 1
 const stageImage1 = new Image();
 stageImage1.src = "../assets/layers/11lay2.png";

@@ -1,6 +1,6 @@
-import { SeeleAnimation } from "../animations/seeleAnimation";
-import { GameProperties } from "../../options/gameProperties";
-import { Attributes } from "../properties/attributes";
+import { SeeleAnimation } from "../animations/seeleAnimation.js";
+import { GameProperties } from "../../options/gameProperties.js";
+import { Attributes } from "../properties/attributes.js";
 
 export class SeeleMoveset {
     // private fields region

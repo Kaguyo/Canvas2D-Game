@@ -1,4 +1,4 @@
-import { GameProperties } from "../options/gameProperties";
+import { GameProperties } from "../options/gameProperties.js";
 export class Player {
     // public fields region
     id;

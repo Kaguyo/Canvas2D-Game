@@ -1,5 +1,5 @@
-import { SeeleAnimation } from "../animations/seeleAnimation";
-import { GameProperties } from "../../options/gameProperties";
+import { SeeleAnimation } from "../animations/seeleAnimation.js";
+import { GameProperties } from "../../options/gameProperties.js";
 export class SeeleMoveset {
     // private fields region
     animationSet = new SeeleAnimation();

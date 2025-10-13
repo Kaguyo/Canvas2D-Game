@@ -1,5 +1,5 @@
-import { Player } from "../scripts/players/player.js";
-import { Character } from "./characters/character";
+import { Player } from "./players/player.js";
+import { Character } from "./characters/character.js";
 import { GameProperties } from "./options/gameProperties.js";
 import { Stage1 } from "./scenery/stage1.js";
 const canvas = document.getElementById('canvas1');

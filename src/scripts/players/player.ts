@@ -1,5 +1,5 @@
-import { Character } from "../characters/character";
-import { GameProperties } from "../options/gameProperties";
+import { Character } from "../characters/character.js";
+import { GameProperties } from "../options/gameProperties.js";
 
 export class Player {
     // public fields region

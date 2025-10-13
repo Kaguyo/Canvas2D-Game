@@ -1,3 +1,4 @@
-*.krz
-*.png~
+.*.png~
 *node_modules
+*.kra~
+*.krz~

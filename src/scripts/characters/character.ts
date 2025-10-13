@@ -1,15 +1,15 @@
-import { Attributes } from "./properties/attributes";
-import { Player } from "../players/player";
+import { Attributes } from "./properties/attributes.js";
+import { Player } from "../players/player.js";
 
-import { SeeleMoveset } from "./movesets/seeleMoveset";
-import { CartethyiaMoveset } from "./movesets/cartethyiaMoveset";
-import { KeqingMoveset } from "./movesets/keqingMoveset";
-import { GutsMoveset } from "./movesets/gutsMoveset";
+import { SeeleMoveset } from "./movesets/seeleMoveset.js";
+import { CartethyiaMoveset } from "./movesets/cartethyiaMoveset.js";
+import { KeqingMoveset } from "./movesets/keqingMoveset.js";
+import { GutsMoveset } from "./movesets/gutsMoveset.js";
 
-import { SeeleAnimation } from "./animations/seeleAnimation";
-import { CartethyiaAnimation } from "./animations/cartethyiaAnimation";
-import { KeqingAnimation } from "./animations/keqingAnimation";
-import { GutsAnimation } from "./animations/gutsAnimation";
+import { SeeleAnimation } from "./animations/seeleAnimation.js";
+import { CartethyiaAnimation } from "./animations/cartethyiaAnimation.js";
+import { KeqingAnimation } from "./animations/keqingAnimation.js";
+import { GutsAnimation } from "./animations/gutsAnimation.js";
 
 export class Character {
     // public fields region

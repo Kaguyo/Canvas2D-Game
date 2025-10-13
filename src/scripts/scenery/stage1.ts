@@ -1,6 +1,6 @@
-import { Player } from "../players/player";
-import { ctx2 } from "../main";
-import { GameProperties } from "../options/gameProperties"
+import { Player } from "../players/player.js";
+import { ctx2 } from "../main.js";
+import { GameProperties } from "../options/gameProperties.js";
 
 // Stage1 Images Stage 1
 const stageImage1: HTMLImageElement = new Image();

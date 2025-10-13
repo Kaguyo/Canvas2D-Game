@@ -126,7 +126,7 @@ export class Attributes {
         else if (this.id == 4)
             this.speed = 18;
 
-        return Number.parseInt(this.speed.toString(), 10); 
+        return Number.parseInt(this._speed.toString(), 10); 
     }
 
     set atk(value: number){ this._atk = value }

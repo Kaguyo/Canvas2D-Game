@@ -1,5 +1,5 @@
-import { GameProperties } from "../options/gameProperties";
-import { Player } from "../players/player";
+import { GameProperties } from "../options/gameProperties.js";
+import { Player } from "../players/player.js";
 
 export class Listeners {
     static keydownHandler = (event : KeyboardEvent) => {

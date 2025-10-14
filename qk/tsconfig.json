@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",               // The JS version output (ES5, ES6, ESNext, etc.)
+    "module": "CommonJS",          // Module system (CommonJS for Node, ESNext for bundlers)
+    "outDir": "./build",            // Output directory for compiled files
+    "rootDir": "./src",            // Root folder of your source files
+    "strict": true,                // Enable strict type-checking options
+    "esModuleInterop": true,       // Allows default imports from CommonJS modules
+    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file
+    "skipLibCheck": true           // Skip type checking of declaration files (speeds up compile)
+  },
+  "include": ["src/**/*"],          // Files/folders to include in compilation
+  "exclude": ["node_modules"]
+}

@@ -15,12 +15,12 @@ export class Character {
     // public fields region
     attribute: Attributes;
     moveset: any;
-    animationSet: any;
+    animationSet: SeeleAnimation | KeqingAnimation | CartethyiaAnimation | GutsAnimation;
     frame: HTMLImageElement;
 
     constructor(id: number, level: number){
         this.attribute = new Attributes(id, level);
-        this.frame = new HTMLImageElement();
+        this.frame = new Image();
         this.moveset = this.#getMoveset(id.toString());
         this.animationSet = this.#getAnimationSet(id.toString());
     }

@@ -24,7 +24,7 @@ export class Player {
         this.id = id;
         this.name = name;
         this.dx = 0;
-        this.dy = 0;
+        this.dy = 630;
         this.characters = characters;
         this.extendMap = 0;
         this.activeCharacter = this.characters[this.activeCharacterIndex];

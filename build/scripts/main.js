@@ -2,6 +2,7 @@ import { Player } from "./players/player.js";
 import { Character } from "./characters/character.js";
 import { GameProperties } from "./options/gameProperties.js";
 import { Stage1 } from "./scenery/stage1.js";
+import { Listeners } from "./listeners/listeners.js";
 const canvas = document.getElementById('canvas1');
 canvas.width = 1920;
 canvas.height = 1080;
@@ -15,7 +16,9 @@ GameProperties.ctx2 = ctx2;
 const characters = [];
 characters.push(new Character(1, 35));
 const player1 = new Player(1, "Kaguyo", characters);
+Listeners.LoadDefaultScenery();
 function main() {
+    ctx?.clearRect(0, 0, canvas.width, canvas.height);
     player1.handleInput();
     Stage1.generateStage1(player1);
     player1.drawPlayer(ctx);

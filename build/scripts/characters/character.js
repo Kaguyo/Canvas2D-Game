@@ -15,7 +15,7 @@ export class Character {
     frame;
     constructor(id, level) {
         this.attribute = new Attributes(id, level);
-        this.frame = new HTMLImageElement();
+        this.frame = new Image();
         this.moveset = this.#getMoveset(id.toString());
         this.animationSet = this.#getAnimationSet(id.toString());
     }

@@ -23,7 +23,7 @@ export class Player {
     constructor(id : number, name : string, characters : Character[]) {
         this.id = id;
         this.name = name;
-        this.dx = 0;
+        this.dx = 300;
         this.dy = 630;
         this.characters = characters;
         this.extendMap = 0;
@@ -38,7 +38,11 @@ export class Player {
     updateCharacterFrame(): void {
         this.activeCharacter.frame = this.activeCharacter.updateFrame(this);
     }
-
+        
+    getCharacterLevel(): number {
+        return this.activeCharacter.attribute.level;
+    }
+    
     handleInput(): void {
         const switchKeys = ['1', '2', '3'];
         const moveKeys = ["a", "d", "w", "s"];
@@ -94,7 +98,7 @@ export class Player {
             if (GameProperties.inputKeys[key]){
                 switch (key) { 
                     case 'q':
-                        this.activeCharacter.moveset.Ultimate();
+                        this.activeCharacter.moveset.Ultimate(this.activeCharacter.attribute);
                         break;
                 }
             }
@@ -109,5 +113,4 @@ export class Player {
             this.activeCharacter = this.characters[this.activeCharacterIndex];
         }
     }
-    
 }

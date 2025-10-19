@@ -108,7 +108,6 @@ export class SeeleAnimation {
     animationNumber = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
     animationMap = {
         1: function (animationSet, player) {
-            animationSet.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
             if (player.activeCharacter.attribute.equipedWeapon) { // armed
                 if (animationSet.idleArmedAnimation.index == 1) {
                     animationSet.frame = player.directionRight ? seeleIdleArmedImg1 : seeleIdleArmedImg1Reversed;
@@ -116,6 +115,7 @@ export class SeeleAnimation {
             }
             else if (!player.activeCharacter.attribute.equipedWeapon) { // unarmed
                 if (animationSet.idleAnimation.index == 1) {
+                    animationSet.idleAnimation.countIndexRepeated += 0.6 * GameProperties.gameSpeed;
                     if (animationSet.idleAnimation.countIndexRepeated >= 10) {
                         if (animationSet.idleAnimation.breatheIn == true)
                             animationSet.idleAnimation.reverseIndex = 0;
@@ -128,6 +128,7 @@ export class SeeleAnimation {
                 }
                 else if (animationSet.idleAnimation.index == 2) {
                     animationSet.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
+                    animationSet.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
                     if (animationSet.idleAnimation.countIndexRepeated >= 10) {
                         animationSet.idleAnimation.countIndexRepeated = 0;
                         animationSet.idleAnimation.index = 3 + animationSet.idleAnimation.reverseIndex;
@@ -138,6 +139,7 @@ export class SeeleAnimation {
                 }
                 else if (animationSet.idleAnimation.index == 3) {
                     animationSet.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
+                    animationSet.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
                     if (animationSet.idleAnimation.countIndexRepeated >= 10) {
                         if (animationSet.idleAnimation.breatheIn == false)
                             animationSet.idleAnimation.reverseIndex = -2;
@@ -147,6 +149,7 @@ export class SeeleAnimation {
                     animationSet.frame = player.directionRight ? seeleIdleImg3 : seeleIdleImg3Reversed;
                 }
                 else if (animationSet.idleAnimation.index == 4) {
+                    animationSet.idleAnimation.countIndexRepeated += 0.6 * GameProperties.gameSpeed;
                     animationSet.idleAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
                     if (animationSet.idleAnimation.countIndexRepeated >= 12) {
                         animationSet.idleAnimation.countIndexRepeated = 0;
@@ -382,7 +385,11 @@ export class SeeleAnimation {
     // public methods region
     getFrame(player) {
         let frame = new Image();
-        frame = this.animationMap[this.animationNumber].call(player.activeCharacter.animationSet, player.activeCharacter.animationSet, player);
+        frame = this.animationMap[this.animationNumber].call(
+        // this utilizado dentro do metodo chamado:
+        player.activeCharacter.animationSet, 
+        // parametros passados para o metodo chamado:
+        player.activeCharacter.animationSet, player);
         return frame;
     }
     setAnimation(number) {

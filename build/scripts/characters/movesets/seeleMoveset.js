@@ -7,7 +7,7 @@ export class SeeleMoveset {
     }
     // public methods region
     reset() {
-        this.animationSet.setAnimation(1);
+        // this.animationSet.setAnimation(1);
         GameProperties.allowMovement = true;
         GameProperties.allowBasicAttack = true;
         GameProperties.allowDash = true;
@@ -16,13 +16,14 @@ export class SeeleMoveset {
         GameProperties.usingUltimate = false;
     }
     Run() {
+        console.log("running");
         if (GameProperties.allowMovement) {
             this.animationSet.setAnimation(2);
         }
     }
     Ultimate(attributes) {
         if (attributes.energy >= 80 && GameProperties.allowUltimate) {
-            // this.reset();
+            this.reset();
             this.animationSet.setAnimation(6);
             attributes.energy -= 80;
             attributes.energy = GameProperties.CeilToZero(attributes.energy);

@@ -122,9 +122,9 @@ export class SeeleAnimation {
     // private fields region
     private frame: HTMLImageElement = new Image();
 
-    private animationNumber: number = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
+    private animationNumber: number = 6; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
 
-    private readonly animationMap : Record<number, Function> = {
+    private readonly animationMap : Record<string, Function> = {
         1 : function(animationSet: SeeleAnimation, player: Player): HTMLImageElement { // idle
 
             if (player.activeCharacter.attribute.equipedWeapon){ // armed
@@ -192,28 +192,28 @@ export class SeeleAnimation {
                     animationSet.runningAnimation.countIndexRepeated = 0;
                     animationSet.runningAnimation.index = 2;
                 }
-                player.activeCharacter.frame = player.directionRight ? seeleRunImg2 : seeleRunImg2Reversed;
+                animationSet.frame = player.directionRight ? seeleRunImg2 : seeleRunImg2Reversed;
 
             } else if (animationSet.runningAnimation.index == 2) {
                 if (animationSet.runningAnimation.countIndexRepeated >= 10){
                     animationSet.runningAnimation.countIndexRepeated = 0;
                     animationSet.runningAnimation.index = 3;
                 }
-                player.activeCharacter.frame = player.directionRight ? seeleRunImg3 : seeleRunImg3Reversed;
+                animationSet.frame = player.directionRight ? seeleRunImg3 : seeleRunImg3Reversed;
 
             } else if (animationSet.runningAnimation.index == 3) {
                 if (animationSet.runningAnimation.countIndexRepeated >= 10){
                     animationSet.runningAnimation.countIndexRepeated = 0;
                     animationSet.runningAnimation.index = 4;
                 }
-                player.activeCharacter.frame = player.directionRight ? seeleRunImg4 : seeleRunImg4Reversed;
+                animationSet.frame = player.directionRight ? seeleRunImg4 : seeleRunImg4Reversed;
 
             } else if (animationSet.runningAnimation.index == 4) {
                 if (animationSet.runningAnimation.countIndexRepeated >= 10){
                     animationSet.runningAnimation.countIndexRepeated = 0;
                     animationSet.runningAnimation.index = 1;
                 }
-                player.activeCharacter.frame = player.directionRight ? seeleRunImg1 : seeleRunImg1Reversed;
+                animationSet.frame = player.directionRight ? seeleRunImg1 : seeleRunImg1Reversed;
 
             }
             
@@ -240,14 +240,14 @@ export class SeeleAnimation {
                     animationSet.ultimateAnimation.countIndexRepeated = 0;
                     animationSet.ultimateAnimation.index = 2;
                 }
-                player.activeCharacter.frame = player.directionRight ? seeleActivatingUltDash1 : seeleActivatingUltDash1Reversed;
+                animationSet.frame = player.directionRight ? seeleActivatingUltDash1 : seeleActivatingUltDash1Reversed;
 
             } else if (animationSet.ultimateAnimation.index == 2) {
                 animationSet.ultimateAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
                 if (animationSet.ultimateAnimation.countIndexRepeated >= 50){
                     animationSet.ultimateAnimation.countIndexRepeated = 0;
                 }
-                player.activeCharacter.frame = player.directionRight ? seeleActivatingUltDash2 : seeleActivatingUltDash2Reversed;
+                animationSet.frame = player.directionRight ? seeleActivatingUltDash2 : seeleActivatingUltDash2Reversed;
             }
             
             animationSet.renderVFXSparkles(player);

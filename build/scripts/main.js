@@ -22,6 +22,7 @@ function main() {
     ctx?.clearRect(0, 0, canvas.width, canvas.height);
     player1.handleInput();
     Stage1.generateStage1(player1);
+    console.log(player1.activeCharacter.attribute.energy);
     player1.drawPlayer(ctx);
     player1.updateCharacterFrame();
     Hud.generateHud(ctx, player1);

@@ -70,7 +70,7 @@ export class Attributes {
     // public fields region
     readonly id : number;
     level : number;
-    energy = 22000;
+    energy = 160;
     energyRecharge = 0;
     exp = 0;
     vfx : any;

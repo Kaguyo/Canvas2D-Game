@@ -26,6 +26,7 @@ export class SeeleMoveset {
     
     Ultimate(player: Player){
         if (player.activeCharacter.attribute.energy >= 80 && GameProperties.allowUltimate){
+            console.log("roça nos amigo da boca")
             player.activeCharacter.animationSet.setAnimation(6);
             player.activeCharacter.attribute.energy -= 80;
             player.activeCharacter.attribute.energy = GameProperties.CeilToZero(player.activeCharacter.attribute.energy);

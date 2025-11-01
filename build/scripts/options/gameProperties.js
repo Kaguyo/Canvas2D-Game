@@ -16,12 +16,13 @@ export class GameProperties {
         'l': false,
     };
     // private fields region
+    static _usingUltimate;
+    static _usingMovement;
     static _allowIdle;
     static _allowUltimate;
     // public fields region
     static get allowIdle() {
         GameProperties._allowIdle = true;
-        console.log(GameProperties.usingIActionArray);
         if (GameProperties.usingIActionArray.includes(true)) {
             GameProperties._allowIdle = false;
         }
@@ -29,7 +30,6 @@ export class GameProperties {
     }
     static get allowUltimate() {
         GameProperties._allowUltimate = true;
-        console.log(GameProperties.usingUltimate);
         if (GameProperties.usingUltimate) {
             GameProperties._allowUltimate = false;
         }
@@ -44,12 +44,20 @@ export class GameProperties {
     static allowSwitchCharacter = true;
     static set usingUltimate(value) {
         this.usingIActionArray[0] = value;
+        this._usingUltimate = value;
     }
     ;
+    static get usingUltimate() {
+        return this._usingUltimate;
+    }
     static set usingMovement(value) {
         this.usingIActionArray[1] = value;
+        this._usingMovement = value;
     }
     ;
+    static get usingMovement() {
+        return this._usingMovement;
+    }
     static usingIActionArray = [GameProperties.usingUltimate, GameProperties.usingMovement];
     static switchingCharacter = false;
     // public methods region

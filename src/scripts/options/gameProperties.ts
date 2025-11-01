@@ -20,6 +20,9 @@ export class GameProperties {
     }
 
     // private fields region
+    private static _usingUltimate: boolean;
+    private static _usingMovement: boolean;
+    
     private static _allowIdle: boolean;
     private static _allowUltimate: boolean;
     
@@ -28,7 +31,7 @@ export class GameProperties {
     // public fields region
     static get allowIdle(): boolean {
         GameProperties._allowIdle = true;
-        console.log(GameProperties.usingIActionArray);
+
         if (GameProperties.usingIActionArray.includes(true)) {
             GameProperties._allowIdle = false;
         }
@@ -37,15 +40,16 @@ export class GameProperties {
     }
 
     static get allowUltimate(): boolean {
-        
         GameProperties._allowUltimate = true;
-        console.log(GameProperties.usingUltimate);
+
         if (GameProperties.usingUltimate) {
             GameProperties._allowUltimate = false;
         }
         
         return GameProperties._allowUltimate;
     }
+
+    
 
     static allowE = true;
     static allowMovement = true;
@@ -57,11 +61,21 @@ export class GameProperties {
 
     static set usingUltimate(value: boolean) {
         this.usingIActionArray[0] = value;
+        this._usingUltimate = value;
     };
+    
+    static get usingUltimate(): boolean {
+        return this._usingUltimate;
+    }
     
     static set usingMovement(value: boolean) {
         this.usingIActionArray[1] = value;
+        this._usingMovement = value;
     };
+
+    static get usingMovement(): boolean {
+        return this._usingMovement;
+    }
 
     static usingIActionArray: boolean[] = [GameProperties.usingUltimate, GameProperties.usingMovement];
 

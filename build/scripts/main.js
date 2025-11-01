@@ -21,6 +21,7 @@ Listeners.LoadDefaultScenery();
 function main() {
     ctx?.clearRect(0, 0, canvas.width, canvas.height);
     player1.handleInput();
+    console.log(player1.activeCharacter.attribute.energy);
     Stage1.generateStage1(player1);
     player1.drawPlayer(ctx);
     player1.updateCharacterFrame();

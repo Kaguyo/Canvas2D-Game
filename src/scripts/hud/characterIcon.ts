@@ -1,15 +1,18 @@
-const SeeleIcon1 = new Image();
+const SeeleIcon1: HTMLImageElement = new Image();
 SeeleIcon1.src = "../assets/hud/characterContainer/characterIcons/SeeleIcon1.png";
+
 export class CharacterIcons {
-    static generateCharacterIcon(ctx, dx, dy) {
+    static generateCharacterIcon(ctx: CanvasRenderingContext2D, dx: number, dy: number): void {
         ctx.drawImage(SeeleIcon1, dx, dy);
     }
-    static drawCharacterIconBackground(ctx, dx, dy) {
+    static drawCharacterIconBackground(ctx: CanvasRenderingContext2D, dx: number, dy: number): void {
         ctx.drawImage(backgroundIcon1, dx, dy);
-    }
+    }   
 }
-const backgroundIcon1 = new Image();
+
+const backgroundIcon1: HTMLImageElement = new Image();
 backgroundIcon1.src = "../assets/hud/characterContainer/backgrounds/BackgroundDarkBlue.png";
+
 const backgroundIcons = [
     backgroundIcon1
 ];

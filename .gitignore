@@ -1,5 +1,4 @@
-*.krz
-*.png~
+.*.png~
 *node_modules
-src
-*tsconfig.json
+*.kra~
+*.krz~

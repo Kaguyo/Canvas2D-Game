@@ -396,7 +396,7 @@ export class SeeleAnimation {
                 if (this.vfxWing.countIndexRepeated >= 5){
                     this.vfxWing.countIndexRepeated = 0;
                     this.vfxWing.index = 1;
-                    player.activeCharacter.moveset.reset();
+                    player.activeCharacter.moveset.reset(player);
                 }
                 this.vfxWing.image = player.directionRight ? seeleUltWing12 : seeleUltWing12Reversed;
             }
@@ -421,7 +421,7 @@ export class SeeleAnimation {
         return frame;
     }
 
-    setAnimation(number : number): void {
+    setAnimation(number: number): void {
         this.animationNumber = number;
     }
 

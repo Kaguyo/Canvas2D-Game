@@ -19,14 +19,16 @@ export class GameProperties {
         'l' : false,
     }
 
+    // private fields region
     private static _allowIdle: boolean;
+    private static _allowUltimate: boolean;
     
-    static set allowIdle(value: boolean) {
-        GameProperties._allowIdle = value;
-    }
+
+
+    // public fields region
     static get allowIdle(): boolean {
         GameProperties._allowIdle = true;
-
+        console.log(GameProperties.usingIActionArray);
         if (GameProperties.usingIActionArray.includes(true)) {
             GameProperties._allowIdle = false;
         }
@@ -34,17 +36,33 @@ export class GameProperties {
         return GameProperties._allowIdle;
     }
 
+    static get allowUltimate(): boolean {
+        
+        GameProperties._allowUltimate = true;
+        console.log(GameProperties.usingUltimate);
+        if (GameProperties.usingUltimate) {
+            GameProperties._allowUltimate = false;
+        }
+        
+        return GameProperties._allowUltimate;
+    }
+
     static allowE = true;
     static allowMovement = true;
-    static allowUltimate = true;
     static allowExtendMapRight = true;
     static allowExtendMapLeft = false;
     static allowDash = true;
     static allowBasicAttack = true;
     static allowSwitchCharacter = true;
 
-    static usingUltimate = false;
-    static usingMovement = false;
+    static set usingUltimate(value: boolean) {
+        this.usingIActionArray[0] = value;
+    };
+    
+    static set usingMovement(value: boolean) {
+        this.usingIActionArray[1] = value;
+    };
+
     static usingIActionArray: boolean[] = [GameProperties.usingUltimate, GameProperties.usingMovement];
 
     static switchingCharacter = false;

@@ -19,6 +19,7 @@ export class Listeners {
             GameProperties.allowE = false;
             // Player.switchingWeapon = true;
         }
+        
     };
 
     static keyupHandler = (event : KeyboardEvent) => {

@@ -48,8 +48,10 @@ export class Player {
         const moveKeys = ["a", "d", "w", "s"];
         const attackKeys = ['j', 'k', 'q', 'i'];
 
-        if (GameProperties.allowIdle)
-            this.activeCharacter.moveset.reset(this);    
+        if (GameProperties.allowIdle && !GameProperties.usingIActionArray.includes(true)) {
+            this.activeCharacter.moveset.reset(this);
+        }
+               
 
         for (const key of moveKeys) {
             if (GameProperties.inputKeys[key] && GameProperties.allowMovement){
@@ -74,6 +76,7 @@ export class Player {
                     }
                     this.activeCharacter.moveset.Run(this);
                     GameProperties.usingMovement = true;
+                    console.log(GameProperties.usingMovement, GameProperties.usingIActionArray);
                 }
             } else {
                 GameProperties.usingMovement = false;
@@ -100,7 +103,6 @@ export class Player {
             if (GameProperties.inputKeys[key]){
                 switch (key) { 
                     case 'q':
-                        GameProperties.usingUltimate = true;
                         this.activeCharacter.moveset.Ultimate(this);
                         break;
                 }

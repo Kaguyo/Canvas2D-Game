@@ -15,27 +15,41 @@ export class GameProperties {
         'e': false,
         'l': false,
     };
+    // private fields region
     static _allowIdle;
-    static set allowIdle(value) {
-        GameProperties._allowIdle = value;
-    }
+    static _allowUltimate;
+    // public fields region
     static get allowIdle() {
         GameProperties._allowIdle = true;
+        console.log(GameProperties.usingIActionArray);
         if (GameProperties.usingIActionArray.includes(true)) {
             GameProperties._allowIdle = false;
         }
         return GameProperties._allowIdle;
     }
+    static get allowUltimate() {
+        GameProperties._allowUltimate = true;
+        console.log(GameProperties.usingUltimate);
+        if (GameProperties.usingUltimate) {
+            GameProperties._allowUltimate = false;
+        }
+        return GameProperties._allowUltimate;
+    }
     static allowE = true;
     static allowMovement = true;
-    static allowUltimate = true;
     static allowExtendMapRight = true;
     static allowExtendMapLeft = false;
     static allowDash = true;
     static allowBasicAttack = true;
     static allowSwitchCharacter = true;
-    static usingUltimate = false;
-    static usingMovement = false;
+    static set usingUltimate(value) {
+        this.usingIActionArray[0] = value;
+    }
+    ;
+    static set usingMovement(value) {
+        this.usingIActionArray[1] = value;
+    }
+    ;
     static usingIActionArray = [GameProperties.usingUltimate, GameProperties.usingMovement];
     static switchingCharacter = false;
     // public methods region

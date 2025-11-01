@@ -15,7 +15,6 @@ export class SeeleMoveset {
         GameProperties.allowBasicAttack = true;
         GameProperties.allowDash = true;
         GameProperties.allowE = true;
-        GameProperties.allowUltimate = true;
         GameProperties.usingUltimate = false;
     }
     
@@ -27,14 +26,12 @@ export class SeeleMoveset {
     
     Ultimate(player: Player){
         if (player.activeCharacter.attribute.energy >= 80 && GameProperties.allowUltimate){
-            console.log("Ultimate activated" + player.activeCharacter.attribute.energy);
             player.activeCharacter.animationSet.setAnimation(6);
             player.activeCharacter.attribute.energy -= 80;
             player.activeCharacter.attribute.energy = GameProperties.CeilToZero(player.activeCharacter.attribute.energy);
             GameProperties.usingUltimate = true;
             GameProperties.allowE = false;
             GameProperties.allowMovement = false;
-            GameProperties.allowUltimate = false;
             
             let percentage;
             if (player.activeCharacter.attribute.energy <= player.activeCharacter.attribute.energyMax){

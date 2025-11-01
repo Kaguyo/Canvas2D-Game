@@ -36,7 +36,7 @@ export class Attributes {
     // public fields region
     id;
     level;
-    energy = 2000;
+    energy = 22000;
     energyRecharge = 0;
     exp = 0;
     vfx;

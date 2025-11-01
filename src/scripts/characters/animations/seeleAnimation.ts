@@ -122,7 +122,7 @@ export class SeeleAnimation {
     // private fields region
     private frame: HTMLImageElement = new Image();
 
-    private animationNumber: number = 6; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
+    private animationNumber: number = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
 
     private readonly animationMap : Record<string, Function> = {
         1 : function(animationSet: SeeleAnimation, player: Player): HTMLImageElement { // idle
@@ -244,9 +244,6 @@ export class SeeleAnimation {
 
             } else if (animationSet.ultimateAnimation.index == 2) {
                 animationSet.ultimateAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
-                if (animationSet.ultimateAnimation.countIndexRepeated >= 50){
-                    animationSet.ultimateAnimation.countIndexRepeated = 0;
-                }
                 animationSet.frame = player.directionRight ? seeleActivatingUltDash2 : seeleActivatingUltDash2Reversed;
             }
             
@@ -255,8 +252,6 @@ export class SeeleAnimation {
             return animationSet.frame;
         }
     };
-
-
 
     // public fields region    
     idleAnimation = {
@@ -299,6 +294,7 @@ export class SeeleAnimation {
             countIndexRepeated : 0
         }, 
         updateVFXSparkles : function(player: Player): HTMLImageElement {
+            console.log("Updating VFX Sparkles");
             if (this.vfxSparkle.index == 1) {
                 this.vfxSparkle.countIndexRepeated += 1 * GameProperties.gameSpeed;
                 if (this.vfxSparkle.countIndexRepeated >= 15){
@@ -434,13 +430,13 @@ export class SeeleAnimation {
     // private methods region
     private renderVFXSparkles(player: Player): void {
         GameProperties.ctx1.drawImage(
-            this.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy
+            player.activeCharacter.animationSet.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy
         );
     }
 
     private renderVFXWing(player: Player): void {
         GameProperties.ctx1.drawImage(
-            this.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy
+            player.activeCharacter.animationSet.ultimateAnimation.updateVFXWing(player), player.dx, player.dy
         );
     }
 }

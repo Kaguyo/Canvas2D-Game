@@ -15,15 +15,28 @@ export class GameProperties {
         'e': false,
         'l': false,
     };
+    static _allowIdle;
+    static set allowIdle(value) {
+        GameProperties._allowIdle = value;
+    }
+    static get allowIdle() {
+        GameProperties._allowIdle = true;
+        if (GameProperties.usingIActionArray.includes(true)) {
+            GameProperties._allowIdle = false;
+        }
+        return GameProperties._allowIdle;
+    }
     static allowE = true;
     static allowMovement = true;
-    static usingUltimate = false;
     static allowUltimate = true;
     static allowExtendMapRight = true;
     static allowExtendMapLeft = false;
     static allowDash = true;
     static allowBasicAttack = true;
     static allowSwitchCharacter = true;
+    static usingUltimate = false;
+    static usingMovement = false;
+    static usingIActionArray = [GameProperties.usingUltimate, GameProperties.usingMovement];
     static switchingCharacter = false;
     // public methods region
     static CeilToZero(value) {

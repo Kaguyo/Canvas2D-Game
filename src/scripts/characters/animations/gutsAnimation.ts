@@ -22,4 +22,7 @@ export class GutsAnimation {
 
         return frame;
     }
+
+    // public fields region
+    ultimateAnimation = {};
 }

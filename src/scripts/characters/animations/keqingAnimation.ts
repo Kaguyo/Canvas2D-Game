@@ -22,4 +22,7 @@ export class KeqingAnimation {
 
         return frame;
     }
+
+    // public fields region
+    ultimateAnimation = {};
 }

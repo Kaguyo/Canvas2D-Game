@@ -20,9 +20,11 @@ GameProperties.ctx2 = ctx2!;
 
 const characters : Character[] = [];
 
-characters.push(new Character(1, 13));
+characters.push(new Character(1, 33));
+
 
 const player1 = new Player(1, "Kaguyo", characters);
+
 Listeners.LoadDefaultScenery();
 
 function main(){

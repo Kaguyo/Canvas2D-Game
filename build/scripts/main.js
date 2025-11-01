@@ -15,7 +15,7 @@ const ctx2 = canvasBackground.getContext('2d');
 GameProperties.ctx1 = ctx;
 GameProperties.ctx2 = ctx2;
 const characters = [];
-characters.push(new Character(1, 13));
+characters.push(new Character(1, 33));
 const player1 = new Player(1, "Kaguyo", characters);
 Listeners.LoadDefaultScenery();
 function main() {

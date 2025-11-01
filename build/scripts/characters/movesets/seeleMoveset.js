@@ -1,13 +1,10 @@
-import { SeeleAnimation } from "../animations/seeleAnimation.js";
 import { GameProperties } from "../../options/gameProperties.js";
 export class SeeleMoveset {
-    // private fields region
-    animationSet = new SeeleAnimation();
     constructor() {
     }
     // public methods region
-    reset() {
-        // this.animationSet.setAnimation(1);
+    reset(player) {
+        player.activeCharacter.animationSet.setAnimation(1);
         GameProperties.allowMovement = true;
         GameProperties.allowBasicAttack = true;
         GameProperties.allowDash = true;
@@ -15,25 +12,24 @@ export class SeeleMoveset {
         GameProperties.allowUltimate = true;
         GameProperties.usingUltimate = false;
     }
-    Run() {
-        console.log("running");
+    Run(player) {
         if (GameProperties.allowMovement) {
-            this.animationSet.setAnimation(2);
+            player.activeCharacter.animationSet.setAnimation(2);
         }
     }
-    Ultimate(attributes) {
-        if (attributes.energy >= 80 && GameProperties.allowUltimate) {
-            this.reset();
-            this.animationSet.setAnimation(6);
-            attributes.energy -= 80;
-            attributes.energy = GameProperties.CeilToZero(attributes.energy);
+    Ultimate(player) {
+        if (player.activeCharacter.attribute.energy >= 80 && GameProperties.allowUltimate) {
+            console.log("Ultimate activated" + player.activeCharacter.attribute.energy);
+            player.activeCharacter.animationSet.setAnimation(6);
+            player.activeCharacter.attribute.energy -= 80;
+            player.activeCharacter.attribute.energy = GameProperties.CeilToZero(player.activeCharacter.attribute.energy);
             GameProperties.usingUltimate = true;
             GameProperties.allowE = false;
             GameProperties.allowMovement = false;
             GameProperties.allowUltimate = false;
             let percentage;
-            if (attributes.energy <= attributes.energyMax) {
-                percentage = (100 / (attributes.energyMax / attributes.energy)).toFixed(0).toString() + "%";
+            if (player.activeCharacter.attribute.energy <= player.activeCharacter.attribute.energyMax) {
+                percentage = (100 / (player.activeCharacter.attribute.energyMax / player.activeCharacter.attribute.energy)).toFixed(0).toString() + "%";
             }
             else {
                 percentage = '100%';

@@ -21,4 +21,8 @@ export class CartethyiaAnimation {
 
         return frame;
     }
+
+
+    // public fields region
+    ultimateAnimation = {};
 }

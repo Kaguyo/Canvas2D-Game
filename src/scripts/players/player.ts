@@ -8,7 +8,7 @@ export class Player {
 
     characters : Character[];
     activeCharacterIndex = 0;
-    activeCharacter : Character;
+    activeCharacter: Character;
 
     dx : number;
     dy : number;
@@ -48,6 +48,38 @@ export class Player {
         const moveKeys = ["a", "d", "w", "s"];
         const attackKeys = ['j', 'k', 'q', 'i'];
 
+        if (GameProperties.allowIdle)
+            this.activeCharacter.moveset.reset(this);    
+
+        for (const key of moveKeys) {
+            if (GameProperties.inputKeys[key] && GameProperties.allowMovement){
+                if (key == 'a') { 
+                    this.directionLeft = true;
+                    this.directionRight = false;
+                    this.dx -= this.activeCharacter.attribute.speed;
+                    if (this.dx < 300) {
+                        this.extendMap = 300 - this.dx;
+                        this.dx = 300;
+                    }
+                    this.activeCharacter.moveset.Run(this);
+                    GameProperties.usingMovement = true;
+
+                } else if (key == 'd') {
+                    this.directionLeft = false;
+                    this.directionRight = true;
+                    this.dx += this.activeCharacter.attribute.speed;
+                    if (this.dx > 1920 - 300) {
+                        this.extendMap = this.dx - (1920 - 300);
+                        this.dx = 1920 - 300;
+                    }
+                    this.activeCharacter.moveset.Run(this);
+                    GameProperties.usingMovement = true;
+                }
+            } else {
+                GameProperties.usingMovement = false;
+            }
+        }
+
         for (const key of switchKeys) {
             if (GameProperties.inputKeys[key] && GameProperties.allowSwitchCharacter){
                 switch (key) { 
@@ -64,41 +96,12 @@ export class Player {
             }
         }
     
-        for (const key of moveKeys) {
-            if (GameProperties.inputKeys[key] && GameProperties.allowMovement){
-                switch (key) { 
-                    case 'a':
-                        this.directionLeft = true;
-                        this.directionRight = false;
-                        this.dx -= this.activeCharacter.attribute.speed;
-                        if (this.dx < 300) {
-                            this.extendMap = 300 - this.dx;
-                            this.dx = 300;
-                        }
-                        this.activeCharacter.moveset.Run();
-                        break;
-                    case 'd':
-                        this.directionLeft = false;
-                        this.directionRight = true;
-                        this.dx += this.activeCharacter.attribute.speed;
-                        if (this.dx > 1920 - 300) {
-                            this.extendMap = this.dx - (1920 - 300);
-                            this.dx = 1920 - 300;
-                        }
-                        this.activeCharacter.moveset.Run();
-                        break;
-                    default:
-                        this.activeCharacter.moveset.reset();
-                        break;
-                }
-            }
-        }
-
         for (const key of attackKeys) {
             if (GameProperties.inputKeys[key]){
                 switch (key) { 
                     case 'q':
-                        this.activeCharacter.moveset.Ultimate(this.activeCharacter.attribute);
+                        GameProperties.usingUltimate = true;
+                        this.activeCharacter.moveset.Ultimate(this);
                         break;
                 }
             }

@@ -13,4 +13,6 @@ export class GutsAnimation {
         frame = this.animationMap[this.animationNumber].call(player.activeCharacter.animationSet, player);
         return frame;
     }
+    // public fields region
+    ultimateAnimation = {};
 }

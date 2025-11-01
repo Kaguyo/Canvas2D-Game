@@ -105,7 +105,7 @@ export class SeeleAnimation {
     }
     // private fields region
     frame = new Image();
-    animationNumber = 6; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
+    animationNumber = 1; // 1: idle, 2: running, 3: jumping, 4: crouch, 5: dash, 6: ultimate
     animationMap = {
         1: function (animationSet, player) {
             if (player.activeCharacter.attribute.equipedWeapon) { // armed
@@ -217,9 +217,6 @@ export class SeeleAnimation {
             }
             else if (animationSet.ultimateAnimation.index == 2) {
                 animationSet.ultimateAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
-                if (animationSet.ultimateAnimation.countIndexRepeated >= 50) {
-                    animationSet.ultimateAnimation.countIndexRepeated = 0;
-                }
                 animationSet.frame = player.directionRight ? seeleActivatingUltDash2 : seeleActivatingUltDash2Reversed;
             }
             animationSet.renderVFXSparkles(player);
@@ -263,6 +260,7 @@ export class SeeleAnimation {
             countIndexRepeated: 0
         },
         updateVFXSparkles: function (player) {
+            console.log("Updating VFX Sparkles");
             if (this.vfxSparkle.index == 1) {
                 this.vfxSparkle.countIndexRepeated += 1 * GameProperties.gameSpeed;
                 if (this.vfxSparkle.countIndexRepeated >= 15) {
@@ -397,9 +395,9 @@ export class SeeleAnimation {
     }
     // private methods region
     renderVFXSparkles(player) {
-        GameProperties.ctx1.drawImage(this.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy);
+        GameProperties.ctx1.drawImage(player.activeCharacter.animationSet.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy);
     }
     renderVFXWing(player) {
-        GameProperties.ctx1.drawImage(this.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy);
+        GameProperties.ctx1.drawImage(player.activeCharacter.animationSet.ultimateAnimation.updateVFXWing(player), player.dx, player.dy);
     }
 }

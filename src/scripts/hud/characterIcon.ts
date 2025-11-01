@@ -1,5 +1,7 @@
 const SeeleIcon1: HTMLImageElement = new Image();
 SeeleIcon1.src = "../assets/hud/characterContainer/characterIcons/SeeleIcon1.png";
+const Strognoff: HTMLImageElement = new Image();
+Strognoff.src = "../assets/hud/characterContainer/characterIcons/10295934.jpg";
 
 export class CharacterIcons {
     static generateCharacterIcon(ctx: CanvasRenderingContext2D, dx: number, dy: number): void {

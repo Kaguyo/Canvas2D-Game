@@ -29,7 +29,7 @@ export class Character {
             '1': new SeeleAnimation(),
             '2': new KeqingAnimation(),
             '3': new CartethyiaAnimation(),
-            '4': new GutsAnimation(),
+            '4': new GutsAnimation()
         };
         return animationMap[id];
     }
@@ -38,7 +38,7 @@ export class Character {
             '1': new SeeleMoveset(),
             '2': new KeqingMoveset(),
             '3': new CartethyiaMoveset(),
-            '4': new GutsMoveset(),
+            '4': new GutsMoveset()
         };
         return movesetMap[id];
     }

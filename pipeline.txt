@@ -1,4 +1,0 @@
-commitMessage: test
-sourceBranch: refactor-character-animation
-destinationBranch: main
-body: test

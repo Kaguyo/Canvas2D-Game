@@ -1,3 +1,5 @@
+import { GameProperties } from "../../options/gameProperties.js";
+import { TransferObject } from "../../options/gameProperties.js";
 type artifactStats = {
     hp?: number, hpPercentage?: number,
     atk? : number, atkPercentage?: number,
@@ -48,7 +50,14 @@ export class Attributes {
         this.atk = this.atkBuild;
         this.def = this.defBuild;
         this.speed = this.speed;
+        this.energyMax = this.energyMax;
+        this.dto = { 
+            characterEnergy: this.energyMax,
+            characterMaxEnergy: this.energyMax,
+            energyCost: this.ultCost 
+        };
         
+        this.energy = GameProperties.setInitialEnergy(this.dto);
     }
     
     artifacts : artifacts = [[{hp : 322}, {atkPercentage : 40}], [{hp : 322}], [{hp : 322}, {hp : 322}, {hp : 322}, {hp : 322}]];
@@ -65,15 +74,20 @@ export class Attributes {
     private _defBuild = 0;
     private _expMax = 0;
     private _energyMax = 0;
+    private _ultCost = 0;
     private _speed = 0;
 
     // public fields region
     readonly id : number;
     level : number;
-    energy = 160;
+    dto: TransferObject = {
+        characterEnergy: 0,
+        characterMaxEnergy: 0,
+        energyCost: 0
+    }
+    energy = 0;
     energyRecharge = 0;
     exp = 0;
-    vfx : any;
     hasWeapon = false;
     equipedWeapon = false;
     switchingWeapon = false;
@@ -109,10 +123,6 @@ export class Attributes {
 
     private set expMax(value: number) {
         this._expMax = value;
-    }
-
-    private set energyMax(value: number) {
-        this._energyMax = value;
     }
     
     // public getters
@@ -294,12 +304,24 @@ export class Attributes {
         return Number.parseInt(this._expMax.toString(), 10);
     }
 
+    set energyMax(value: number) {
+        this._energyMax = value;
+    }
     get energyMax(){
         if (this.id == 1)
-            this.energyMax = 80;
+            this._energyMax = 160;
         else if (this.id == 2)
-            this.energyMax = 40;
-
+            this._energyMax = 40;
+        
         return Number.parseInt(this._energyMax.toString(), 10);
+    }
+
+    get ultCost(){
+        if (this.id == 1)
+            this._ultCost = 80;
+        else if (this.id == 2)
+            this._ultCost= 40;
+
+        return this._ultCost;
     }
 }

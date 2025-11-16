@@ -17,10 +17,10 @@ export class SeeleMoveset {
         }
     }
     Ultimate(player) {
-        if (player.activeCharacter.attribute.energy >= 80 && GameProperties.allowUltimate) {
+        if (player.activeCharacter.attribute.energy >= player.activeCharacter.attribute.ultCost && GameProperties.allowUltimate) {
             player.activeCharacter.animationSet.setAnimation(6);
-            player.activeCharacter.attribute.energy -= 80;
-            player.activeCharacter.attribute.energy = GameProperties.CeilToZero(player.activeCharacter.attribute.energy);
+            player.activeCharacter.attribute.energy = GameProperties.handleEnergy(player.activeCharacter.attribute.energy, -player.activeCharacter.attribute.ultCost);
+            player.activeCharacter.attribute.energy = GameProperties.ceilToZero(player.activeCharacter.attribute.energy);
             GameProperties.usingUltimate = true;
             GameProperties.allowE = false;
             GameProperties.allowMovement = false;

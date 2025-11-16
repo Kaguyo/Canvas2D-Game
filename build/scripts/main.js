@@ -21,13 +21,10 @@ Listeners.LoadDefaultScenery();
 function main() {
     ctx?.clearRect(0, 0, canvas.width, canvas.height);
     player1.handleInput();
-    console.log(player1.activeCharacter.attribute.energy);
-    Stage1.generateStage1(player1);
-    player1.drawPlayer(ctx);
+    Stage1.generateStage1(player1, ctx2);
     player1.updateCharacterFrame();
+    player1.drawPlayer(ctx);
     Hud.generateHud(ctx, player1);
     requestAnimationFrame(main);
 }
-export { ctx };
-export { ctx2 };
 main();

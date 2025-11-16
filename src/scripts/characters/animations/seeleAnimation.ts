@@ -232,6 +232,8 @@ export class SeeleAnimation {
             return animationSet.frame;
         },
         6 : function(animationSet: SeeleAnimation, player: Player): HTMLImageElement { // ultimate
+            if (!player.activeCharacter.animationSet.ultimateAnimation.vfxSparkle.stop)
+                animationSet.renderVFXSparkles(player);
             animationSet.renderVFXWing(player);
             
             if (animationSet.ultimateAnimation.index == 1) {
@@ -246,8 +248,6 @@ export class SeeleAnimation {
                 animationSet.ultimateAnimation.countIndexRepeated += 1 * GameProperties.gameSpeed;
                 animationSet.frame = player.directionRight ? seeleActivatingUltDash2 : seeleActivatingUltDash2Reversed;
             }
-            
-            animationSet.renderVFXSparkles(player);
 
             return animationSet.frame;
         }
@@ -284,6 +284,7 @@ export class SeeleAnimation {
         index : 1,
         countIndexRepeated : 0,
         vfxSparkle : {
+            stop : false,
             image : new Image(),
             index : 1,
             countIndexRepeated : 0
@@ -294,17 +295,16 @@ export class SeeleAnimation {
             countIndexRepeated : 0
         }, 
         updateVFXSparkles : function(player: Player): HTMLImageElement {
-            console.log("Updating VFX Sparkles");
             if (this.vfxSparkle.index == 1) {
                 this.vfxSparkle.countIndexRepeated += 1 * GameProperties.gameSpeed;
-                if (this.vfxSparkle.countIndexRepeated >= 15){
+                if (this.vfxSparkle.countIndexRepeated >= 5){
                     this.vfxSparkle.countIndexRepeated = 0;
                     this.vfxSparkle.index = 2;
                 }
                 this.vfxSparkle.image = player.directionRight ? seeleUltEffect1 : seeleUltEffect1Reversed;
             } else if (this.vfxSparkle.index == 2) {
                 this.vfxSparkle.countIndexRepeated += 1 * GameProperties.gameSpeed;
-                if (this.vfxSparkle.countIndexRepeated >= 15){
+                if (this.vfxSparkle.countIndexRepeated >= 5){
                     this.vfxSparkle.countIndexRepeated = 0;
                     this.vfxSparkle.index = 1;
                 }
@@ -326,6 +326,7 @@ export class SeeleAnimation {
                 if (this.vfxWing.countIndexRepeated >= 5){
                     this.vfxWing.countIndexRepeated = 0;
                     this.vfxWing.index = 3;
+                    player.activeCharacter.animationSet.ultimateAnimation.vfxSparkle.stop = true;
                 }
                 this.vfxWing.image = player.directionRight ? seeleUltWing2 : seeleUltWing2Reversed;
             } else if (this.vfxWing.index == 3) {
@@ -397,8 +398,10 @@ export class SeeleAnimation {
                     this.vfxWing.countIndexRepeated = 0;
                     this.vfxWing.index = 1;
                     player.activeCharacter.moveset.reset(player);
+                    player.activeCharacter.animationSet.ultimateAnimation.vfxSparkle.stop = false;
                 }
                 this.vfxWing.image = player.directionRight ? seeleUltWing12 : seeleUltWing12Reversed;
+           
             }
 
             return this.vfxWing.image;
@@ -429,6 +432,7 @@ export class SeeleAnimation {
     
     // private methods region
     private renderVFXSparkles(player: Player): void {
+        // da pra desenvolver a soluçao aqui com ifs e capturadores de ultimo frame e modificação de resetter
         GameProperties.ctx1.drawImage(
             player.activeCharacter.animationSet.ultimateAnimation.updateVFXSparkles(player), player.dx, player.dy
         );

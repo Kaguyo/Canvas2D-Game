@@ -1,5 +1,4 @@
 import { Player } from "../players/player.js";
-import { ctx2 } from "../main.js";
 import { GameProperties } from "../options/gameProperties.js";
 
 // Stage1 Images Stage 1
@@ -47,8 +46,8 @@ export class Stage1 {
     }
 
     // private methods region
-    #draw() {
-        ctx2!.drawImage(this.image, this.x, 0);
+    #draw(ctxStages: CanvasRenderingContext2D) {
+        ctxStages!.drawImage(this.image, this.x, 0);
     }
 
     #update(player : Player) {
@@ -67,14 +66,13 @@ export class Stage1 {
     }
 
     // public methods region
-    static generateStage1(player : Player) {
+    static generateStage1(player : Player, ctxStages : CanvasRenderingContext2D){ 
         Stage1.Stage1InstancesArray.forEach((instancedObject) => {
             instancedObject.#update(player);
-            instancedObject.#draw();
+            instancedObject.#draw(ctxStages);
         });
     }
 }
-
 // instances pushed in static array from constructor
 const stage1ImageObject1 = new Stage1(stageImage1, 0.2, false, 0);
 const stage1ImageObject1Reversed = new Stage1(stageImage5, 0.2, true, 1920);

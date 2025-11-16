@@ -1,3 +1,4 @@
+import { GameProperties } from "../../options/gameProperties.js";
 const justifyStats = [
     10, 20, 30, 40, 50,
     60, 70, 80, 90, 100,
@@ -18,6 +19,13 @@ export class Attributes {
         this.atk = this.atkBuild;
         this.def = this.defBuild;
         this.speed = this.speed;
+        this.energyMax = this.energyMax;
+        this.dto = {
+            characterEnergy: this.energyMax,
+            characterMaxEnergy: this.energyMax,
+            energyCost: this.ultCost
+        };
+        this.energy = GameProperties.setInitialEnergy(this.dto);
     }
     artifacts = [[{ hp: 322 }, { atkPercentage: 40 }], [{ hp: 322 }], [{ hp: 322 }, { hp: 322 }, { hp: 322 }, { hp: 322 }]];
     // private fields region
@@ -32,14 +40,19 @@ export class Attributes {
     _defBuild = 0;
     _expMax = 0;
     _energyMax = 0;
+    _ultCost = 0;
     _speed = 0;
     // public fields region
     id;
     level;
-    energy = 160;
+    dto = {
+        characterEnergy: 0,
+        characterMaxEnergy: 0,
+        energyCost: 0
+    };
+    energy = 0;
     energyRecharge = 0;
     exp = 0;
-    vfx;
     hasWeapon = false;
     equipedWeapon = false;
     switchingWeapon = false;
@@ -67,9 +80,6 @@ export class Attributes {
     }
     set expMax(value) {
         this._expMax = value;
-    }
-    set energyMax(value) {
-        this._energyMax = value;
     }
     // public getters
     get speed() {
@@ -235,11 +245,21 @@ export class Attributes {
         }
         return Number.parseInt(this._expMax.toString(), 10);
     }
+    set energyMax(value) {
+        this._energyMax = value;
+    }
     get energyMax() {
         if (this.id == 1)
-            this.energyMax = 80;
+            this._energyMax = 160;
         else if (this.id == 2)
-            this.energyMax = 40;
+            this._energyMax = 40;
         return Number.parseInt(this._energyMax.toString(), 10);
+    }
+    get ultCost() {
+        if (this.id == 1)
+            this._ultCost = 80;
+        else if (this.id == 2)
+            this._ultCost = 40;
+        return this._ultCost;
     }
 }

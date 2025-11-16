@@ -7,20 +7,12 @@ import { Player } from "../players/player.js";
 
 export class Hud {
     static generateHud(ctx: CanvasRenderingContext2D, player: Player): void {
-        
+        SpBarManager.trackEnergyBar(player.activeCharacter);
         CharacterCard.drawCard(ctx, 0, 0);
 
         CharacterIcons.drawCharacterIconBackground(ctx, 0, 0);
         CharacterIcons.generateCharacterIcon(ctx, 0, 0);
         
         CharacterLevel.drawLevel(ctx, 0, 0, player.getCharacterLevel());
-    }
-
-    static managerLifeBar(percentage: string): void {
-        LifeBarManager.setHealthBar(percentage);
-    }
-
-    static managerSpBar(percentage: string): void {
-        SpBarManager.setEnergyBar(percentage);
     }
 }

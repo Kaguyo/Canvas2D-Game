@@ -1,3 +1,6 @@
+import { SpBarManager } from "../hud/spBarManager.js"
+import { Hud } from "../hud/hud.js"
+
 export class GameProperties {
 
     static ctx1 : CanvasRenderingContext2D;
@@ -26,7 +29,6 @@ export class GameProperties {
     private static _allowIdle: boolean;
     private static _allowUltimate: boolean;
     
-
 
     // public fields region
     static get allowIdle(): boolean {
@@ -78,11 +80,28 @@ export class GameProperties {
     static switchingCharacter = false;
 
     // public methods region
-    static CeilToZero(value : number){
+    static ceilToZero(value : number){
         if (value < 0){
             value = 0;
         }
 
         return value;
     }
+
+    static handleEnergy(characterEnergy: number, characterEnergyModifier: number): number {
+        return characterEnergy += characterEnergyModifier;
+    }
+
+    static setInitialEnergy(anything: TransferObject): number {
+        let percentage: string = ((anything.characterEnergy / anything.characterMaxEnergy) * 100) + "%";
+        SpBarManager.setEnergyBar(percentage);
+    
+        return anything.characterEnergy;
+    }
 }
+
+export type TransferObject = {
+    characterEnergy: number,
+    characterMaxEnergy: number,
+    energyCost: number
+};

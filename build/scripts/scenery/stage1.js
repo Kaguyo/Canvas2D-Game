@@ -1,4 +1,3 @@
-import { ctx2 } from "../main.js";
 import { GameProperties } from "../options/gameProperties.js";
 // Stage1 Images Stage 1
 const stageImage1 = new Image();
@@ -38,8 +37,8 @@ export class Stage1 {
         Stage1.Stage1InstancesArray.push(this);
     }
     // private methods region
-    #draw() {
-        ctx2.drawImage(this.image, this.x, 0);
+    #draw(ctxStages) {
+        ctxStages.drawImage(this.image, this.x, 0);
     }
     #update(player) {
         if (this.x < -1920) {
@@ -54,10 +53,10 @@ export class Stage1 {
         player.extendMap = 0;
     }
     // public methods region
-    static generateStage1(player) {
+    static generateStage1(player, ctxStages) {
         Stage1.Stage1InstancesArray.forEach((instancedObject) => {
             instancedObject.#update(player);
-            instancedObject.#draw();
+            instancedObject.#draw(ctxStages);
         });
     }
 }

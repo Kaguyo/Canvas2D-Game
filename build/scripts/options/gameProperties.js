@@ -1,3 +1,4 @@
+import { SpBarManager } from "../hud/spBarManager.js";
 export class GameProperties {
     static ctx1;
     static ctx2;
@@ -61,10 +62,18 @@ export class GameProperties {
     static usingIActionArray = [GameProperties.usingUltimate, GameProperties.usingMovement];
     static switchingCharacter = false;
     // public methods region
-    static CeilToZero(value) {
+    static ceilToZero(value) {
         if (value < 0) {
             value = 0;
         }
         return value;
+    }
+    static handleEnergy(characterEnergy, characterEnergyModifier) {
+        return characterEnergy += characterEnergyModifier;
+    }
+    static setInitialEnergy(anything) {
+        let percentage = ((anything.characterEnergy / anything.characterMaxEnergy) * 100) + "%";
+        SpBarManager.setEnergyBar(percentage);
+        return anything.characterEnergy;
     }
 }

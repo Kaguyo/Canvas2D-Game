@@ -76,7 +76,6 @@ export class Player {
                     }
                     this.activeCharacter.moveset.Run(this);
                     GameProperties.usingMovement = true;
-                    console.log(GameProperties.usingMovement, GameProperties.usingIActionArray);
                 }
             } else {
                 GameProperties.usingMovement = false;
